@@ -1,0 +1,69 @@
+<ion-header [translucent]="true" color="danger">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-row>
+      <ion-col size="6" size-sm *ngFor="let item of categoryProducts">
+        <ion-card>
+          <ion-img src="../../assets/holder.jpg"></ion-img>
+          <ion-card-header color="primary">
+            <ion-card-subtitle>{{item.name}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <ion-list class="flx_pagination">
+    <ul *ngFor="let item of categoryPages">
+      <li 
+        *ngIf="!item.clickable && item.type == 'page' " 
+        class="li_disabled" >
+
+          {{item.page}}
+
+      </li>
+      <li 
+        *ngIf="item.clickable && item.type == 'page' " 
+        (click)="clicktest(6,item.page)">
+
+          {{item.page}}
+
+      </li>
+      <li 
+        *ngIf="item.type == 'next' " 
+        (click)="clicktest(6,item.page)"
+        class="li_arrow"
+        >
+
+          >>
+
+      </li>
+      <li 
+        *ngIf="item.type == 'previous' " 
+        (click)="clicktest(6,item.page)"
+        class="li_arrow"
+        >
+
+          <<
+
+      </li>
+      <li 
+        *ngIf="item.type == 'spacer' " 
+        (click)="clicktest(6,item.page)"
+        class="li_arrow"
+        >
+
+          ...
+
+      </li>
+    </ul>
+  </ion-list>
+</ion-content>

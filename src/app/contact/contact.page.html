@@ -1,0 +1,54 @@
+<ion-header [translucent]="true" color="danger">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="itos-container">
+    <ion-img
+      src="../../assets/imgs/main_logo.png"
+      class="itos-home-main-logo"
+    ></ion-img>
+  </div>
+  <div class="itos-container-main">
+    <p class="about_p">
+      <ion-img class="contact_icons"
+        src="../../assets/imgs/contact-icons/location_icon.png"
+      ></ion-img>
+      <span class="contact_form_span">
+        Bouhaha Tunisie
+      </span>
+    </p>
+    <p class="about_p">
+      <ion-img class="contact_icons"
+        src="../../assets/imgs/contact-icons/mail_icon.png"
+      ></ion-img>
+      <span class="contact_form_span">
+        support@stebouhaha.com
+      </span>
+    </p>
+    <div class="about_p">
+      <ion-img class="contact_icons"
+        src="../../assets/imgs/contact-icons/facebook_icon.png"
+      ></ion-img>
+      <span class="contact_form_span">
+        https://www.facebook.com/Bouhaha
+      </span>
+    </div>
+
+    <!-- Icontact form -->
+    <div class="contact_form_container">
+      <ion-input placeholder="Sujet"></ion-input>
+      <ion-input placeholder="E-mail"></ion-input>
+
+      <!-- Textarea that clears the value on edit -->
+      <ion-textarea rows="6" placeholder="Message" clearOnEdit="true"></ion-textarea>
+
+      <ion-button class=" contact_form_button" expand="full">Full Button</ion-button>
+    </div>
+  </div>
+</ion-content>

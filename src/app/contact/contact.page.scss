@@ -1,0 +1,55 @@
+.itos-home-main-logo{
+    padding: 25px 85px 25px 85px;
+}
+.about_p{
+    margin: 0;
+    padding: 0px 14px;
+    /*text-align: center;*/
+    font-weight: 700;
+    color: #1a3676;
+    display: flex;
+}
+.contact_icons{
+    color: #f7bf00;
+    font-size: 29px;
+    margin-right: 10px;
+}
+.contact_form_container{
+    padding: 25px;
+    padding-top: 5px;
+}
+.contact_form_container ion-input{
+      /* background: black; */
+      border-radius: 12px;
+      font-weight: 500 !important;
+      color: black;
+      padding-left: 22px !important;
+      box-shadow: inset 0px -2px 8px rgb(0 0 0 / 23%);
+      font-size: 19px;
+      margin: 7px auto;
+}
+.contact_form_container ion-textarea{
+    box-shadow: inset 0px -2px 8px rgb(0 0 0 / 23%);
+    font-size: 19px;
+    border-radius: 10px;
+    padding-left: 21px;
+}
+.contact_form_button{
+    //background: red;
+    background: linear-gradient(180deg, rgb(2, 61, 195) 0%, rgb(3, 24, 72) 100%);
+    border-radius: 15px;
+    color: #f7bf00;
+    font-weight: bold;
+    font-size: 23px;
+}
+.button-native{
+    background: linear-gradient(180deg, rgb(2, 61, 195) 0%, rgb(3, 24, 72) 100%);
+}
+.contact_icons{
+    float: left;
+    width: 46px;
+    margin: 3px 10px;
+}
+.contact_form_span{
+    padding-top: 15px;
+}

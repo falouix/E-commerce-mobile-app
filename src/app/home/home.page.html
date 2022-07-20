@@ -1,0 +1,70 @@
+<ion-header [translucent]="true" color="danger">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="itos-container">
+    <ion-img
+      src="../../assets/imgs/main_logo.png"
+      class="itos-home-main-logo"
+    ></ion-img>
+  </div>
+  <div class="itos-container-main">
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </p>
+    <div class="itos-categories-container">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md (click)="clicktest(7,1)">
+            <ion-img
+              src="../../assets/imgs/categories-icons/boulons.png"
+              class="itos-home-categories-logo"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="6" size-md (click)="clicktest(4,1)">
+            <ion-img
+              src="../../assets/imgs/categories-icons/sanitaire.png"
+              class="itos-home-categories-logo"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="6" size-md (click)="clicktest(10,1)">
+            <ion-img
+              src="../../assets/imgs/categories-icons/peinture.png"
+              class="itos-home-categories-logo"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="6" size-md (click)="clicktest(9,1)">
+            <ion-img
+              src="../../assets/imgs/categories-icons/outillage.png"
+              class="itos-home-categories-logo"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="6" size-md (click)="clicktest(6,1)">
+            <ion-img
+              src="../../assets/imgs/categories-icons/construction.png"
+              class="itos-home-categories-logo"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="6" size-md (click)="clicktest(5,1)">
+            <ion-img
+              src="../../assets/imgs/categories-icons/quancaillerie.png"
+              class="itos-home-categories-logo"
+            ></ion-img>
+          </ion-col>
+          <ion-col size="6" size-md (click)="clicktest(8,1)">
+            <ion-img
+              src="../../assets/imgs/categories-icons/electricite.png"
+              class="itos-home-categories-logo"
+            ></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

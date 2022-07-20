@@ -1,0 +1,32 @@
+
+.flx_pagination{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    list-style-type: none;
+  }
+  .flx_pagination ul{
+    list-style-type: none;
+    /* margin: 0; */
+    padding: 0;
+    /* padding: 9px;*/
+  }
+  .flx_pagination li{
+    padding: 8px 9px;
+    /* border: 1px solid #3880ff; */
+    border-radius: 5px;
+    color: #3880ff;
+    margin: auto 5px;
+    font-weight: bold;
+    /* box-shadow: 0px 0px 3px rgb(0 0 0 / 23%);*/
+  }
+  .li_disabled{
+    background: #f8bf00;
+  }
+  .flx_pagination .li_arrow{
+    border: 0;
+    box-shadow: 0;
+    box-shadow: none;
+    color: black;
+    font-weight: bold;
+  }
