@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'products-services',
     loadChildren: () => import('./dataServices/products-services/products-services.module').then( m => m.ProductsServicesPageModule)
+  },
+  {
+    path: 'product/:id',
+    loadChildren: () => import('./product/product.module').then( m => m.ProductPageModule)
   }
 ];
 

@@ -1,0 +1,36 @@
+
+
+.price_holder{
+    width: 25%;
+    background: rgb(247 191 0 / 11%);
+    border-radius: 9px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    padding: -2px !important;
+    font-size: 28px;
+    padding-left: 8px !important;
+    box-shadow: inset 0px 0px 2px #0000003b;
+    margin: 15px;
+  }
+  .ref_product{
+    
+    font-size: 15px;
+    margin: 10px 6px;
+  }
+  .itos_padding_10{
+    padding: 10px;
+  }
+  .width_100{
+    width: 100%;
+  }
+  .price_label{
+    
+    font-size: 40px;
+    padding: 17px;
+    color: blue;
+    font-weight: bold;
+    }
+  .price_qte_container{
+    display: flex;
+  }

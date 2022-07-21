@@ -8,15 +8,16 @@ import {CategoriesServicesPage} from 'src/app/dataServices/categories-services/c
   styleUrls: ['./categorie.page.scss'],
 })
 export class CategoriePage implements OnInit {
+  constructor(private loadingCtrl: LoadingController,private router : Router, private route : ActivatedRoute,private CategoriesServices : CategoriesServicesPage) { }
+  
      currentCategory=[];
      category_id = this.route.snapshot.paramMap.get('id');
+     currentPage = this.route.snapshot.paramMap.get('pageNbr');
      categoryPagination=[];
      categoryPages=[];
      categoryProducts=[];
      categoryProductsSort=[];   
-     currentPage = this.route.snapshot.paramMap.get('pageNbr');
-  constructor(private loadingCtrl: LoadingController,private router : Router, private route : ActivatedRoute,private CategoriesServices : CategoriesServicesPage) { }
-  
+ 
   ngOnInit() {
     this.loadCategoryItems();
   }
@@ -43,6 +44,9 @@ export class CategoriePage implements OnInit {
     }
     clicktest(id,pageNbr){
       this.router.navigateByUrl(`/categorie/${id}/${pageNbr}`);
+    }
+    renderProduct(id){
+      this.router.navigateByUrl(`/product/${id}`);
     }
 
 }

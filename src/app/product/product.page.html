@@ -1,0 +1,40 @@
+<ion-header [translucent]="true" color="danger">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ folder }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="itos-container">
+    <ion-card>
+      <ion-card-content>
+        <ion-img
+          src="../../assets/imgs/main_logo.png"
+          class="itos-home-main-logo"
+        ></ion-img>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        
+        <ion-card-title class="">{{productData.product.name}}</ion-card-title>
+        <ion-card-subtitle class="ref_product">Ref :{{productData.product.reference}}</ion-card-subtitle>
+        <ion-card-subtitle class="">{{productData.product.description_short}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+      <div class="price_qte_container">
+        <ion-input placeholder="0" class="price_holder"></ion-input>
+        <ion-label class="price_label">
+          {{productData.product.price}}
+        </ion-label>
+      </div>
+      <ion-button size="large" class="width_100">Ajouter au panier</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

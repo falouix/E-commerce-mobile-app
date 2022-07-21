@@ -11,7 +11,7 @@
   <ion-list>
     <ion-row>
       <ion-col size="6" size-sm *ngFor="let item of categoryProducts">
-        <ion-card>
+        <ion-card (click)="renderProduct(item.id)" class="">
           <ion-img src="../../assets/holder.jpg"></ion-img>
           <ion-card-header color="primary">
             <ion-card-subtitle>{{item.name}}</ion-card-subtitle>
