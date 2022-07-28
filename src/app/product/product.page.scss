@@ -2,16 +2,15 @@
 
 .price_holder{
     width: 25%;
-    background: rgb(247 191 0 / 11%);
-    border-radius: 9px;
+    /* background: rgba(247, 191, 0, 0.11); */
+    /* border-radius: 9px; */
     text-align: center;
     color: black;
     font-weight: bold;
-    padding: -2px !important;
-    font-size: 28px;
+    font-size: 20px;
     padding-left: 8px !important;
-    box-shadow: inset 0px 0px 2px #0000003b;
-    margin: 15px;
+    box-shadow: inset 0px 0px 9px rgb(0 0 0 / 23%);
+    margin: 15px -5px;
   }
   .ref_product{
     
@@ -25,12 +24,29 @@
     width: 100%;
   }
   .price_label{
-    
-    font-size: 40px;
+    font-size: 27px;
     padding: 17px;
     color: blue;
     font-weight: bold;
     }
   .price_qte_container{
     display: flex;
+  }
+  .product_first_card,.product_second_card{
+    box-shadow: none;
+  }
+
+  .add_to_cart_btn{
+    background: linear-gradient(180deg, rgb(2, 61, 195) 0%, rgb(3, 24, 72) 100%);
+  }
+
+  .product_second_header{
+    margin: 15px 0px;
+  }
+  .price_change_btns{
+    padding: 10px;
+    margin-top: 11px;
+  }
+  .ionicon.s-ion-icon{
+    color: #f7bf00; 
   }

@@ -54,6 +54,14 @@ const routes: Routes = [
   {
     path: 'product/:id',
     loadChildren: () => import('./product/product.module').then( m => m.ProductPageModule)
+  },
+  {
+    path: 'marques-services',
+    loadChildren: () => import('./dataServices/marques-services/marques-services.module').then( m => m.MarquesServicesPageModule)
+  },
+  {
+    path: 'productmarque',
+    loadChildren: () => import('./productmarque/productmarque.module').then( m => m.ProductmarquePageModule)
   }
 ];
 

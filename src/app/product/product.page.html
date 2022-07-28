@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="itos-container">
-    <ion-card>
+    <ion-card  class="product_first_card">
       <ion-card-content>
         <ion-img
           src="../../assets/imgs/main_logo.png"
@@ -18,23 +18,27 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
-      <ion-card-header>
-        
+    <ion-card class="product_second_card">
+      <ion-card-header class="product_second_header">
         <ion-card-title class="">{{productData.product.name}}</ion-card-title>
         <ion-card-subtitle class="ref_product">Ref :{{productData.product.reference}}</ion-card-subtitle>
         <ion-card-subtitle class="">{{productData.product.description_short}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
       <div class="price_qte_container">
-        <ion-input placeholder="0" class="price_holder"></ion-input>
+        <ion-fab-button class="price_change_btns" (click)="minusBtnClick()"> 
+          <ion-icon name='remove-circle-outline'></ion-icon>
+        </ion-fab-button>
+        <ion-input placeholder="0" class="price_holder" [(ngModel)]="qtty"></ion-input>
+        <ion-fab-button class="price_change_btns" (click)="plusBtnClick()">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-fab-button>
         <ion-label class="price_label">
-          {{productData.product.price}}
+          {{productData.product.price}} TND
         </ion-label>
       </div>
-      <ion-button size="large" class="width_100">Ajouter au panier</ion-button>
+      <ion-button clor="ion-color-flx" size="large" class="width_100 add_to_cart_btn">Ajouter au panier</ion-button>
       </ion-card-content>
     </ion-card>
-
   </div>
 </ion-content>

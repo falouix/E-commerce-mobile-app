@@ -1,5 +1,5 @@
 <ion-header [translucent]="true" color="danger">
-  <ion-toolbar>
+  <ion-toolbar color="danger">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,15 +8,38 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-col class="cat_img_container">
+    <ion-img
+      [src]="currentCategoryLogo"
+      class="cat_img_header"
+    ></ion-img>
+  </ion-col>
+  <p class="category_title">{{currenrCategroryTitle}}</p>
+  <div *ngFor="let item of subCategory">
+    <div>
+      <ion-item color="customflx">
+        <ion-label  slot="start" class="subCategory_labels">
+          {{item.name}}
+        </ion-label>
+        <ion-label  slot="end" class="subCategory_arrows">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-label>
+        
+      </ion-item>
+      
+    </div>
+  </div>
   <ion-list>
     <ion-row>
       <ion-col size="6" size-sm *ngFor="let item of categoryProducts">
-        <ion-card (click)="renderProduct(item.id)" class="">
+        <ion-card (click)="renderProduct(item.id)" class="card_cat_product">
           <ion-img src="../../assets/holder.jpg"></ion-img>
-          <ion-card-header color="primary">
-            <ion-card-subtitle>{{item.name}}</ion-card-subtitle>
-          </ion-card-header>
         </ion-card>
+        <ion-card-header class="center_text_padding_zero">
+          <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
+          <ion-button Type="large">{{item.price}}</ion-button>
+        </ion-card-header>
       </ion-col>
     </ion-row>
   </ion-list>

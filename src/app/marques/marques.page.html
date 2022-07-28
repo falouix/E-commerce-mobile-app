@@ -10,8 +10,19 @@
 <ion-content>
   <div class="itos-container"></div>
   <div class="container-main">
-    <p>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    </p>
+    <div *ngFor="let item of manufacturers">
+      <div>
+        <ion-item color="customflx" (click)="getProductsMarque(item.id)">
+          <ion-label  slot="start" class="subCategory_labels">
+            {{item.name}}
+          </ion-label>
+          <ion-label  slot="end" class="subCategory_arrows">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-label>
+          
+        </ion-item>
+        
+      </div>
+    </div>
   </div>
 </ion-content>
