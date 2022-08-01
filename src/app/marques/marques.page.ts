@@ -39,5 +39,8 @@ export class MarquesPage implements OnInit {
       });
     });
   }
+  getProductsMarque(id){
+    this.router.navigateByUrl(`/productmarque/${id}`);
+  }
 
 }

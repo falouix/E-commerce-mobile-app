@@ -25,3 +25,29 @@
   /* font-weight: 700; */
   color: #1a3676;
 }
+
+.p_category_name{
+  margin-top: -25px;
+    color: white !important;
+    font-weight: bold;
+}
+@media (min-width : 768px){
+  .p_category_name{
+    margin-top: -40px;
+    font-size: 28px !important;
+  }
+}
+@media (min-width : 912px){
+  .p_category_name{
+    margin-top: -49px;
+    font-size: 34px !important;
+  }
+}
+
+
+@media (min-width : 540px)and (min-width: 540px){
+  .p_category_name{
+  margin-top: -40px;
+  font-size: 32px !important;
+}
+}

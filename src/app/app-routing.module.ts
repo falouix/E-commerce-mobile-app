@@ -60,8 +60,12 @@ const routes: Routes = [
     loadChildren: () => import('./dataServices/marques-services/marques-services.module').then( m => m.MarquesServicesPageModule)
   },
   {
-    path: 'productmarque',
+    path: 'productmarque/:id',
     loadChildren: () => import('./productmarque/productmarque.module').then( m => m.ProductmarquePageModule)
+  },
+  {
+    path: 'subcategory',
+    loadChildren: () => import('./subcategory/subcategory.module').then( m => m.SubcategoryPageModule)
   }
 ];
 

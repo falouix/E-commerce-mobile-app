@@ -4,7 +4,7 @@ import {Router,ActivatedRoute} from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 
-@Component({
+@Component({ 
   selector: 'app-product',
   templateUrl: './product.page.html',
   styleUrls: ['./product.page.scss'],

@@ -14,11 +14,16 @@
       [src]="currentCategoryLogo"
       class="cat_img_header"
     ></ion-img>
+    <ion-img
+      *ngIf="!subCategory"
+      [src]="currentSubCategoryLogo"
+      class="cat_img_header"
+    ></ion-img>
   </ion-col>
   <p class="category_title">{{currenrCategroryTitle}}</p>
   <div *ngFor="let item of subCategory">
     <div>
-      <ion-item color="customflx">
+      <ion-item color="customflx" (click)="renderSubCategory(item.id,currentCategoryLogo)">
         <ion-label  slot="start" class="subCategory_labels">
           {{item.name}}
         </ion-label>
