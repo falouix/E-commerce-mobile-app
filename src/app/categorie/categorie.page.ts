@@ -1,4 +1,4 @@
-import { Component, Injectable,OnInit } from '@angular/core';
+import { Component,Injectable,OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {CategoriesServicesPage} from 'src/app/dataServices/categories-services/categories-services.page';
@@ -19,9 +19,11 @@ export class CategoriePage implements OnInit {
     private CategoriesServices : CategoriesServicesPage,
     public storage: Storage
     ) { }
+    
      currentCategoryLogo : string;
      currentSubCategoryLogo : string;
-     currenrCategroryTitle : string;
+     currenrCategroryTitle: string;
+     currenrSubCategroryTitle : string;
      currentCategory=[];
      subCategory;
      category_id = this.route.snapshot.paramMap.get('id');
@@ -31,12 +33,29 @@ export class CategoriePage implements OnInit {
      categoryProducts=[];
      categoryProductsSort=[];   
  
-     async ngOnInit() {
-    
-    await this.storage.create();
-    this.loadCategoryItems();
-    console.log("currentCategoryLogo11111",this.currentSubCategoryLogo)
-  }
+    async ngOnInit() {
+      await this.storage.create();
+      this.loadCategoryItems();
+      if(this.currentSubCategoryLogo == undefined){
+        this.getcurrentCategoryLogo('currentSubCategoryLogo').then(result => {
+          if (result != null) {
+            console.log('this.currentSubCategoryLogo : '+ result);
+            this.currentSubCategoryLogo = result;
+          }
+          }).catch(e => {
+            console.log('error: '+ e);
+          });
+          this.getcurrentCategoryLogo('currenrCategroryTitle').then(result => {
+            if (result != null) {
+              this.currenrCategroryTitle = result;
+            }
+            }).catch(e => {
+              console.log('error: '+ e);
+            });
+            
+            console.log('this.currenrCategroryTitle : '+ this.currenrCategroryTitle);
+      }
+    }
     async loadCategoryItems(){
       const loading = await this.loadingCtrl.create({
         message : 'loading..',
@@ -51,10 +70,12 @@ export class CategoriePage implements OnInit {
        //let x = res.data.label.split(" ");
         loading.dismiss();
         console.log('res.data.products',res.data)
-        this.currenrCategroryTitle = res.data.label.split(" ")[2];
         if(this.subCategory){
+          this.currenrCategroryTitle = res.data.label.split(" ")[2];
           this.currentCategoryLogo="../../assets/imgs/categories-icons/"+res.data.label.split(" ")[2].toLowerCase()+".png";
-          }
+        }else{
+          this.currenrSubCategroryTitle = res.data.label.split(" ")[2];
+        }
         this.currentCategory = res.category;
         this.categoryPagination = res.data.pagination;
         this.categoryProducts = res.data.products;
@@ -71,19 +92,29 @@ export class CategoriePage implements OnInit {
     renderProduct(id){
       this.router.navigateByUrl(`/product/${id}`);
     }
-    renderSubCategory(id,currentCategoryLogo){
-      this.currentSubCategoryLogo = currentCategoryLogo;
-      this.setcurrentCategoryLogo('test',currentCategoryLogo);
-      console.log("currentCategoryLogo",this.currentSubCategoryLogo)
+    renderSubCategory(id,currentCategoryLogo,currenrCategroryTitle){
+      this.setcurrentCategoryLogo('currentSubCategoryLogo',currentCategoryLogo);
+      this.setcurrentCategoryLogo('currenrCategroryTitle',currenrCategroryTitle);
+      
       this.router.navigateByUrl(`/categorie/${id}/1`);
-    }
-
+    } 
 
     async setcurrentCategoryLogo(key: string, value: any): Promise<any> {
       try {
       const result = await this.storage.set(key, value);
-      console.log('set string in storage: ' + result);
+      console.log('set string in storage:' + result);
       return true;
+      } catch (reason) {
+      console.log(reason);
+      return false;
+      }
+    }
+
+    async getcurrentCategoryLogo(key: string): Promise<any> {
+      try {
+      const result = await this.storage.get(key);
+      console.log('set string in storage: ' + result);
+      return result;
       } catch (reason) {
       console.log(reason);
       return false;
