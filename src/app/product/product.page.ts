@@ -16,6 +16,7 @@ export class ProductPage implements OnInit {
   qtty : string;
   public productData;
   product_id = this.route.snapshot.paramMap.get('id');
+  productImgSrc;
   ngOnInit() {
     this.loadProductItems()
   }
@@ -29,7 +30,18 @@ export class ProductPage implements OnInit {
       loading.dismiss();
       this.productData = res;
       this.productData.product.price = parseFloat(this.productData.product.price).toFixed(2);
-      console.log("res : ",parseFloat(this.productData.product.price).toFixed(2))
+      console.log("res : ",parseFloat(this.productData.product.price).toFixed(2));
+      console.log("this.productData.product",
+                    'https://stebouhaha.com/api/images/products/'+
+                    this.productData.product.id+
+                    '/'+
+                    this.productData.product.associations.images[0].id+
+                    '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON')
+      this.productImgSrc = 'https://stebouhaha.com/api/images/products/'+
+      this.productData.product.id+
+      '/'+
+      this.productData.product.associations.images[0].id+
+      '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
     });
   }
   clicktest(id,pageNbr){

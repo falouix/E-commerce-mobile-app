@@ -26,18 +26,19 @@ export class CategoriePage implements OnInit {
      currenrSubCategroryTitle : string;
      currentCategory=[];
      subCategory;
+     currentCategoryId;
      category_id = this.route.snapshot.paramMap.get('id');
      currentPage = this.route.snapshot.paramMap.get('pageNbr');
      categoryPagination=[];
      categoryPages=[];
      categoryProducts=[];
      categoryProductsSort=[];   
- 
     async ngOnInit() {
       await this.storage.create();
       this.loadCategoryItems();
       if(this.currentSubCategoryLogo == undefined){
-        this.getcurrentCategoryLogo('currentSubCategoryLogo').then(result => {
+        //get current category logo
+        this.getStorageValue('currentSubCategoryLogo').then(result => {
           if (result != null) {
             console.log('this.currentSubCategoryLogo : '+ result);
             this.currentSubCategoryLogo = result;
@@ -45,14 +46,22 @@ export class CategoriePage implements OnInit {
           }).catch(e => {
             console.log('error: '+ e);
           });
-          this.getcurrentCategoryLogo('currenrCategroryTitle').then(result => {
+          //get current category title
+          this.getStorageValue('currenrCategroryTitle').then(result => {
             if (result != null) {
               this.currenrCategroryTitle = result;
             }
             }).catch(e => {
               console.log('error: '+ e);
             });
-            
+          //get current category title
+          this.getStorageValue('currentCategoryId').then(result => {
+            if (result != null) {
+              this.currentCategoryId = result;
+            }
+            }).catch(e => {
+              console.log('error: '+ e);
+            });
             console.log('this.currenrCategroryTitle : '+ this.currenrCategroryTitle);
       }
     }
@@ -69,7 +78,7 @@ export class CategoriePage implements OnInit {
       this.CategoriesServices.getCategory(this.category_id,this.currentPage).subscribe(res =>{
        //let x = res.data.label.split(" ");
         loading.dismiss();
-        console.log('res.data.products',res.data)
+        console.log('res.data.products',res)
         if(this.subCategory){
           this.currenrCategroryTitle = res.data.label.split(" ")[2];
           this.currentCategoryLogo="../../assets/imgs/categories-icons/"+res.data.label.split(" ")[2].toLowerCase()+".png";
@@ -81,25 +90,44 @@ export class CategoriePage implements OnInit {
         this.categoryProducts = res.data.products;
         this.categoryProductsSort = res.data.products;
         this.categoryPages.length = 0;
-        Object.entries(res.data.pagination.pages).forEach( (value) =>{
-          this.categoryPages.push(value[1]);
+        Object.entries(res.data.pagination.pages).forEach( (value,key) =>{
+          this.categoryPages.push(value);
+        });
+        Object.entries(this.categoryProducts).forEach( (item) =>{
+          console.log( item[1].images.length);
+          if(item[1].images.length >0 ){
+            item[1].imgSrc = item[1].images[0].medium.url;
+          }else{
+            item[1].imgSrc = '../../assets/holder.jpg';
+          }
         });
       });
     }
+
     clicktest(id,pageNbr){
       this.router.navigateByUrl(`/categorie/${id}/${pageNbr}`);
+    }
+
+    backToparentCategory(id = null,pageNbr = 1){
+      if(id != null){
+        this.router.navigateByUrl(`/categorie/${id}/${pageNbr}`);
+      }else{
+        console.log('clicked')
+      }
     }
     renderProduct(id){
       this.router.navigateByUrl(`/product/${id}`);
     }
-    renderSubCategory(id,currentCategoryLogo,currenrCategroryTitle){
-      this.setcurrentCategoryLogo('currentSubCategoryLogo',currentCategoryLogo);
-      this.setcurrentCategoryLogo('currenrCategroryTitle',currenrCategroryTitle);
-      
+
+    //Render sub category products and set some vars
+    renderSubCategory(id,currentCategoryLogo,currenrCategroryTitle,currentCategoryId){
+      this.setStorageValue('currentSubCategoryLogo',currentCategoryLogo);
+      this.setStorageValue('currenrCategroryTitle',currenrCategroryTitle);
+      this.setStorageValue('currentCategoryId',currentCategoryId);
       this.router.navigateByUrl(`/categorie/${id}/1`);
     } 
 
-    async setcurrentCategoryLogo(key: string, value: any): Promise<any> {
+    async setStorageValue(key: string, value: any): Promise<any> {
       try {
       const result = await this.storage.set(key, value);
       console.log('set string in storage:' + result);
@@ -110,7 +138,7 @@ export class CategoriePage implements OnInit {
       }
     }
 
-    async getcurrentCategoryLogo(key: string): Promise<any> {
+    async getStorageValue(key: string): Promise<any> {
       try {
       const result = await this.storage.get(key);
       console.log('set string in storage: ' + result);

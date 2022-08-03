@@ -3,22 +3,25 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ folder }}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-col class="cat_img_container">
     <ion-img
-      [src]="currentCategoryLogo? currentCategoryLogo : currentSubCategoryLogo "
+      [src]="currentCategoryLogo? currentCategoryLogo : currentSubCategoryLogo"
       class="cat_img_header"
+      (click) = 'clicktest(currentCategoryId,1)'
     ></ion-img>
   </ion-col>
   <p class="category_title">{{currenrCategroryTitle}}</p>
   <div *ngFor="let item of subCategory">
     <div>
-      <ion-item color="customflx" (click)="renderSubCategory(item.id,currentCategoryLogo,currenrCategroryTitle)">
+      <ion-item color="customflx" (click)="renderSubCategory(item.id,currentCategoryLogo,currenrCategroryTitle,category_id)">
         <ion-label  slot="start" class="subCategory_labels">
           {{item.name}}
         </ion-label>
@@ -36,7 +39,7 @@
     <ion-row>
       <ion-col size="6" size-sm *ngFor="let item of categoryProducts">
         <ion-card (click)="renderProduct(item.id)" class="card_cat_product">
-          <ion-img src="../../assets/holder.jpg"></ion-img>
+            <ion-img src={{item.imgSrc}}></ion-img>
         </ion-card>
         <ion-card-header class="center_text_padding_zero">
           <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
@@ -51,16 +54,12 @@
       <li 
         *ngIf="!item.clickable && item.type == 'page' " 
         class="li_disabled" >
-
           {{item.page}}
-
       </li>
       <li 
         *ngIf="item.clickable && item.type == 'page' " 
         (click)="clicktest(6,item.page)">
-
           {{item.page}}
-
       </li>
       <li 
         *ngIf="item.type == 'next' " 
