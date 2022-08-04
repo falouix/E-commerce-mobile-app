@@ -22,7 +22,7 @@ export class MarquesServicesPage {
   getProductsMarque(id):Observable<any>{
     return(
       this.http.get(`
-      https://stebouhaha.com/api/products?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[active]=1&display=[id,name,manufacturer_name,price]&filter[id_manufacturer]=${id}
+      https://stebouhaha.com/api/products?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[active]=1&display=full&filter[id_manufacturer]=${id}
       `)
     )
   }

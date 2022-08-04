@@ -24,3 +24,107 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+.header-md::after{
+    background-image : none !important;
+}
+#main-content{
+    margin-top: 40px;
+  }
+
+  
+.flx_pagination{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    list-style-type: none;
+  }
+  .flx_pagination ul{
+    list-style-type: none;
+    /* margin: 0; */
+    padding: 0;
+    /* padding: 9px;*/
+  }
+  .flx_pagination li{
+    padding: 8px 9px;
+    /* border: 1px solid #3880ff; */
+    border-radius: 5px;
+    color: #3880ff;
+    margin: auto 5px;
+    font-weight: bold;
+    /* box-shadow: 0px 0px 3px rgb(0 0 0 / 23%);*/
+  }
+  .li_disabled{
+    background: #f8bf00;
+  }
+  .flx_pagination .li_arrow{
+    border: 0;
+    box-shadow: 0;
+    box-shadow: none;
+    color: black;
+    font-weight: bold;
+  }
+  .cat_img_container{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 24px;
+  }
+  .cat_img_header{
+    width: 190px;
+  }
+  .category_title{
+    padding: 11px;
+    text-align: center;
+    top: 154px;
+    color: white;
+    font-size: 19px;
+    z-index: 99;
+    position: absolute;
+    /* display: flex; */ 
+    /* flex-wrap: nowrap; */
+    /* justify-content: flex-start; */
+    width: 100%;
+  }
+  .subCategory_labels{
+    font-size: 24px;
+    font-weight: bold;
+    color: #011a4d;
+  }
+  .subCategory_arrows{
+    margin: 0;
+    font-size: 42px;
+    margin-top: 6px;
+    font-weight: bold;
+    color: #f8bf00;
+  }
+  .center_text_padding_zero{
+    text-align: center;
+    padding: 0;
+  }
+  .card_cat_product{
+    box-shadow: 0px 0px 2px #62626270;
+    /* border: 1px solid rgba(248, 191, 0, 0.3098039216); */
+    padding: 3px;
+    border-radius: 0;
+  }
+  .cat_products_title{
+    font-size: 15px;
+    color: #04226a;
+    font-weight: bold;
+    height: 58px;
+  }
+  .center_text_padding_zero ion-button{
+    --border-radius : 50px;
+    --background : #04226a;
+    font-size: 17px;
+    width: 81%;
+  }
+  .currentSubCategoryContainer{
+    text-align: center;
+    background: linear-gradient(180deg, rgb(2, 61, 195) 0%, rgb(3, 24, 72) 100%);;
+    padding: 8px 0px;
+  }
+  .currentSubCategoryLabel{
+    color: white;
+    font-size: 19px;
+  }

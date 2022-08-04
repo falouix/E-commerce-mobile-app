@@ -66,6 +66,14 @@ const routes: Routes = [
   {
     path: 'subcategory',
     loadChildren: () => import('./subcategory/subcategory.module').then( m => m.SubcategoryPageModule)
+  },
+  {
+    path: 'header',
+    loadChildren: () => import('./header/header.module').then( m => m.HeaderPageModule)
+  },
+  {
+    path: 'productmarque',
+    loadChildren: () => import('./dataServices/productmarque/productmarque.module').then( m => m.ProductmarquePageModule)
   }
 ];
 

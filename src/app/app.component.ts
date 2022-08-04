@@ -18,8 +18,8 @@ export class AppComponent {
   constructor(private router : Router) {
     
   }
-  btnclicked(){
+  btnBack(){
     console.log('clicked');
-    this.router.navigate(['home'])
+    history.back();
   }
 }

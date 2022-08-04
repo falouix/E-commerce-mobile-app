@@ -30,18 +30,16 @@ export class ProductPage implements OnInit {
       loading.dismiss();
       this.productData = res;
       this.productData.product.price = parseFloat(this.productData.product.price).toFixed(2);
-      console.log("res : ",parseFloat(this.productData.product.price).toFixed(2));
-      console.log("this.productData.product",
-                    'https://stebouhaha.com/api/images/products/'+
-                    this.productData.product.id+
-                    '/'+
-                    this.productData.product.associations.images[0].id+
-                    '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON')
-      this.productImgSrc = 'https://stebouhaha.com/api/images/products/'+
-      this.productData.product.id+
-      '/'+
-      this.productData.product.associations.images[0].id+
-      '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+      console.log('this.productData.product.associations.images[0].length',this.productData.product)
+      if(this.productData.product.associations.images){
+          this.productImgSrc = 'https://stebouhaha.com/api/images/products/'+
+          this.productData.product.id+
+          '/'+
+          this.productData.product.associations.images[0].id+
+          '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+      }else{
+        this.productImgSrc ="../../assets/imgs/main_logo.png";
+      }
     });
   }
   clicktest(id,pageNbr){
