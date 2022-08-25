@@ -1,7 +1,7 @@
 
 
 .price_holder{
-    width: 25%;
+    width: 40px;
     /* background: rgba(247, 191, 0, 0.11); */
     /* border-radius: 9px; */
     text-align: center;
@@ -11,6 +11,7 @@
     padding-left: 8px !important;
     box-shadow: inset 0px 0px 9px rgb(0 0 0 / 23%);
     margin: 15px -5px;
+    float: left;
   }
   .ref_product{
     
@@ -25,12 +26,13 @@
   }
   .price_label{
     font-size: 27px;
-    padding: 17px;
-    color: blue;
+    padding: 17px 0;
+    color: #011a4d;
     font-weight: bold;
+    float: right;
     }
   .price_qte_container{
-    display: flex;
+    /*display: flex;*/
   }
   .product_second_card,.product_first_card{
     box-shadow: none;
@@ -46,7 +48,11 @@
   .price_change_btns{
     padding: 10px;
     margin-top: 11px;
+    float: left;
   }
   .ionicon.s-ion-icon{
     color: #f7bf00; 
+  }
+  .card-content-ios{
+    padding: 0px !important;
   }

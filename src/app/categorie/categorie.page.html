@@ -10,16 +10,17 @@
       (click) = 'clicktest(currentCategoryId,1)'
     ></ion-img>
   </ion-col>
-  <p class="category_title">{{currenrCategroryTitle}}</p>
   <div *ngFor="let item of subCategory">
     <div>
-      <ion-item color="customflx" (click)="renderSubCategory(item.id,currentCategoryLogo,currenrCategroryTitle,category_id)">
-        <ion-label  slot="start" class="subCategory_labels">
-          {{item.name}}
-        </ion-label>
-        <ion-label  slot="end" class="subCategory_arrows">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-        </ion-label>
+      <ion-item class="subCattitleholder"(click)="renderSubCategory(item.id,currentCategoryLogo,currenrCategroryTitle,category_id)">
+        <div class="item-content-subCattitleholder">
+          <ion-label  slot="start" class="subCategory_labels">
+            {{item.name}}
+          </ion-label>
+          <ion-label  slot="end" class="subCategory_arrows">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-label>
+        </div>
       </ion-item>
       
     </div>
@@ -33,29 +34,28 @@
         <ion-card (click)="renderProduct(item.id)" class="card_cat_product">
             <ion-img src={{item.imgSrc}}></ion-img>
         </ion-card>
-        <ion-card-header class="center_text_padding_zero">
+        <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
           <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
           <ion-button Type="large">{{item.price}}</ion-button>
         </ion-card-header>
       </ion-col>
     </ion-row>
   </ion-list>
-
   <ion-list class="flx_pagination">
     <ul *ngFor="let item of categoryPages">
       <li 
-        *ngIf="!item.clickable && item.type == 'page' " 
+        *ngIf="!item[1].clickable && item[1].type == 'page' " 
         class="li_disabled" >
-          {{item.page}}
+          {{item[1].page}}
       </li>
       <li 
-        *ngIf="item.clickable && item.type == 'page' " 
-        (click)="clicktest(6,item.page)">
-          {{item.page}}
-      </li>
+        *ngIf="item[1].clickable && item[1].type == 'page' " 
+        (click)="clicktest(6,item[1].page)">
+          {{item[1].page}}
+      </li> 
       <li 
-        *ngIf="item.type == 'next' " 
-        (click)="clicktest(6,item.page)"
+        *ngIf="item[1].type == 'next' " 
+        (click)="clicktest(6,item[1].page)"
         class="li_arrow"
         >
 
@@ -63,8 +63,8 @@
 
       </li>
       <li 
-        *ngIf="item.type == 'previous' " 
-        (click)="clicktest(6,item.page)"
+        *ngIf="item[1].type == 'previous' " 
+        (click)="clicktest(6,item[1].page)"
         class="li_arrow"
         >
 
@@ -72,8 +72,8 @@
 
       </li>
       <li 
-        *ngIf="item.type == 'spacer' " 
-        (click)="clicktest(6,item.page)"
+        *ngIf="item[1].type == 'spacer' " 
+        (click)="clicktest(6,item[1].page)"
         class="li_arrow"
         >
 

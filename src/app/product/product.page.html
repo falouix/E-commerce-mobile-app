@@ -1,9 +1,9 @@
-
-<ion-header [translucent]="true" >
-  <ion-toolbar >
+<ion-header [translucent]="true">
+  <ion-toolbar>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion_content_margin_45">
+
+<ion-content class="ion_content_margin">
   <div class="itos-container">
     <ion-card  class="product_first_card">
       <ion-card-content>
@@ -16,9 +16,9 @@
 
     <ion-card class="product_second_card">
       <ion-card-header class="product_second_header">
-        <ion-card-title class="">{{productData.product.name}}</ion-card-title>
-        <ion-card-subtitle class="ref_product">Ref :{{productData.product.reference}}</ion-card-subtitle>
-        <ion-card-subtitle class="">{{productData.product.description_short}}</ion-card-subtitle>
+        <ion-card-title class="">{{productName}}</ion-card-title>
+        <ion-card-subtitle class="ref_product">Ref :{{productReference}}</ion-card-subtitle>
+        <span class="large">{{productDescription_short}}</span>
       </ion-card-header>
       <ion-card-content>
       <div class="price_qte_container">
@@ -30,10 +30,17 @@
           <ion-icon name="add-circle-outline"></ion-icon>
         </ion-fab-button>
         <ion-label class="price_label">
-          {{productData.product.price}} TND
+          {{productPrice}} TND
         </ion-label>
       </div>
-      <ion-button clor="ion-color-flx" size="large" class="width_100 add_to_cart_btn">Ajouter au panier</ion-button>
+      <ion-button 
+        clor="ion-color-flx" 
+        size="large" 
+        class="width_100 add_to_cart_btn"
+        (click)="addTobasket(product_id)"
+        >
+          Ajouter au panier
+      </ion-button>
       </ion-card-content>
     </ion-card>
   </div>

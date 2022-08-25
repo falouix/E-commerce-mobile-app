@@ -1,11 +1,11 @@
 <ion-app>
-  <ion-header [translucent]="true" >
-    <ion-toolbar >
-      <ion-buttons slot="start">
+  <ion-header [translucent]="true" color="customflx">
+    <ion-toolbar color="customflx" class="border_0">
+      <ion-buttons slot="start" class="color_black">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       
-      <ion-buttons slot="end" (click)="btnBack()" class="btnBack">
+      <ion-buttons slot="end" (click)="btnBack()" class="btnBack color_black"> 
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-buttons>
     </ion-toolbar>
@@ -44,7 +44,7 @@
     </div>
     <ion-tabs>
       <ion-tab-bar slot="bottom" class="itos-ion-tab-bar">
-        <ion-tab-button tab="home" class="itos-btn bottom-menu-active">
+        <ion-tab-button tab="home" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[1]}" (click)="btnmenu(1)">
           <ion-img
             width="72"
             height="40px"
@@ -54,7 +54,7 @@
           <ion-label>Acceuil</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="marques" class="itos-btn">
+        <ion-tab-button tab="marques" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[2]}" (click)="btnmenu(2)">
           <ion-img
             width="72"
             height="40px"
@@ -64,7 +64,7 @@
           <ion-label>Marques</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="bouhaha" class="itos-btn">
+        <ion-tab-button tab="bouhaha" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[3]}" (click)="btnmenu(3)">
           <ion-img
             width="72"
             height="40px"
@@ -74,7 +74,7 @@
           <ion-label>Bouhaha</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="contact" class="itos-btn">
+        <ion-tab-button tab="contact" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[4]}" (click)="btnmenu(4)">
           <ion-img
             width="72"
             height="40px"
@@ -83,7 +83,7 @@
           ></ion-img>
           <ion-label>Contact</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="panier" class="itos-btn">
+        <ion-tab-button tab="panier" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[5]}" (click)="btnmenu(5)">
           <ion-img
             width="72"
             height="40px"

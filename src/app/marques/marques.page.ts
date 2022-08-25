@@ -40,6 +40,7 @@ export class MarquesPage implements OnInit {
     });
   }
   getProductsMarque(id){
+    console.log(id)
     this.router.navigateByUrl(`/productmarque/${id}`);
   }
 

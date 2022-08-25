@@ -40,7 +40,6 @@ export class CategoriePage implements OnInit {
         //get current category logo
         this.getStorageValue('currentSubCategoryLogo').then(result => {
           if (result != null) {
-            console.log('this.currentSubCategoryLogo : '+ result);
             this.currentSubCategoryLogo = result;
           }
           }).catch(e => {
@@ -62,7 +61,6 @@ export class CategoriePage implements OnInit {
             }).catch(e => {
               console.log('error: '+ e);
             });
-            console.log('this.currenrCategroryTitle : '+ this.currenrCategroryTitle);
       }
     }
     async loadCategoryItems(){
@@ -73,12 +71,10 @@ export class CategoriePage implements OnInit {
       await loading.present();
       this.CategoriesServices.getsubCategory(this.category_id).subscribe(res =>{
         this.subCategory = res.categories;
-        console.log('subCategory',this.subCategory);
       });
       this.CategoriesServices.getCategory(this.category_id,this.currentPage).subscribe(res =>{
        //let x = res.data.label.split(" ");
         loading.dismiss();
-        console.log('res.data.products',res)
         if(this.subCategory){
           this.currenrCategroryTitle = res.data.label.split(" ")[2];
           this.currentCategoryLogo="../../assets/imgs/categories-icons/"+res.data.label.split(" ")[2].toLowerCase()+".png";
@@ -93,8 +89,11 @@ export class CategoriePage implements OnInit {
         Object.entries(res.data.pagination.pages).forEach( (value,key) =>{
           this.categoryPages.push(value);
         });
+        
+        //console.log("*******this.categoryProducts*******");
+        //console.log( this.categoryProducts );
+
         Object.entries(this.categoryProducts).forEach( (item) =>{
-          console.log( item[1].images.length);
           if(item[1].images.length >0 ){
             item[1].imgSrc = item[1].images[0].medium.url;
           }else{
@@ -112,7 +111,6 @@ export class CategoriePage implements OnInit {
       if(id != null){
         this.router.navigateByUrl(`/categorie/${id}/${pageNbr}`);
       }else{
-        console.log('clicked')
       }
     }
     renderProduct(id){
@@ -130,10 +128,8 @@ export class CategoriePage implements OnInit {
     async setStorageValue(key: string, value: any): Promise<any> {
       try {
       const result = await this.storage.set(key, value);
-      console.log('set string in storage:' + result);
       return true;
       } catch (reason) {
-      console.log(reason);
       return false;
       }
     }
@@ -141,10 +137,8 @@ export class CategoriePage implements OnInit {
     async getStorageValue(key: string): Promise<any> {
       try {
       const result = await this.storage.get(key);
-      console.log('set string in storage: ' + result);
       return result;
       } catch (reason) {
-      console.log(reason);
       return false;
       }
     }

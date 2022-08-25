@@ -27,6 +27,15 @@
 --ion-color-customflx-tint: #ffffff;
 
 
+/** customflx **/
+--ion-color-customflx1: #e4e6f5;
+--ion-color-customflx1-rgb: 255, 255, 255;
+--ion-color-customflx1-contrast: #ffffff;
+--ion-color-customflx1-contrast-rgb: 255, 255, 255;
+--ion-color-customflx1-shade: rgb(255, 255, 255);
+--ion-color-customflx1-tint: #ffffff;
+
+
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
   --ion-color-secondary-rgb: 61, 194, 255;
@@ -175,7 +184,7 @@
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255,255,255;
 
-    --ion-color-step-50: #0d0d0d;
+    --ion-color-step-50: #ffffff;
     --ion-color-step-100: #1a1a1a;
     --ion-color-step-150: #262626;
     --ion-color-step-200: #333333;
@@ -221,7 +230,7 @@
 
     --ion-border-color: #222222;
 
-    --ion-color-step-50: #1e1e1e;
+    --ion-color-step-50: #ffffff;
     --ion-color-step-100: #2a2a2a;
     --ion-color-step-150: #363636;
     --ion-color-step-200: #414141;
@@ -243,7 +252,7 @@
 
     --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: #fff;
 
     --ion-tab-bar-background: #1f1f1f;
 

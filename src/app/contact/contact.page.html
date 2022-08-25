@@ -39,13 +39,13 @@
 
     <!-- Icontact form -->
     <div class="contact_form_container">
-      <ion-input placeholder="Sujet"></ion-input>
-      <ion-input placeholder="E-mail"></ion-input>
+      <ion-input placeholder="Sujet" [(ngModel)]="sujet" ></ion-input>
+      <ion-input placeholder="E-mail" [(ngModel)]="email"></ion-input>
 
       <!-- Textarea that clears the value on edit -->
-      <ion-textarea rows="6" placeholder="Message" clearOnEdit="true"></ion-textarea>
+      <ion-textarea  [(ngModel)]="message" rows="6" placeholder="Message" clearOnEdit="true"></ion-textarea>
 
-      <ion-button class=" contact_form_button" expand="full">Envoyer</ion-button>
+      <ion-button class=" contact_form_button" expand="full" (click)="sendMail()">Envoyer</ion-button>
     </div>
   </div>
 </ion-content>

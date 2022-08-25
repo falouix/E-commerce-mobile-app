@@ -4,8 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: 'home',
   },
   {
     path: 'folder/:id',
@@ -72,7 +72,7 @@ const routes: Routes = [
     loadChildren: () => import('./header/header.module').then( m => m.HeaderPageModule)
   },
   {
-    path: 'productmarque',
+    path: 'productmarque1/',
     loadChildren: () => import('./dataServices/productmarque/productmarque.module').then( m => m.ProductmarquePageModule)
   }
 ];
