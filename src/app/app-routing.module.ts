@@ -86,6 +86,10 @@ const routes: Routes = [
   {
     path: 'customer-services',
     loadChildren: () => import('./dataServices/customer-services/customer-services.module').then( m => m.CustomerServicesPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
 ];
 
