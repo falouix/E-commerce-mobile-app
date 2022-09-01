@@ -74,6 +74,18 @@ const routes: Routes = [
   {
     path: 'productmarque1/',
     loadChildren: () => import('./dataServices/productmarque/productmarque.module').then( m => m.ProductmarquePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'inscrit',
+    loadChildren: () => import('./inscrit/inscrit.module').then( m => m.InscritPageModule)
+  },
+  {
+    path: 'customer-services',
+    loadChildren: () => import('./dataServices/customer-services/customer-services.module').then( m => m.CustomerServicesPageModule)
   }
 ];
 

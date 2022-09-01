@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="inscrit_container">
+    <div class="inscrit_container_header">
+            <h3>Connectez-vous à votre compte</h3>
+    </div>
+    <ion-item class="inscrit_input">
+      <ion-label position="floating">Login</ion-label>
+      <ion-input [(ngModel)]="login"></ion-input>
+    </ion-item>
+    <ion-item class="inscrit_input">
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input [(ngModel)]="password"></ion-input>
+    </ion-item>
+    
+  </div> 
+  <div class="inscritBtnContainer">
+    <ion-button expand="full" class="cartBtnCheckout" (click)="loginCustomer()">
+      Se connecter
+    </ion-button>
+  </div>
+</ion-content>

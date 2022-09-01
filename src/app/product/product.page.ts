@@ -50,10 +50,6 @@ async presentAlert() {
   this.roleMessage = `Dismissed with role: ${role}`;
 }
 
-
-
-
-
   qtty : string;
   public productData;
   public productData1;
@@ -69,14 +65,13 @@ async presentAlert() {
     this.loadProductItems();
   }
   async loadProductItems(){
+
     const loading = await this.loadingCtrl.create({
       message : 'loading..',
       spinner : 'bubbles'
     });
     
     await loading.present();
-
-
     
     this.ProductsServicesPage.getProduct(this.product_id).subscribe(res =>{
       loading.dismiss();
@@ -103,7 +98,6 @@ async presentAlert() {
   clicktest(id,pageNbr){
     this.router.navigateByUrl(`/product/${id}`);
   }
-
   plusBtnClick(){
     var qtty = 0;
     if(this.qtty){
@@ -126,9 +120,9 @@ async presentAlert() {
       return(res.variablesApp.static_token);
     });
   }
-
   async addTobasket(id){
     let token = this.checkContext();
+    console.log('this the quantity : ',this.qtty)
     if(! this.qtty || this.qtty == '0'){
       this.presentAlert();
       return;
@@ -139,7 +133,6 @@ async presentAlert() {
         console.log('error: '+ e);
       });
       if(this.contextclonevar !== null){
-        
            //get current context cart 
            this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
             return (result);
@@ -147,15 +140,14 @@ async presentAlert() {
               console.log('error: '+ e);
             });
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',token,this.contextclonevar.contextCart.id).subscribe(async (res) =>{
-      //console.log('the real result : ', res);
-      this.setStorageValue('contextCloneOrsomethng',res);
+        console.log('the real result : ', res);
+        this.setStorageValue('contextCloneOrsomethng',res);
         });
       }else{
         
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',token,0).subscribe(async (res) =>{
-          //console.log('res.contextCart: ',res.contextCart);
+          console.log('the real result : ', res);
           this.setStorageValue('contextCloneOrsomethng',res);
-          //get current context cart 
         });
       }
     }

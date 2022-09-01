@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>inscrit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="inscrit_container">
+    <div class="inscrit_container_header">
+            <h3>Créer un compte</h3>
+    </div>
+    <ion-item class="inscrit_input">
+      <ion-label position="floating" >Login</ion-label>
+      <ion-input [(ngModel)]="login"></ion-input>
+    </ion-item>
+
+    <ion-list class="titre_list_container">
+      <ion-radio-group value="biff" [(ngModel)]="titre">
+        <ion-label>Titre</ion-label>
+          <ion-item>
+            <ion-label>M</ion-label>
+            <ion-radio slot="start" color="tertiary" value="1"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Mme</ion-label>
+            <ion-radio slot="start" color="danger" value="2"></ion-radio>
+          </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-item class="inscrit_input">
+      <ion-label position="floating">Prénom</ion-label>
+      <ion-input [(ngModel)]="prenom"></ion-input>
+    </ion-item>
+    <ion-item class="inscrit_input">
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input [(ngModel)]="nom"></ion-input>
+    </ion-item>
+    <ion-item class="inscrit_input">
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input [(ngModel)]="mail"></ion-input>
+    </ion-item>
+    <ion-item class="inscrit_input">
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input [(ngModel)]="password"></ion-input>
+    </ion-item>
+<ion-item (click)="showPicker = !showPicker" id="open-modal" class="inscrit_calender_picker">
+  <ion-label>Date de naissance</ion-label>
+  <ion-icon name="calendar-number-outline"></ion-icon>
+  <span >{{formatedString}}</span>
+</ion-item>
+    
+  </div> 
+  <div class="inscritBtnContainer">
+    <ion-button expand="full" class="cartBtnCheckout" (click)="createAccount()">
+      Sauvgarder
+    </ion-button>
+  </div>
+  <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]" >
+    <ion-item  >
+      <ion-datetime id="someID" dateFormat="DD.MM.YYYY" *ngIf="showPicker" size="cover" (ionChange)='dateChanged($event.target.value)'></ion-datetime>
+    </ion-item>
+  </ion-modal>
+
+</ion-content>
