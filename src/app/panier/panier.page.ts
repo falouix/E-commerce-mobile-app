@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy  } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 @Component({
@@ -14,7 +14,19 @@ export class PanierPage implements OnInit {
   constructor(public storage: Storage,private ProductsServicesPage : ProductsServicesPage) { }
 
   async ngOnInit() {
+    console.log('this function just loaded')
     await this.storage.create();
+    this.loadCurentPanier();
+  }
+  OnDestroy(){
+    console.log('this function just ended')
+    this.loadCurentPanier();
+  }
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter - Page 1');
+    this.loadCurentPanier();
+  }
+  ionViewDidLeave() {
     this.loadCurentPanier();
   }
   //all about local storage [set and get for the moment]

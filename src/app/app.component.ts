@@ -8,12 +8,8 @@ import {Router} from '@angular/router'
 export class AppComponent {
   public currentActive;
   public appPages = [
-    { title: 'Inbox', url: '/folder/Home', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
+    { title: 'Profile', url: '/login', icon: 'person-circle' },
     { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   menuactive = [];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];

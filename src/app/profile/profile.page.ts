@@ -22,7 +22,9 @@ export class ProfilePage implements OnInit {
     private router : Router, 
     private route : ActivatedRoute,
     ) { }
-
+    ngOnDestroy(){
+      console.log("destroying child...2")
+    }
   async ngOnInit() {
    
     await this.storage.create();

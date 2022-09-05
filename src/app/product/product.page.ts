@@ -117,7 +117,7 @@ async presentAlert() {
   }
   checkContext(){
     this.ProductsServicesPage.checkApptoken().subscribe(res =>{
-      return(res.variablesApp.static_token);
+      return(res);
     });
   }
   async addTobasket(id){

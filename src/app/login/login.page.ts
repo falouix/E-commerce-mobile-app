@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from '@ionic/angular';
@@ -9,6 +9,7 @@ import {CustomerServicesPage} from 'src/app/dataServices/customer-services/custo
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  profileData;
   login : string;
   password : string;
   constructor(
@@ -17,10 +18,27 @@ export class LoginPage implements OnInit {
     public storage: Storage,
     private loadingCtrl: LoadingController,
     ) {
-
    }
+   ngOnDestroy(){
+    console.log("destroying child...")
+  }
   async ngOnInit() {
     await this.storage.create();
+    this.profileData = await this.getStorageValue('customeContext').then(result => {
+       if(result == null){
+        this.router.navigateByUrl(`/login`);
+       }else{
+        this.ngOnDestroy();
+        this.router.navigateByUrl(`/profile`);
+       }
+      }).catch(e => {
+        console.log('error: '+ e);
+      });
+    console.log('just got into login page');
+    const loading = await this.loadingCtrl.create({
+      message : 'loading..',
+      spinner : 'lines-sharp'
+    });
   }
   async loginCustomer(){
     const loading = await this.loadingCtrl.create({
@@ -33,10 +51,9 @@ export class LoginPage implements OnInit {
       loading.dismiss();
     }else{
       this.CustomerServicesPage.loginAccount(this.login,this.password ).subscribe(res =>{
-        console.log('customer result',res.active);
-         if(res.active == 1){
-          this.setStorageValue('customeContext',res);
-          console.log('succes');
+        console.log('customer result',res);
+         if(res.success == 1){
+          this.setStorageValue('customeContext',res.data);
           loading.dismiss();
           this.router.navigateByUrl(`/profile`);
          }else{
