@@ -13,7 +13,7 @@ export class PanierPage implements OnInit {
   productCount;
   constructor(public storage: Storage,private ProductsServicesPage : ProductsServicesPage) { }
 
-  async ngOnInit() {
+  /*async ngOnInit() {
     console.log('this function just loaded')
     await this.storage.create();
     this.loadCurentPanier();
@@ -22,21 +22,46 @@ export class PanierPage implements OnInit {
     console.log('this function just ended')
     this.loadCurentPanier();
   }
-  ionViewDidEnter() {
-    console.log('ionViewDidEnter - Page 1');
+  ionViewWillEnter() {
     this.loadCurentPanier();
   }
   ionViewDidLeave() {
+    this.loadCurentPanier();
+  }*/
+  async ngOnInit() {
+    console.log('this function just loaded')
+    await this.storage.create();
+    this.loadCurentPanier();
+  }
+
+  ionViewWillEnter() {
+    this.loadCurentPanier();
+  }
+
+  ionViewDidEnter() {
+    this.loadCurentPanier();
+  }
+
+  ionViewWillLeave (){
+    this.loadCurentPanier();
+  }
+
+  ionViewDidLeave() {
+    this.loadCurentPanier();
+  }
+
+  ngOnDestroy() {
     this.loadCurentPanier();
   }
   //all about local storage [set and get for the moment]
   async loadCurentPanier(){
     this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
-      
+      console.log('result',result)
       return (result);
       }).catch(e => {
         console.log('error: '+ e);
       });
+      if(this.contextclonevar != null ){
       this.panierProducts = this.contextclonevar.cart.products;
       this.panierProducts.forEach(item =>{
         item.imgSrc  = this.getProductImg(item.id);
@@ -53,9 +78,11 @@ export class PanierPage implements OnInit {
           }
         });
       })
-      console.log('this.contextclonevar at the start of loading : ',this.contextclonevar.cart);
+      
       this.totalCart = this.contextclonevar.cart.totals.total.value;
       this.productCount = this.contextclonevar.cart.products_count;
+    }
+    
   }
   checkout(){
     console.log('checkout function')

@@ -54,6 +54,8 @@ export class LoginPage implements OnInit {
         console.log('customer result',res);
          if(res.success == 1){
           this.setStorageValue('customeContext',res.data);
+          this.setStorageValue('isLoged',true);
+          window.location.reload();
           loading.dismiss();
           this.router.navigateByUrl(`/profile`);
          }else{

@@ -9,7 +9,7 @@ describe('AppComponent', () => {
 
 
   beforeEach(waitForAsync(() => {
-
+    
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
