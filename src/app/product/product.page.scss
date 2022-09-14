@@ -1,22 +1,17 @@
 
 
 .price_holder{
-    width: 40px;
-    /* background: rgba(247, 191, 0, 0.11); */
-    /* border-radius: 9px; */
+  width: 40px;
     text-align: center;
-    color: black;
+    color: #1a3677;
     font-weight: bold;
-    font-size: 20px;
-    padding-left: 8px !important;
-    box-shadow: inset 0px 0px 9px rgb(0 0 0 / 23%);
-    margin: 15px -5px;
+    font-size: 28px;
     float: left;
   }
   .ref_product{
     
-    font-size: 15px;
-    margin: 10px 6px;
+    font-size: 12px;
+    color: #f7bf00;
   }
   .itos_padding_10{
     padding: 10px;
@@ -25,34 +20,83 @@
     width: 100%;
   }
   .price_label{
-    font-size: 27px;
-    padding: 17px 0;
-    color: #011a4d;
+    font-size: 28px;
+    padding: 12px 0;
+    color: #1a3677;
     font-weight: bold;
     float: right;
-    }
+}
+   .price_description_span{
+    font-size: 12px;
+   }
   .price_qte_container{
     /*display: flex;*/
   }
-  .product_second_card,.product_first_card{
+  .product_second_card{
+    position: fixed;
+    width: -webkit-fill-available;
+    bottom: 0;
+    margin: 0;
     box-shadow: none;
   }
 
   .add_to_cart_btn{
-    background: linear-gradient(180deg, rgb(2, 61, 195) 0%, rgb(3, 24, 72) 100%);
+   // --background: linear-gradient(180deg, rgb(2, 61, 195) 0%, rgb(3, 24, 72) 100%);
   }
 
   .product_second_header{
-    margin: 15px 0px;
+    padding: 0 20px;
+    overflow: scroll;
+    height: 96px;
   }
   .price_change_btns{
-    padding: 10px;
-    margin-top: 11px;
+    padding: 14px;
+    /* margin-top: 22px; */
     float: left;
+    color: #f7bf00;
+  }
+  .price_change_btnsLeft{
+    margin-right: -3px;
   }
   .ionicon.s-ion-icon{
     color: #f7bf00; 
   }
   .card-content-ios{
     padding: 0px !important;
+  }
+  
+  .product_first_card {
+    padding: 19px 26px;
+    box-shadow: none;
+  }
+  .product_name_title{
+    font-size: 22px;
+    color: #1a3677;
+  }
+  .product_img{
+    height: 155px;
+  }
+  .price_change_icons{
+    color: #f7bf00;
+    font-size: 40px;
+  }
+  .btn_add_cart{
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 10px;
+    float: right;
+  }
+  .btn_add_wish{
+    width: 20%;
+    float: left;
+    font-size: 17px;
+    --background: white;
+    color: #000000;
+
+  }
+  .addBtn_holder{
+     //display: flex;
+  }
+  .wish_icon{
+    
   }

@@ -2,11 +2,11 @@
   <ion-header [translucent]="true" color="customflx">
     <ion-toolbar color="customflx" class="border_0">
       <ion-buttons slot="start" class="color_black">
-        <ion-menu-button></ion-menu-button>
+        <ion-menu-button class="menu_btn_topBar"></ion-menu-button>
       </ion-buttons>
       
       <ion-buttons slot="end" (click)="btnBack()" class="btnBack color_black"> 
-        <ion-icon name="chevron-back-outline"></ion-icon>
+        <ion-icon name="chevron-back-outline" class="back_btn_topBar"></ion-icon>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -15,13 +15,13 @@
       <ion-content>
         <ion-list id="inbox-list">
           <img class="sidebar_img" src="../assets/imgs/main_logo.png">
-          <ion-note></ion-note>
           <div *ngIf="!IsLoged">
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of appPages; let i = index"
           >
             <ion-item
+            class="menu_sidebar"
               routerDirection="root"
               [routerLink]="[p.url]"
               lines="none"
@@ -39,6 +39,7 @@
           </div>
         <div *ngIf="IsLoged">
           <ion-menu-toggle
+          class="menu_sidebar"
           auto-hide="false"
           *ngFor="let p of appPages1; let i = index"
         >
@@ -54,7 +55,7 @@
               [ios]="p.icon + '-outline'"
               [md]="p.icon + '-sharp'"
             ></ion-icon>
-            <ion-label>{{ p.title }}</ion-label>
+            <ion-label slot="start">{{ p.title }}</ion-label>
           </ion-item>
           </ion-menu-toggle>
         </div>

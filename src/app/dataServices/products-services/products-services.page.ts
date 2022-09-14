@@ -12,6 +12,10 @@ import {Observable} from 'rxjs';
 })
 export class ProductsServicesPage {
   constructor(private http:HttpClient){ }
+  getAllProducts(): Observable<any> {
+    //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
+     return( this.http.get(`https://stebouhaha.com/api/products/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&display=full&limit=6`));
+  }
   getProduct(id): Observable<any> {
     //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
      return( this.http.get(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`));

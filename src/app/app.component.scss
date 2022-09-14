@@ -119,15 +119,11 @@ ion-item.selected {
 }
 .itos-ion-tab-bar {
   height: 72px;
-  background: linear-gradient(
-    180deg,
-    rgba(2, 61, 195, 1) 0%,
-    rgba(3, 24, 72, 1) 100%
-  );
+  background: white;
 }
 .itos-btn {
   background: rgba(255, 0, 0, 0);
-  border-left: 1px solid #0339b4;
+  border-left: 1px solid #00000014; 
 }
 .bottom-menu-active {
   border-bottom: 4px solid #f7bf00;
@@ -145,7 +141,6 @@ ion-item.selected {
 }
 .itos-btn ion-label {
   font-weight: bold;
-  color: white;
 }
 .itos-container {
   margin: 0px 20px;
@@ -187,4 +182,10 @@ ion-item.selected {
   
   width: 200px;
   margin: 53px;
+}
+.menu_sidebar{
+  background: #152b5e;
+}
+.menu_btn_topBar,.back_btn_topBar{
+  color: #152b5e;
 }

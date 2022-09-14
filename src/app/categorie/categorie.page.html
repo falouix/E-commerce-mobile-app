@@ -12,8 +12,9 @@
   </ion-col>
   <div *ngFor="let item of subCategory">
     <div>
-      <ion-item class="subCattitleholder"(click)="renderSubCategory(item.id,currentCategoryLogo,currenrCategroryTitle,category_id)">
+      <ion-item class="subCattitleholder"(click)="renderSubCategory(item.id,item.imgSrc,currenrCategroryTitle,category_id)">
         <div class="item-content-subCattitleholder">
+          <img src={{item.imgSrc}} class="sub_category_img_small" (error)="doSomething(item.imgSrc)" (click)="doSomething()"/>
           <ion-label  slot="start" class="subCategory_labels">
             {{item.name}}
           </ion-label>

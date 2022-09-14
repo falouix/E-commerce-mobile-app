@@ -1,5 +1,5 @@
 .itos-container {
-  margin: 50px 80px 0px 80px;
+  margin: 15px 80px 0px 80px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -16,7 +16,7 @@
   background: red;
 }
 .itos-container-main {
-  margin: 0px 30px;
+  margin: 0px 10px;
 }
 
 .itos-container-main p {
@@ -50,4 +50,76 @@
   margin-top: -40px;
   font-size: 32px !important;
 }
+}
+.phomepage{
+  background: #f7bf00;
+    padding: 9px 43px;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+.home_searchbar{
+  --border-radius: 50px !important;
+    --border: 2px solid;
+    color: #031c54;
+    --icon-color: #031c54;
+    padding: 0px 34px;
+    padding-top: 5px;
+    //--box-shadow: none;
+}
+.home_product_label{
+  font-size: 19px;
+    font-weight: 600;
+    color: #09266d;
+    float: left;
+}
+.card_cat_product_homePage {
+  height: 150px;
+  /* margin: 15px 0px; */
+  /* box-shadow: 0px 0px 2px rgb(98 98 98 / 44%); */
+  /* border: 1px solid rgba(248, 191, 0, 0.3098039216); */
+  padding: 3px;
+  border-radius: 0;
+  margin: 0;
+}
+.search_grp_item{
+  text-align: center;
+  padding-right: 27px;
+
+}
+.search_input{
+  border: 1px solid #04226a;
+  font-size: 19px;
+  /* border: 0; */
+  box-shadow: 1px 2px 4px rgb(0 0 0 / 25%);
+  margin: 8px;
+  text-align: center;
+  border-radius: 50px;
+  padding: 2px;
+}
+.search_icon_btn{
+  background: #04226a;
+  padding: 4px;
+  border-radius: 13px;
+  color: white;
+  font-size: 20px;
+  margin: -7px;
+  margin-left: -37px;
+}
+.product_home_img{
+  
+  height: 100%;
+}
+.home_products_title{
+  font-size: 15px;
+    color: #04226a;
+    font-weight: bold;
+    /* height: 58px; */
+    text-align: left;
+    font-size: 12px;
+    margin-top: 10px;
+}
+.promo_slider{
+  margin-top:13px;
 }

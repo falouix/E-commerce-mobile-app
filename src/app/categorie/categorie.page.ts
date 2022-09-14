@@ -76,6 +76,24 @@ export class CategoriePage implements OnInit {
        //let x = res.data.label.split(" ");
         loading.dismiss();
         if(this.subCategory){
+          console.log('this.subCategory : ',this.subCategory);
+          //https://stebouhaha.com/c/27-small_default/visserie.jpg
+          this.subCategory.forEach( (value) =>{
+                value.imgSrc = "https://stebouhaha.com/c/"+value.id+"-small_default/"+value.name+".jpg";
+                
+                  var request = new XMLHttpRequest();
+                  request.open("GET", value.imgSrc, true);
+                  request.send();
+                  request.onload = function() {
+                    if (request.status == 200) //if(statusText == OK)
+                    {
+                      console.log("image exists");
+                    } else {
+                      value.imgSrc ="../../assets/imgs/main_logo.png"
+                      console.log("image doesn't exist");
+                    }
+                  }
+          });
           this.currenrCategroryTitle = res.data.label.split(" ")[2];
           this.currentCategoryLogo="../../assets/imgs/categories-icons/"+res.data.label.split(" ")[2].toLowerCase()+".png";
         }else{
@@ -141,5 +159,8 @@ export class CategoriePage implements OnInit {
       } catch (reason) {
       return false;
       }
+    }
+    doSomething(url){
+      
     }
 }

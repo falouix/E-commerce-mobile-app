@@ -37,6 +37,16 @@ export class CategoriesServicesPage {
           return( this.http.get(`https://stebouhaha.com/api/categories?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[active]=1&display=[id,name]&filter[id_parent]=${id}`, options));
 
   }
+  checkImg(link): Observable<any> {
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('content-type','application/json');
+     let options = { headers:headers};
 
+        return( this.http.get(link, options));
+
+}
 
 }

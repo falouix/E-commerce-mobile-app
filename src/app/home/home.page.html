@@ -9,57 +9,112 @@
       class="itos-home-main-logo"
     ></ion-img>
   </div>
-  <div class="itos-container-main">
-    <p>
+  <ion-searchbar  class="home_searchbar"></ion-searchbar>
+  <div>
+    <p class="phomepage">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     </p>
+  </div>
+  <div class="itos-container-main">
+    
     <div class="itos-categories-container">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6" size-md = "4"(click)="clicktest(7,1)">
+      <ion-slides>
+        <ion-slide>
+          <ion-col (click)="clicktest(7,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat1.png"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
-          <ion-col size="6" size-md = "4"(click)="clicktest(4,1)">
+          <ion-col (click)="clicktest(4,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat2.png"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
-          <ion-col size="6" size-md = "4"(click)="clicktest(10,1)">
+          <ion-col (click)="clicktest(10,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat3.png"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
-          <ion-col size="6" size-md = "4"(click)="clicktest(9,1)">
+        </ion-slide>
+
+        <ion-slide>
+          <ion-col (click)="clicktest(9,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat4.png"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
-          <ion-col size="6" size-md = "4"(click)="clicktest(6,1)">
+          <ion-col (click)="clicktest(6,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat5.png"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
-          <ion-col size="6" size-md = "4"(click)="clicktest(5,1)">
+          <ion-col (click)="clicktest(5,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat6.png"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
-          <ion-col size="6" size-md = "4"(click)="clicktest(8,1)">
+        </ion-slide>
+
+        <ion-slide>
+          <ion-col (click)="clicktest(8,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat7.jpg"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
-        </ion-row>
-      </ion-grid>
+          <ion-col >
+          </ion-col>
+          <ion-col>
+            
+          </ion-col>
+          
+        </ion-slide>
+      </ion-slides>
+      
+    </div>
+    <div class="home_first_section">
+          <ion-slides class="promo_slider">
+            <ion-slide>
+              <ion-col size="6" size-sm  *ngFor="let item of productHomePage1">
+                <ion-card (click)="renderProduct(item.id)" class="card_cat_product_homePage">
+                    <ion-img src={{item.imgSrc}} class="product_home_img"></ion-img>
+                </ion-card>
+                <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
+                  <ion-card-subtitle class="home_products_title">{{item.name}}</ion-card-subtitle>
+                  <ion-label class="home_product_label">{{item.price}}</ion-label>
+                </ion-card-header>
+              </ion-col>
+            </ion-slide>
+            <ion-slide>
+              <ion-col size="6" size-sm  *ngFor="let item of productHomePage2">
+                <ion-card (click)="renderProduct(item.id)" class="card_cat_product_homePage">
+                    <ion-img src={{item.imgSrc}} class="product_home_img"></ion-img>
+                </ion-card>
+                <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
+                  <ion-card-subtitle class="home_products_title">{{item.name}}</ion-card-subtitle>
+                  <ion-label class="home_product_label">{{item.price}}</ion-label>
+                </ion-card-header>
+              </ion-col>
+            </ion-slide>
+            <ion-slide>
+              <ion-col size="6" size-sm  *ngFor="let item of productHomePage3">
+                <ion-card (click)="renderProduct(item.id)" class="card_cat_product_homePage">
+                    <ion-img src={{item.imgSrc}} class="product_home_img"></ion-img>
+                   
+                </ion-card>
+                <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
+                  <ion-card-subtitle class="home_products_title">{{item.name}}</ion-card-subtitle>
+                  <ion-label class="home_product_label">{{item.price}}</ion-label>
+                </ion-card-header>
+              </ion-col>
+            </ion-slide>
+          </ion-slides>
     </div>
   </div>
 </ion-content>

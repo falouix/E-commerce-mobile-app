@@ -8,30 +8,24 @@
   <div class="itos-container">
     <ion-img
       src="../../assets/imgs/main_logo.png"
-      class="itos-home-main-logo"
+      class="itos-contact-main-logo"
     ></ion-img>
   </div>
   <div class="itos-container-main">
     <p class="about_p">
-      <ion-img class="contact_icons"
-        src="../../assets/imgs/contact-icons/location_icon.png"
-      ></ion-img>
+      <ion-icon name="compass-outline" class="contact_icons"></ion-icon>
       <span class="contact_form_span">
         Bouhaha Tunisie
       </span>
     </p>
     <p class="about_p">
-      <ion-img class="contact_icons"
-        src="../../assets/imgs/contact-icons/mail_icon.png"
-      ></ion-img>
+      <ion-icon name="mail-open-outline" class="contact_icons"></ion-icon>
       <span class="contact_form_span">
         support@stebouhaha.com
       </span>
     </p>
     <div class="about_p">
-      <ion-img class="contact_icons"
-        src="../../assets/imgs/contact-icons/facebook_icon.png"
-      ></ion-img>
+      <ion-icon name="logo-facebook" class="contact_icons"></ion-icon>
       <span class="contact_form_span">
         https://www.facebook.com/Bouhaha
       </span>
@@ -43,7 +37,7 @@
       <ion-input placeholder="E-mail" [(ngModel)]="email"></ion-input>
 
       <!-- Textarea that clears the value on edit -->
-      <ion-textarea  [(ngModel)]="message" rows="6" placeholder="Message" clearOnEdit="true"></ion-textarea>
+      <ion-textarea  [(ngModel)]="message" rows="4" placeholder="Message" clearOnEdit="true"></ion-textarea>
 
       <ion-button class=" contact_form_button" expand="full" (click)="sendMail()">Envoyer</ion-button>
     </div>
