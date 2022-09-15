@@ -122,7 +122,6 @@ async presentAlert() {
   }
   async addTobasket(id){
     let token = this.checkContext();
-    console.log('this the quantity : ',this.qtty)
     if(! this.qtty || this.qtty == '0'){
       this.presentAlert();
       return;
@@ -139,6 +138,7 @@ async presentAlert() {
             }).catch(e => {
               console.log('error: '+ e);
             });
+            console.log('id',this.contextclonevar)
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',token,this.contextclonevar.contextCart.id).subscribe(async (res) =>{
         console.log('the real result : ', res);
         this.setStorageValue('contextCloneOrsomethng',res);

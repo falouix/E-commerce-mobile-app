@@ -69,8 +69,7 @@
       <ion-tab-bar slot="bottom" class="itos-ion-tab-bar">
         <ion-tab-button tab="home" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[1]}" (click)="btnmenu(1)">
           <ion-img
-            width="72"
-            height="40px"
+            
             src="../assets/imgs/bottom-menu-icons/home.png"
             class="bottom-menu-icon"
           ></ion-img>
@@ -79,8 +78,7 @@
 
         <ion-tab-button tab="marques" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[2]}" (click)="btnmenu(2)">
           <ion-img
-            width="72"
-            height="40px"
+            
             src="../assets/imgs/bottom-menu-icons/marques.png"
             class="bottom-menu-icon"
           ></ion-img>
@@ -89,8 +87,7 @@
 
         <ion-tab-button tab="bouhaha" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[3]}" (click)="btnmenu(3)">
           <ion-img
-            width="72"
-            height="40px"
+            
             src="../assets/imgs/bottom-menu-icons/bouhaha.png"
             class="bottom-menu-icon"
           ></ion-img>
@@ -99,8 +96,7 @@
 
         <ion-tab-button tab="contact" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[4]}" (click)="btnmenu(4)">
           <ion-img
-            width="72"
-            height="40px"
+            
             src="../assets/imgs/bottom-menu-icons/contact.png"
             class="bottom-menu-icon"
           ></ion-img>
@@ -108,13 +104,12 @@
         </ion-tab-button>
         <ion-tab-button tab="panier" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[5]}" (click)="btnmenu(5)">
           <ion-img
-            width="72"
-            height="40px"
+            
             src="../assets/imgs/bottom-menu-icons/panier.png"
             class="bottom-menu-icon"
           ></ion-img>
           <ion-label>Panier</ion-label>
-          <ion-badge class="panier-couter">6</ion-badge>
+          <ion-badge class="panier-couter">{{counter_panier}}</ion-badge>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

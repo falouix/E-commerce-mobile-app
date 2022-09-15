@@ -125,16 +125,24 @@
   .center_text_padding_zero ion-button{
   }
   .manufacturer_name{
-    color: #04226a;
+       color: #04226a;
+    /* border: 1px solid; */
     font-size: 36px;
-    margin: 0;
-    margin-top: 10px;
+    /* margin: 0; */
+    margin-top: 17px;
     margin-bottom: -13px;
+    /* background: #f8bf00; */
+    /* padding: 6px; */
+    /* padding-bottom: 10px; */
+    width: 100%;
+    text-align: center;
+    /* margin: 0 10px; */
+    /* box-shadow: 0px 0px 5px; */
+    /* border-radius: 0px 100px 0px 0px;*/
   }
   .currentSubCategoryContainer{
     text-align: center;
-    background: linear-gradient(180deg, rgb(2, 61, 195) 0%, rgb(3, 24, 72) 100%);;
-    padding: 8px 0px;
+    padding: 20px 0px 0px 0px;
   }
   .currentSubCategoryLabel{
     color: white;

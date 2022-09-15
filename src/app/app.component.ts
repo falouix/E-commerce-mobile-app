@@ -7,27 +7,26 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  
+  public counter_panier = 0;
   public currentActive;
   public appPages = [
     { title: 'login', url: '/login', icon: 'person-circle' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
   ];
   public appPages1 = [
     { title: 'Profile', url: '/profile', icon: 'person-circle' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
     { title: 'Déconnexion', url: '/Profile', icon: 'log-out' },
   ];
   menuactive = [];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private router : Router,public storage: Storage,) {
+
     this.menuactive[1] = true;
     this.menuactive[2] = false;
     this.menuactive[3] = false;
     this.menuactive[4] = false;
     this.menuactive[5] = false;
     
-  }
+  } 
   
   public IsLoged = this.getIsLoged();
   async getIsLoged(){
@@ -42,6 +41,16 @@ export class AppComponent {
      }).catch(e => {
        console.log('error: '+ e);
      }); 
+     await this.getStorageValue('contextCloneOrsomethng').then(result => {
+      if(result == null){
+        this.counter_panier =  0
+      }else{
+        console.log('fucking result : ',result.cart.products_count)
+        this.counter_panier = result.cart.products_count;
+      }
+     }).catch(e => {
+       console.log('error: '+ e);
+     });
      console.log('IsLoged',IsLoged)
      this.IsLoged = IsLoged;
      return IsLoged;

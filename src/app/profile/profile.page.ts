@@ -35,9 +35,9 @@ export class ProfilePage implements OnInit {
       message : 'loading..',
       spinner : 'lines-sharp'
     });
-    await loading.present();
+    //await loading.present();
     this.profileData = await this.getStorageValue('customeContext').then(result => {
-       loading.dismiss();
+       //loading.dismiss();
        console.log('result',result)
        if(result == null){
         this.router.navigateByUrl(`/login`);

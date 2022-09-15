@@ -32,22 +32,15 @@ export class ProductsServicesPage {
 
   }
   addProductToCart(id,qty,flag,token,catID): Observable<any> {
-    console.log(`https://stebouhaha.com/panier?id_product=${id}&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart`);
+    //console.log(`https://stebouhaha.com/panier?id_product=${id}&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart`);
+    console.log('like what : ',id);
     var headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-
-    let postData = {
-      id_product: id,
-      id_customization: 0,
-      qty : 1,
-      add : 1,
-      token : flag,
-      action : 'update',
-    }
+     
     return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=${token}&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&token=""&cartid=${catID}`,options));
   }
 }
