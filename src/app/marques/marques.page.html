@@ -3,21 +3,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="itos-container"></div>
   <div class="container-main container-main-marques ">
-    <div *ngFor="let item of manufacturers">
-      <div>
-        <ion-item color="customflx" class="subCattitleholder" (click)="getProductsMarque(item.id)">
-          <div class="item-content-subCattitleholder">
+    <ion-list >
+        <ion-item *ngFor="let item of manufacturers" color="customflx" class=" item-content-subCattitleholder" (click)="getProductsMarque(item.id)">
+          
             <ion-label  slot="start" class="subCategory_labels">
               {{item.name}}
             </ion-label>
             <ion-label  slot="end" class="subCategory_arrows">
               <ion-icon name="chevron-forward-outline"></ion-icon>
             </ion-label>
-          </div>
+          
         </ion-item>
-      </div>
+      </ion-list>
+
+
+      
     </div>
-  </div>
 </ion-content>

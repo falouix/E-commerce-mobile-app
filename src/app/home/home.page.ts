@@ -30,8 +30,10 @@ export class HomePage implements OnInit {
         if(item[1]){
           this.productHomePage.push(item[1])
         }
-
+        this.productHomePage[key].priceFormated = parseFloat(this.productHomePage[key].price).toFixed(3).toString() + ' TND';
         if(this.productHomePage[key].associations.images != undefined ){
+          
+          //console.log('Math.round(num * 100) : ',this.productHomePage[key].price.toFixed(2));
           this.productHomePage[key].imgSrc = 'https://stebouhaha.com/api/images/products/'+
           this.productHomePage[key].id+
           '/'+
@@ -45,9 +47,7 @@ export class HomePage implements OnInit {
       this.productHomePage1 = this.productHomePage.slice(0,2);
       this.productHomePage2 = this.productHomePage.slice(2,4);
       this.productHomePage3 = this.productHomePage.slice(4,6);
-      console.log(this.productHomePage1);
-      console.log(this.productHomePage2);
-      console.log(this.productHomePage3);
+      console.log('this.productHomePage3 : ',this.productHomePage3)
       return (this.productHomePage);
       })
   }

@@ -1,5 +1,5 @@
 .itos-container {
-  margin: 15px 80px 0px 80px;
+  margin: 2px 80px 0px 80px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -60,13 +60,13 @@
     font-size: 12px;
 }
 .home_searchbar{
-  --border-radius: 50px !important;
+    --border-radius: 50px !important;
     --border: 2px solid;
     color: #031c54;
     --icon-color: #031c54;
-    padding: 0px 34px;
-    padding-top: 5px;
-    //--box-shadow: none;
+    padding: 8px 14px;
+    /* padding-top: 5px; */
+    margin-bottom: 12px;
 }
 .home_product_label{
   font-size: 19px;
@@ -75,7 +75,7 @@
     float: left;
 }
 .card_cat_product_homePage {
-  height: 150px;
+  height: 135px;
   /* margin: 15px 0px; */
   /* box-shadow: 0px 0px 2px rgb(98 98 98 / 44%); */
   /* border: 1px solid rgba(248, 191, 0, 0.3098039216); */
@@ -112,14 +112,15 @@
   height: 100%;
 }
 .home_products_title{
-  font-size: 15px;
-    color: #04226a;
-    font-weight: bold;
-    /* height: 58px; */
-    text-align: left;
-    font-size: 12px;
-    margin-top: 10px;
+  font-size: 11px !important;
+  color: #04226a;
+  /* font-weight: bold; */
+  text-align: left;
+  font-size: 12px;
+  margin-top: 10px;
+  height: 30px;
+  //padding: 1px 8px;
 }
 .promo_slider{
-  margin-top:13px;
+  margin-top:10px;
 }

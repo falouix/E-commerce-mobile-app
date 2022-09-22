@@ -19,7 +19,7 @@ export class AppComponent {
   menuactive = [];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor(private router : Router,public storage: Storage,) {
-
+    console.log('this.router.url', this.router.url);
     this.menuactive[1] = true;
     this.menuactive[2] = false;
     this.menuactive[3] = false;

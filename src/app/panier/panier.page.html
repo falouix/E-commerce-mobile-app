@@ -6,8 +6,11 @@
 <ion-content>
   <div class="currentSubCategoryContainer bg_white">
     <ion-icon name="bag-handle-outline" class="panier_big_icon"></ion-icon>
+    
   </div>
-  <ion-content>
+  <h3 class="panier_bigTitle">Panier</h3>
+  <ion-content >
+  <ion-content class="panier_products_container">
     <ion-card class="products_panier_holder"  *ngFor="let item of panierProducts">
     <ion-row>
       <ion-col class="ion-align-self-start" size="4">
@@ -29,6 +32,8 @@
       </ion-col>
     </ion-row>
   </ion-card>
+  
+</ion-content>
     <ion-card class="total_panier_holder">
       <ion-card-header>
         <ion-card-subtitle class="color_031b52">Nombre des produits : {{productCount}}</ion-card-subtitle>

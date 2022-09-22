@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SafeResourceUrl, DomSanitizer }  from '@angular/platform-browser';
+
 import {Router,ActivatedRoute} from '@angular/router';
+
 import { LoadingController,AlertController  } from '@ionic/angular';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
+
 import { Storage } from '@ionic/storage';
+
 @Component({ 
   selector: 'app-product',
   templateUrl: './product.page.html',
@@ -18,7 +23,7 @@ export class ProductPage implements OnInit {
     private ProductsServicesPage : ProductsServicesPage,
     public storage: Storage
     ) {
-    
+    this.qtty = '1';
    }
    handlerMessage = '';
   roleMessage = '';
@@ -93,11 +98,15 @@ async presentAlert() {
       this.productDescription_short = this.productData1.description_short.replace(/<[^>]+>/gm, '');//this._sanitizer.bypassSecurityTrustHtml(this.productData1.description_short);
       this.productPrice = this.productData1.price;
       console.log('this.productData',this.productData1);
-    });
+    }, (err) => {
+      console.log('lose ' + JSON.stringify(err));});
   }
+
   clicktest(id,pageNbr){
     this.router.navigateByUrl(`/product/${id}`);
   }
+
+
   plusBtnClick(){
     var qtty = 0;
     if(this.qtty){
@@ -121,7 +130,8 @@ async presentAlert() {
     });
   }
   async addTobasket(id){
-    let token = this.checkContext();
+    let token = '';
+    console.log('token : ',token)
     if(! this.qtty || this.qtty == '0'){
       this.presentAlert();
       return;
@@ -132,21 +142,21 @@ async presentAlert() {
         console.log('error: '+ e);
       });
       if(this.contextclonevar !== null){
+        console.log('first one');
            //get current context cart 
-           this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
-            return (result);
-            }).catch(e => {
-              console.log('error: '+ e);
-            });
-            console.log('id',this.contextclonevar)
+        this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
+         return (result);
+         }).catch(e => {
+           console.log('error: '+ e);
+         });
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',token,this.contextclonevar.contextCart.id).subscribe(async (res) =>{
-        console.log('the real result : ', res);
+        
         this.setStorageValue('contextCloneOrsomethng',res);
         });
       }else{
-        
+        console.log('second one');
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',token,0).subscribe(async (res) =>{
-          console.log('the real result : ', res);
+        
           this.setStorageValue('contextCloneOrsomethng',res);
         });
       }

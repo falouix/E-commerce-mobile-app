@@ -7,20 +7,20 @@
     <ion-col class="cat_img_container">
       <h1 class="manufacturer_name">{{manufacturer_name}}</h1>
     </ion-col>
-    <ion-list class="products_container">
+    
+    <ion-list>
       <ion-row>
         <ion-col size="6" size-sm *ngFor="let item of currentProducts">
           <ion-card (click)="renderProduct(item.id)" class="card_cat_product">
-              <ion-img [src]='item.productImgSrc'></ion-img>
+              <ion-img src={{item.productImgSrc}}></ion-img>
+              <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
+                <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
+                <ion-button Type="large">{{item.price}}</ion-button>
+              </ion-card-header>
           </ion-card>
-          <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
-            <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
-            <ion-button Type="large" class="marqueProduct_price">{{item.price}}</ion-button>
-          </ion-card-header>
         </ion-col>
       </ion-row>
     </ion-list>
-    
     <ion-list class="flx_pagination">
       <ul *ngFor="let item of paginationArray">
         <li 

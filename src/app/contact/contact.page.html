@@ -13,13 +13,13 @@
   </div>
   <div class="itos-container-main">
     <p class="about_p">
-      <ion-icon name="compass-outline" class="contact_icons"></ion-icon>
+      <ion-icon name="location" class="contact_icons"></ion-icon>
       <span class="contact_form_span">
         Bouhaha Tunisie
       </span>
     </p>
     <p class="about_p">
-      <ion-icon name="mail-open-outline" class="contact_icons"></ion-icon>
+      <ion-icon name="mail" class="contact_icons"></ion-icon>
       <span class="contact_form_span">
         support@stebouhaha.com
       </span>
@@ -38,8 +38,13 @@
 
       <!-- Textarea that clears the value on edit -->
       <ion-textarea  [(ngModel)]="message" rows="4" placeholder="Message" clearOnEdit="true"></ion-textarea>
-
-      <ion-button class=" contact_form_button" expand="full" (click)="sendMail()">Envoyer</ion-button>
-    </div>
+      <ion-button 
+      clor="ion-color-flx" 
+      size="large" 
+      class="contact_form_button"
+      (click)="sendMail()"
+      >
+        Ajouter au panier
+    </ion-button> </div>
   </div>
 </ion-content>

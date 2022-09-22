@@ -1,39 +1,34 @@
 
   .subCategory_labels{
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 400;
     color: #1a3677;
     width: calc(100% - 42px);
     float: left;
-    padding: 12px 21px;
+    padding: 8px 21px;
   }
   .subCategory_arrows{
-    margin: 0;
-    font-size: 42px;
+    font-size: 23px;
     font-weight: bold;
     color: #f8bf00;
     float: right;
-    /* height: 70px; */
-    /* line-height: 70px; */
-    /* padding-top: 8px; */
-    width: 42px;
+    padding-right: 5px;
   }
   .subCattitleholder{
     overflow: visible;
     width: calc( 100% + 10px );
   }
   .item-content-subCattitleholder{
-    /*background: #e4e6f5; */
-    border-top: 2px solid #e9e9e9;
-    /* border-bottom: 2px solid #e9e9e9; */
+    border-bottom: 1px solid #e9e9e9;
     width: calc(100% + 40px);
     margin-left: -20px;
+    //margin-bottom: 5px;
   }
   .itos-container{
     height:10px;
   }
   .subCattitleholder{
-    height: 55px;
+    //height: 40px;
   }
   .container-main-marques{
     margin-top: -9px;

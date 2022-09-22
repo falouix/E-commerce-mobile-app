@@ -34,11 +34,11 @@
       <ion-col size="6" size-sm *ngFor="let item of categoryProducts">
         <ion-card (click)="renderProduct(item.id)" class="card_cat_product">
             <ion-img src={{item.imgSrc}}></ion-img>
+            <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
+              <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
+              <ion-button Type="large">{{item.price}}</ion-button>
+            </ion-card-header>
         </ion-card>
-        <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
-          <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
-          <ion-button Type="large">{{item.price}}</ion-button>
-        </ion-card-header>
       </ion-col>
     </ion-row>
   </ion-list>

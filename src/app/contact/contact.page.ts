@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
+import {CustomerServicesPage} from 'src/app/dataServices/customer-services/customer-services.page';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.page.html',
@@ -19,7 +19,7 @@ export class ContactPage implements OnInit {
   email;
   message;
 
-  constructor(private http:HttpClient){ 
+  constructor(private http:HttpClient,private CustomerServicesPage:CustomerServicesPage){ 
   }
 
   ngOnInit() {
@@ -30,6 +30,8 @@ export class ContactPage implements OnInit {
     console.log('sujet : ',this.sujet);
     console.log('E-mail : ',this.email);
     console.log('message : ',this.message);
-    console.log( this.http.get(`https://stebouhaha.com/mailingApp/test.php`));
+    this.CustomerServicesPage.contact(this.sujet,this.email,this.message).subscribe(res =>{
+       console.log('res',res.success);
+    });
   }
 }

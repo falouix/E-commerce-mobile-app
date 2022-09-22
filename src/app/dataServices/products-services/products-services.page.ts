@@ -40,7 +40,6 @@ export class ProductsServicesPage {
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-     
-    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=${token}&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&token=""&cartid=${catID}`,options));
+    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}`,options));
   }
 }

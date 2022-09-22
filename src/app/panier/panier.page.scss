@@ -84,3 +84,19 @@
     text-align: end;
     font-size: 16px;
 }
+.panier_bigTitle{
+    text-align: center;
+    margin: 0;
+    color: #1a3676;
+    font-size: 23px;
+}
+.panier_products_container{
+    max-height: 53%;
+    overflow: scroll;
+}
+@media(min-height:896px){
+    .panier_products_container{
+        max-height: 53%;
+        overflow: scroll;
+    }
+ }
