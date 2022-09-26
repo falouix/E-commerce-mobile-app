@@ -69,11 +69,7 @@
       <ion-tab-bar slot="bottom" class="itos-ion-tab-bar">
         <ion-tab-button tab="home" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[1]}" (click)="btnmenu(1)">
           
-          <ion-img
-            
-            src="../assets/imgs/bottom-menu-icons/home.png"
-            class="bottom-menu-icon"
-          ></ion-img>
+          <ion-icon class="bottom_menu_icon" name="home"></ion-icon>
           <ion-label>Acceuil</ion-label>
         </ion-tab-button>
 
@@ -96,19 +92,11 @@
         </ion-tab-button>
 
         <ion-tab-button tab="contact" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[4]}" (click)="btnmenu(4)">
-          <ion-img
-            
-            src="../assets/imgs/bottom-menu-icons/contact.png"
-            class="bottom-menu-icon"
-          ></ion-img>
+          <ion-icon class="bottom_menu_icon" name="mail"></ion-icon>
           <ion-label>Contact</ion-label>
         </ion-tab-button>
         <ion-tab-button tab="panier" class="itos-btn" [ngClass]="{'bottom-menu-active':menuactive[5]}" (click)="btnmenu(5)">
-          <ion-img
-            
-            src="../assets/imgs/bottom-menu-icons/panier.png"
-            class="bottom-menu-icon"
-          ></ion-img>
+          <ion-icon class="bottom_menu_icon" name="bag-handle"></ion-icon>
           <ion-label>Panier</ion-label>
           <ion-badge class="panier-couter">{{counter_panier}}</ion-badge>
         </ion-tab-button>

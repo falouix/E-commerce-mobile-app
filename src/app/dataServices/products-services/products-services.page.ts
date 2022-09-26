@@ -14,8 +14,18 @@ export class ProductsServicesPage {
   constructor(private http:HttpClient){ }
   getAllProducts(): Observable<any> {
     //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
-     return( this.http.get(`https://stebouhaha.com/api/products/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&display=full&limit=6`));
+    console.log(this.http.get(`https://stebouhaha.com/promotions?source=app`)); 
+    return( this.http.get(`https://stebouhaha.com/promotions?source=app`));
   }
+
+  getProductSpecific_prices(id): Observable<any> {
+    //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
+    //console.log(this.http.get(`https://stebouhaha.com/promotions?source=app`)); 
+    return( this.http.get(`https://stebouhaha.com/api/specific_prices/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_product]=${id}&display=full`));
+  }
+
+
+
   getProduct(id): Observable<any> {
     //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
      return( this.http.get(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`));

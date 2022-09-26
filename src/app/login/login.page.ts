@@ -1,7 +1,7 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController,AlertController  } from '@ionic/angular';
 import {CustomerServicesPage} from 'src/app/dataServices/customer-services/customer-services.page';
 @Component({
   selector: 'app-login',
@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
   login : string;
   password : string;
   constructor(
+    private alertController: AlertController,
     private router:Router,
     private CustomerServicesPage : CustomerServicesPage,
     public storage: Storage,
@@ -21,6 +22,33 @@ export class LoginPage implements OnInit {
    }
    ngOnDestroy(){
     console.log("destroying child...")
+  }
+  handlerMessage = '';
+  roleMessage = '';
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Login ou Mot de passe est invalide!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.handlerMessage = 'Alert canceled';
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.handlerMessage = 'Alert confirmed';
+          },
+        },
+      ],
+    });
+    await alert.present();
+
+  const { role } = await alert.onDidDismiss();
+  this.roleMessage = `Dismissed with role: ${role}`;
   }
   async ngOnInit() {
     await this.storage.create();
@@ -47,11 +75,12 @@ export class LoginPage implements OnInit {
     });
     await loading.present();
     if(this.login == undefined || this.password == undefined){
-      console.log("there's something not right");
+      this.presentAlert();
       loading.dismiss();
+      return;
     }else{
       this.CustomerServicesPage.loginAccount(this.login,this.password ).subscribe(res =>{
-        console.log('customer result',res);
+        
          if(res.success == 1){
           this.setStorageValue('customeContext',res.data);
           this.setStorageValue('isLoged',true);
@@ -59,7 +88,9 @@ export class LoginPage implements OnInit {
           loading.dismiss();
           this.router.navigateByUrl(`/profile`);
          }else{
-          console.log('some')
+          this.presentAlert();
+          loading.dismiss();
+      return;
          }
       })
     }

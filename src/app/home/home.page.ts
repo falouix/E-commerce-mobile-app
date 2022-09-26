@@ -24,32 +24,27 @@ export class HomePage implements OnInit {
   }
   loadHomeProducts(){
     this.ProductsServicesPage.getAllProducts().subscribe(result  => {
-      
-      Object.entries(result.products).forEach( (item,key) =>{
-        
-        if(item[1]){
-          this.productHomePage.push(item[1])
-        }
-        this.productHomePage[key].priceFormated = parseFloat(this.productHomePage[key].price).toFixed(3).toString() + ' TND';
-        if(this.productHomePage[key].associations.images != undefined ){
-          
-          //console.log('Math.round(num * 100) : ',this.productHomePage[key].price.toFixed(2));
-          this.productHomePage[key].imgSrc = 'https://stebouhaha.com/api/images/products/'+
-          this.productHomePage[key].id+
-          '/'+
-          this.productHomePage[key].associations.images[0].id+
-          '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
-        
+      console.log('result promo : ',result)
+      Object.entries(result).forEach( (item) =>{
+        let fake_item = JSON.parse(JSON.stringify(item[1]));
+        if(fake_item.specific_prices.reduction_type == "amount"){
+          fake_item.reduction = parseFloat(fake_item.specific_prices.reduction).toFixed(3)
+          fake_item.reduction = fake_item.reduction.toString() + "TND";
         }else{
-          this.productHomePage[key].imgSrc ="../../assets/imgs/main_logo.png";
-        }
+          fake_item.reduction = parseFloat(fake_item.specific_prices.reduction)*100;
+          fake_item.reduction = fake_item.reduction.toString() + "%";
+        } //const result1 = num1.toFixed(2)
+        let src = fake_item.id_image;
+        src.replace("-", "/");
+        
+        fake_item.imgSrc = src.replace("-", "/");
+        fake_item.imgSrc = "https://stebouhaha.com/api/images/products/"+fake_item.imgSrc+"?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9"
+        
+        console.log(src.replace("-", "/"))
+        this.productHomePage.push(fake_item);
       });
-      this.productHomePage1 = this.productHomePage.slice(0,2);
-      this.productHomePage2 = this.productHomePage.slice(2,4);
-      this.productHomePage3 = this.productHomePage.slice(4,6);
-      console.log('this.productHomePage3 : ',this.productHomePage3)
-      return (this.productHomePage);
       })
+      console.log('typeof : ',this.productHomePage)
   }
   
   async setStorageValue(key: string, value: any): Promise<any> {

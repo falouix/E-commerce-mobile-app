@@ -2,6 +2,8 @@ import { Component,Injectable,OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {CategoriesServicesPage} from 'src/app/dataServices/categories-services/categories-services.page';
+import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
+
 import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-categorie',
@@ -13,13 +15,14 @@ import { Storage } from '@ionic/storage';
 })
 export class CategoriePage implements OnInit {
   constructor( 
+    public ProductsServicesPage :ProductsServicesPage ,
     private loadingCtrl: LoadingController,
     private router : Router, 
     private route : ActivatedRoute,
     private CategoriesServices : CategoriesServicesPage,
     public storage: Storage
     ) { }
-    
+    customerGrp;
      currentCategoryLogo : string;
      currentSubCategoryLogo : string;
      currenrCategroryTitle: string;
@@ -110,8 +113,27 @@ export class CategoriePage implements OnInit {
         
         //console.log("*******this.categoryProducts*******");
         //console.log( this.categoryProducts );
-
+        this.getStorageValue('customeContext').then(result => {
+          if (result != null) {
+            this.customerGrp = result;
+            if(result.id_default_group =="4"){
+              console.log("yessss");
+              
+            Object.entries(this.categoryProducts).forEach( (item) =>{
+              console.log(item[1].id_product)
+                this.ProductsServicesPage.getProductSpecific_prices(item[1].id_product).subscribe(res =>{
+                          console.log('result groupe 4 prices:',res.specific_prices[0].price)
+                          item[1].price = (parseFloat(res.specific_prices[0].price).toFixed(3)).toString()+' TND';
+                });
+            });
+            }
+          }
+          }).catch(e => {
+            console.log('error: '+ e);
+          });
+          
         Object.entries(this.categoryProducts).forEach( (item) =>{
+          
           if(item[1].images.length >0 ){
             item[1].imgSrc = item[1].images[0].medium.url;
           }else{

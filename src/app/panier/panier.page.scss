@@ -26,6 +26,16 @@
 .cartBtnCheckout{
     margin: 0px 17px;
     background: #f7bf00 !important;
+    clear: both;
+}
+.total_title_cart{
+    float: right;
+    margin: 8px 19px 15px 0;
+}
+.total_prductnbr_cart{
+    color: #031b52;
+    float: left;
+    margin: 13px 0 0 20px;
 }
 .total_panier_holder{
     position: fixed;

@@ -14,7 +14,7 @@ export class AppComponent {
   ];
   public appPages1 = [
     { title: 'Profile', url: '/profile', icon: 'person-circle' },
-    { title: 'Déconnexion', url: '/Profile', icon: 'log-out' },
+    { title: 'Déconnexion', url: '/logout', icon: 'log-out' },
   ];
   menuactive = [];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];

@@ -76,12 +76,10 @@
 }
 .card_cat_product_homePage {
   height: 135px;
-  /* margin: 15px 0px; */
-  /* box-shadow: 0px 0px 2px rgb(98 98 98 / 44%); */
-  /* border: 1px solid rgba(248, 191, 0, 0.3098039216); */
-  padding: 3px;
-  border-radius: 0;
-  margin: 0;
+    padding: 3px;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: 0px 0px 1px #00000047;
 }
 .search_grp_item{
   text-align: center;
@@ -123,4 +121,20 @@
 }
 .promo_slider{
   margin-top:10px;
+}
+.promo_holder{
+  background: #f7bf00;
+    padding: 5px;
+    float: right;
+    font-size: 12px;
+    border-radius: 5px;
+    color: white;
+    margin-right : 4px;
+}
+.promo_holder_container{
+  position: absolute;
+    width: 100%;
+    padding: 3px 4px;position: absolute;
+    width: 100%;
+    padding: 3px 4px;
 }

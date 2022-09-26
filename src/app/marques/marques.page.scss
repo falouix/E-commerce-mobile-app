@@ -6,6 +6,7 @@
     width: calc(100% - 42px);
     float: left;
     padding: 8px 21px;
+    margin: 0;
   }
   .subCategory_arrows{
     font-size: 23px;
@@ -13,6 +14,7 @@
     color: #f8bf00;
     float: right;
     padding-right: 5px;
+    max-height: 40px;
   }
   .subCattitleholder{
     overflow: visible;
@@ -22,7 +24,7 @@
     border-bottom: 1px solid #e9e9e9;
     width: calc(100% + 40px);
     margin-left: -20px;
-    //margin-bottom: 5px;
+    height: 50px;
   }
   .itos-container{
     height:10px;

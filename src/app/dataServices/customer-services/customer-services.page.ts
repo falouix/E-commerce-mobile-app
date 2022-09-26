@@ -29,6 +29,7 @@ export class CustomerServicesPage {
     login_customer,
     password,
     ): Observable<any> {
+      console.log(login_customer,password)
     //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
      return( this.http.get(`https://stebouhaha.com/connexion?back=my-account&login_customer=${login_customer}&password=${password}&submitLogin=1&source=app`));
   }
