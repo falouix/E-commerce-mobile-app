@@ -62,12 +62,14 @@
         </ion-slide>
 
         <ion-slide>
-          <ion-col (click)="clicktest(8,1)">
+          <ion-col size="4" (click)="clicktest(8,1)">
             <ion-img
               src="../../assets/imgs/categories-icons/cat7.jpg"
               class="itos-home-categories-logo"
             ></ion-img>
           </ion-col>
+          <ion-col size="4" ></ion-col>
+          <ion-col size="4" ></ion-col>
         </ion-slide>
       </ion-slides>
       
@@ -75,17 +77,17 @@
     <div class="home_first_section">
       
       <ion-slides class="promo_slider">
-        <ion-slide>
-          <ion-col size="6" size-sm  *ngFor="let item of productHomePage">
-            <ion-card (click)="renderProduct(item.id)" class="card_cat_product_homePage">
+        <ion-slide *ngFor="let item of productHomePage;">
+          <ion-col size="6" size-sm *ngFor="let item1 of item;">
+            <ion-card (click)="renderProduct(item1.id)" class="card_cat_product_homePage">
                <ion-card-header class="promo_holder_container">
-                <span class="promo_holder">- {{item.reduction}}</span>
+                <span class="promo_holder">- {{item1.reduction}}</span>
               </ion-card-header>
-              <ion-img src={{item.imgSrc}} class="product_home_img"></ion-img>
+              <ion-img src={{item1.imgSrc}} class="product_home_img"></ion-img>
             </ion-card>
-            <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
-              <ion-card-subtitle class="home_products_title">{{item.name}}</ion-card-subtitle>
-              <ion-label class="home_product_label">{{item.price}} TND</ion-label>
+            <ion-card-header (click)="renderProduct(item1.id)" class="center_text_padding_zero">
+              <ion-card-subtitle class="home_products_title">{{item1.name}}</ion-card-subtitle>
+              <ion-label class="home_product_label">{{item1.price}} TND</ion-label>
             </ion-card-header>
           </ion-col>
         </ion-slide>

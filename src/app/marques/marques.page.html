@@ -5,9 +5,9 @@
 <ion-content>
   <div class="itos-container"></div>
   <div class="container-main container-main-marques ">
-    <div *ngFor="let item of manufacturers">
+    <div >
       <div>
-        <ion-item color="customflx" class="subCattitleholder" (click)="getProductsMarque(item.id)">
+        <ion-item *ngFor="let item of manufacturers" color="customflx" class="subCattitleholder" (click)="getProductsMarque(item.id)">
           <div class="item-content-subCattitleholder">
             <ion-label  slot="start" class="subCategory_labels">
               {{item.name}}

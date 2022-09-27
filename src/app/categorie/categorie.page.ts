@@ -22,7 +22,7 @@ export class CategoriePage implements OnInit {
     private CategoriesServices : CategoriesServicesPage,
     public storage: Storage
     ) { }
-    customerGrp;
+    customerData;
      currentCategoryLogo : string;
      currentSubCategoryLogo : string;
      currenrCategroryTitle: string;
@@ -75,12 +75,24 @@ export class CategoriePage implements OnInit {
       this.CategoriesServices.getsubCategory(this.category_id).subscribe(res =>{
         this.subCategory = res.categories;
       });
-      this.CategoriesServices.getCategory(this.category_id,this.currentPage).subscribe(res =>{
-       //let x = res.data.label.split(" ");
+      //get current category title
+      this.getStorageValue('customeContext').then(result => {
+        console.log('result:',result) ;
+        
+        let customerId;
+        if(result !=null){
+          customerId = result.id;
+        }else{
+          customerId = null;
+        }
+          this.customerData = result;
+      console.log('customeContext',this.customerData)
+      this.CategoriesServices.getCategory(this.category_id,this.currentPage,customerId).subscribe(res =>{
+          
+        console.log("******* res at first *******");
+        console.log( res );
         loading.dismiss();
         if(this.subCategory){
-          console.log('this.subCategory : ',this.subCategory);
-          //https://stebouhaha.com/c/27-small_default/visserie.jpg
           this.subCategory.forEach( (value) =>{
                 value.imgSrc = "https://stebouhaha.com/c/"+value.id+"-small_default/"+value.name+".jpg";
                 
@@ -88,12 +100,10 @@ export class CategoriePage implements OnInit {
                   request.open("GET", value.imgSrc, true);
                   request.send();
                   request.onload = function() {
-                    if (request.status == 200) //if(statusText == OK)
+                    if (request.status == 200)
                     {
-                      console.log("image exists");
                     } else {
                       value.imgSrc ="../../assets/imgs/main_logo.png"
-                      console.log("image doesn't exist");
                     }
                   }
           });
@@ -110,28 +120,6 @@ export class CategoriePage implements OnInit {
         Object.entries(res.data.pagination.pages).forEach( (value,key) =>{
           this.categoryPages.push(value);
         });
-        
-        //console.log("*******this.categoryProducts*******");
-        //console.log( this.categoryProducts );
-        this.getStorageValue('customeContext').then(result => {
-          if (result != null) {
-            this.customerGrp = result;
-            if(result.id_default_group =="4"){
-              console.log("yessss");
-              
-            Object.entries(this.categoryProducts).forEach( (item) =>{
-              console.log(item[1].id_product)
-                this.ProductsServicesPage.getProductSpecific_prices(item[1].id_product).subscribe(res =>{
-                          console.log('result groupe 4 prices:',res.specific_prices[0].price)
-                          item[1].price = (parseFloat(res.specific_prices[0].price).toFixed(3)).toString()+' TND';
-                });
-            });
-            }
-          }
-          }).catch(e => {
-            console.log('error: '+ e);
-          });
-          
         Object.entries(this.categoryProducts).forEach( (item) =>{
           
           if(item[1].images.length >0 ){
@@ -141,6 +129,9 @@ export class CategoriePage implements OnInit {
           }
         });
       });
+  }).catch(e => {
+    console.log('error: '+ e);
+  });
     }
 
     clicktest(id,pageNbr){

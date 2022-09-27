@@ -9,9 +9,6 @@ import {ProductsServicesPage} from 'src/app/dataServices/products-services/produ
 })
 export class HomePage implements OnInit {
    productHomePage = new Array();
-   productHomePage1 = new Array();
-   productHomePage2 = new Array();
-   productHomePage3 = new Array();
   constructor(private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }
 
   ngOnInit() {
@@ -25,6 +22,8 @@ export class HomePage implements OnInit {
   loadHomeProducts(){
     this.ProductsServicesPage.getAllProducts().subscribe(result  => {
       console.log('result promo : ',result)
+      var i_item = 0;
+      var sous_tab = new Array();
       Object.entries(result).forEach( (item) =>{
         let fake_item = JSON.parse(JSON.stringify(item[1]));
         if(fake_item.specific_prices.reduction_type == "amount"){
@@ -41,8 +40,25 @@ export class HomePage implements OnInit {
         fake_item.imgSrc = "https://stebouhaha.com/api/images/products/"+fake_item.imgSrc+"?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9"
         
         console.log(src.replace("-", "/"))
-        this.productHomePage.push(fake_item);
+        if(i_item % 2 == 0){
+          console.log('i_item/2=0  : ',i_item);
+          sous_tab = new Array();
+          sous_tab.push(fake_item);
+        }else{
+          console.log('i_item/2!=0  : ',i_item);
+          sous_tab.push(fake_item);
+          this.productHomePage.push(sous_tab);
+        }
+        //this.productHomePage.push(fake_item);
+
+        i_item = i_item + 1;
       });
+
+      
+      if(i_item % 2 != 0){
+        this.productHomePage.push(sous_tab);
+      }
+
       })
       console.log('typeof : ',this.productHomePage)
   }

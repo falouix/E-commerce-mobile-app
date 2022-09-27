@@ -13,17 +13,20 @@ import {Observable} from 'rxjs';
 export class CategoriesServicesPage {
   constructor(private http:HttpClient){ }
   
-  getCategory(id,pageNbr): Observable<any> {
-    
+  getCategory(id,pageNbr,customerId): Observable<any> {
+    console.log(customerId)
     var headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('Accept','application/json');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-
-     return( this.http.get(`https://stebouhaha.com/category_app?id_category=${id}&page=${pageNbr}`, options));
-  }
+   if(customerId != null){
+    return( this.http.get(`https://stebouhaha.com/category_app?id_category=${id}&page=${pageNbr}&customerid=${customerId}&logged=1`, options));
+   }else{
+    return( this.http.get(`https://stebouhaha.com/category_app?id_category=${id}&page=${pageNbr}&logged=1`, options));
+   }
+      }
 
 
   getsubCategory(id): Observable<any> {
