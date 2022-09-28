@@ -11,11 +11,11 @@
     <ion-list>
       <ion-row>
         <ion-col size="6" size-sm *ngFor="let item of currentProducts">
-          <ion-card (click)="renderProduct(item.id)" class="card_cat_product">
-              <ion-img src={{item.productImgSrc}}></ion-img>
-              <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
+          <ion-card (click)="renderProduct(item.id_product)" class="card_cat_product">
+              <ion-img src={{item.imgSrc}}></ion-img>
+              <ion-card-header  class="center_text_padding_zero">
                 <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
-                <ion-button Type="large">{{item.price}}</ion-button>
+                <ion-button Type="large">{{item.formatedPrice}}</ion-button>
               </ion-card-header>
           </ion-card>
         </ion-col>

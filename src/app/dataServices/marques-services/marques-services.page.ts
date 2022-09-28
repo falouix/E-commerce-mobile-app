@@ -19,11 +19,21 @@ export class MarquesServicesPage {
     //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
      return( this.http.get(`https://stebouhaha.com/api/manufacturers/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`));
   }
-  getProductsMarque(id):Observable<any>{
-    return(
-      this.http.get(`
-      https://stebouhaha.com/api/products?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[active]=1&display=full&filter[id_manufacturer]=${id}
-      `)
-    )
+  getProductsMarque(id,customerId):Observable<any>{
+    if(customerId !=null){
+      return(
+        this.http.get(`
+        https://stebouhaha.com/brand/${id}?source=app&id_customer${customerId}&logged=1
+        `)
+      )
+
+    }else{
+      return(
+        this.http.get(`
+        https://stebouhaha.com/brand/${id}?source=app&logged=0
+        `)
+        )
+    }
+
   }
 }

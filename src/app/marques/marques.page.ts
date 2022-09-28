@@ -34,15 +34,14 @@ export class MarquesPage implements OnInit {
       this.manufacturersData = res;
       this.manufacturersData.manufacturers.forEach( (value) =>{
         this.MarquesServicesPage.getMarque(value.id).subscribe(res =>{
-          console.log('res',res)
           this.manufacturers.push(res.manufacturer);
         });
       });
     });
   }
-  getProductsMarque(id){
-    console.log(id)
-    this.router.navigateByUrl(`/productmarque/${id}`);
+  getProductsMarque(id,name){
+    console.log(id,name);
+    this.router.navigateByUrl(`/productmarque/${id}-${name}`);
   }
 
 }
