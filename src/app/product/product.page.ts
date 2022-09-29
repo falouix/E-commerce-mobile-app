@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SafeResourceUrl, DomSanitizer }  from '@angular/platform-browser';
-
+import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
 
 import { LoadingController,AlertController  } from '@ionic/angular';
@@ -16,6 +16,7 @@ import { Storage } from '@ionic/storage';
 })
 export class ProductPage implements OnInit {
   constructor(
+    private toastController: ToastController,
     private alertController: AlertController,
     private loadingCtrl: LoadingController,
     private router : Router, 
@@ -28,6 +29,16 @@ export class ProductPage implements OnInit {
    handlerMessage = '';
   roleMessage = '';
 // alert message when quantity is empty (later to use)
+
+async presentToast(position: 'top' | 'middle' | 'bottom') {
+  const toast = await this.toastController.create({
+    message: 'Produit ajouté au panier',
+    duration: 1500,
+    position: position
+  });
+
+  await toast.present();
+}
 async presentAlert() {
   const alert = await this.alertController.create({
     header: 'Quantité est vide!',
@@ -149,13 +160,16 @@ async presentAlert() {
          }).catch(e => {
            console.log('error: '+ e);
          });
-        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',token,this.contextclonevar.contextCart.id).subscribe(async (res) =>{
-        
+        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',token,this.contextclonevar.contextCart.id,this.contextclonevar.cart.products).subscribe(async (res) =>{
+        console.log(res);
         this.setStorageValue('contextCloneOrsomethng',res);
+        if(res.success ){
+          this.presentToast('middle')
+         }
         });
       }else{
         console.log('second one');
-        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',token,0).subscribe(async (res) =>{
+        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',token,0,0).subscribe(async (res) =>{
         
           this.setStorageValue('contextCloneOrsomethng',res);
         });
