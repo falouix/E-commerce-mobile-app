@@ -5,6 +5,7 @@
         <ion-menu-button class="menu_btn_topBar"></ion-menu-button>
       </ion-buttons>
       
+      <ion-searchbar  class="top_searchbar " (search)="SearchFunction($event.target.value)" ></ion-searchbar>
       <ion-buttons slot="end" (click)="btnBack()" class="btnBack color_black"> 
         <ion-icon name="chevron-back-outline" class="back_btn_topBar"></ion-icon>
       </ion-buttons>

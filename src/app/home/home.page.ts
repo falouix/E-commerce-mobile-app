@@ -2,12 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { PreloadAllModules, RouterModule, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
+
 export class HomePage implements OnInit {
+   slideOpts =  {
+    loop : true,
+    autoplay : true,
+    speed: 1000
+  };
    productHomePage = new Array();
   constructor(private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }
 
@@ -74,5 +81,9 @@ export class HomePage implements OnInit {
   }
   renderProduct(id){
     this.router.navigateByUrl(`/product/${id}`);
+  }
+  SearchFunction(e){
+    console.log(e)
+    this.router.navigateByUrl(`/search/${e}`);
   }
 }

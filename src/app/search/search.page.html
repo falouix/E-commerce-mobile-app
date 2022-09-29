@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="search_first_label">
+    <ion-label >
+      Résultat de recherche : "{{searchTerm}}"
+    </ion-label>
+  </ion-item>
+  <ion-list>
+    <ion-row>
+      <ion-col size="6" size-sm *ngFor="let item of searchResult">
+        <ion-card (click)="renderProduct(item.id)" class="card_cat_product">
+            <ion-img src={{item.imgSrc}}></ion-img>
+            <ion-card-header (click)="renderProduct(item.id)" class="center_text_padding_zero">
+              <ion-card-subtitle class="cat_products_title">{{item.name}}</ion-card-subtitle>
+              <ion-button Type="large">{{item.formatedPrice}}</ion-button>
+            </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

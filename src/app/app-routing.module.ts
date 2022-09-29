@@ -98,6 +98,18 @@ const routes: Routes = [
   {
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
+  },
+  {
+    path: 'information',
+    loadChildren: () => import('./information/information.module').then( m => m.InformationPageModule)
+  },
+  {
+    path: 'search/:s',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'search-services',
+    loadChildren: () => import('./dataServices/search-services/search-services.module').then( m => m.SearchServicesPageModule)
   }
 ];
 

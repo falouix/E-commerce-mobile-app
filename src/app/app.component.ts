@@ -94,4 +94,8 @@ export class AppComponent {
     return false;
     }
   }
+  SearchFunction(e){
+    console.log(e)
+    this.router.navigateByUrl(`/search/${e}`);
+  }
 }

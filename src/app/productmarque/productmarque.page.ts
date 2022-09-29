@@ -37,6 +37,8 @@ export class ProductmarquePage implements OnInit {
   }
 
   async loadProductItems(){
+    
+  this.manufacturer_name = this.manufacturer_name.slice(2)
     this.getStorageValue('customeContext').then(result => {
       console.log('result:',result) ;
       if(result !=null){
@@ -60,9 +62,8 @@ export class ProductmarquePage implements OnInit {
       Object.entries(this.currentProducts).forEach((item)=>{
         let fakeItem : any = {};
         fakeItem = item[1];
-        fakeItem.formatedPrice = parseFloat(fakeItem.price_tax_exc).toFixed(3).toString()+'TND';
-        console.log('fakeItem.formatedPrice',fakeItem.formatedPrice)
-        console.log(fakeItem);
+        fakeItem.formatedPrice = parseFloat(fakeItem.price_tax_exc).toFixed(3).toString()+' TND';
+      
         if(fakeItem.images ){
           fakeItem.imgSrc = fakeItem.images[0].medium.url;
         }else{
@@ -76,14 +77,11 @@ export class ProductmarquePage implements OnInit {
   }
 
   renderProduct(id){
-    console.log('supposed to be product id: ',id)
     this.router.navigateByUrl(`/product/${id}`);
   }
 
   paginationClick(id){
-    console.log(id)
     this.currentProducts = this.productData[id-1];
-    console.log(this.currentProducts)
   }
   async setStorageValue(key: string, value: any): Promise<any> {
     try {

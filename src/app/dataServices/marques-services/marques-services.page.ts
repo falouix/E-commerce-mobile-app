@@ -20,10 +20,11 @@ export class MarquesServicesPage {
      return( this.http.get(`https://stebouhaha.com/api/manufacturers/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`));
   }
   getProductsMarque(id,customerId):Observable<any>{
+    console.log('services : ',customerId)
     if(customerId !=null){
       return(
         this.http.get(`
-        https://stebouhaha.com/brand/${id}?source=app&id_customer${customerId}&logged=1
+        https://stebouhaha.com/brand/${id}?source=app&id_customer=${customerId}&logged=1
         `)
       )
 
