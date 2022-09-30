@@ -57,6 +57,12 @@ export class ProfilePage implements OnInit {
   getCustomerInformation(){
     this.router.navigateByUrl(`/information`);
   }
+  getCustomerAddresses(){
+    this.router.navigateByUrl(`/addresses`);
+  }
+  getCustomerOrdersHistory(){
+    this.router.navigateByUrl(`/ordershistory`);
+  }
   async setStorageValue(key: string, value: any): Promise<any> {
     try {
     const result = await this.storage.set(key, value);

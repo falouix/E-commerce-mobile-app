@@ -110,6 +110,14 @@ const routes: Routes = [
   {
     path: 'search-services',
     loadChildren: () => import('./dataServices/search-services/search-services.module').then( m => m.SearchServicesPageModule)
+  },
+  {
+    path: 'addresses',
+    loadChildren: () => import('./addresses/addresses.module').then( m => m.AddressesPageModule)
+  },
+  {
+    path: 'ordershistory',
+    loadChildren: () => import('./ordershistory/ordershistory.module').then( m => m.OrdershistoryPageModule)
   }
 ];
 

@@ -29,6 +29,7 @@ export class CategoriePage implements OnInit {
      currenrSubCategroryTitle : string;
      currentCategory=[];
      subCategory;
+     subCategoryTorender : any=[];
      currentCategoryId;
      category_id = this.route.snapshot.paramMap.get('id');
      currentPage = this.route.snapshot.paramMap.get('pageNbr');
@@ -109,6 +110,11 @@ export class CategoriePage implements OnInit {
           });
           this.currenrCategroryTitle = res.data.label.split(" ")[2];
           this.currentCategoryLogo="../../assets/imgs/categories-icons/"+res.data.label.split(" ")[2].toLowerCase()+".png";
+           
+           for (let index = 0; index < this.subCategory.length/3; index++) {
+            this.subCategoryTorender.push( this.subCategory.slice(index * 3,(index+1) * 3));
+           }
+           console.log("this.subCategoryTorender we should work with",this.subCategoryTorender);
         }else{
           this.currenrSubCategroryTitle = res.data.label.split(" ")[2];
         }

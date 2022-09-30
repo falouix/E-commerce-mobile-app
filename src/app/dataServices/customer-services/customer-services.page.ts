@@ -40,4 +40,12 @@ export class CustomerServicesPage {
     //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
      return( this.http.get(`https://stebouhaha.com/test_mail.php?subject=${subject}&mail=${mail}&message=${message}`));
   }
+  getOrders(id): Observable<any> {
+    //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
+     return( this.http.get(`https://stebouhaha.com/api/orders/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${id}&display=full`));
+  }
+  getOrderStates(): Observable<any> {
+    //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
+     return( this.http.get(`https://stebouhaha.com/api/order_states/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&display=full`));
+  }
 }

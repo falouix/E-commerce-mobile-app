@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ordershistory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="informations_title">
+    <ion-label>Historique des commandes</ion-label>
+  </ion-item>
+
+
+  <ion-grid>
+    
+    <ion-card class="margin_0 order_history_row">
+    <ion-row *ngFor="let item of ordersData" >
+        <p class="oder_header order_history_price"><b>{{item.formated_total_paid}} TND</b></p>
+        <p class="oder_header date_1"><b>{{item.date_1}}</b></p>
+        <p class="oder_header ref_p">Réf : <b style="color: #000;">{{item.reference}}</b></p>
+        <p class="oder_header">Paiement par: <b>{{item.payment}}</b> </p>
+        <p class="oder_header" style="padding:5px 10px;color:#fff;background:{{item.stateColor}}">{{item.stateName}}</p>
+    </ion-row>
+  </ion-card>
+  </ion-grid>
+
+</ion-content>
