@@ -74,7 +74,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&qtytosend=${qtyTosend}`,options));
+    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=18&cartid=${catID}&qtytosend=${qtyTosend}`,options));
   
 
 }else{
@@ -85,7 +85,7 @@ if (qtyTosend != 0  ){
   headers.append('Accept','application/text');
   headers.append('content-type','application/json');
    let options = { headers:headers};
-  return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}`,options));
+  return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=18&cartid=${catID}`,options));
 
 }
  
@@ -93,4 +93,16 @@ if (qtyTosend != 0  ){
     
   
   }
+  deletProductCart(id,catID): Observable<any> {
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/text');
+    headers.append('content-type','application/json');
+     let options = { headers:headers}; 
+    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&flagdel=delete&action=update&delete=1&reason=appCart&cartid=${catID}`,options));
+
+
+  }
+  
 }

@@ -11,7 +11,7 @@
   <h3 class="panier_bigTitle">Panier</h3>
   <ion-content >
   <ion-content class="panier_products_container">
-    <ion-card class="products_panier_holder"  *ngFor="let item of panierProducts">
+    <ion-card class="products_panier_holder " id="prod_{{item.id}}" *ngFor="let item of panierProducts">
     <ion-row>
       <ion-col class="ion-align-self-start" size="4">
         <div class="padding_15">
@@ -26,9 +26,10 @@
         <ion-card-subtitle size="12" class="price_holder">{{item.price_amount}}</ion-card-subtitle>
       </ion-col>
       <ion-col class=" qtty_holder" size="2">
-        <ion-icon name="add-outline" class="panier_qtty_icon"></ion-icon>
         <p class="panier_qtty_span">{{item.cart_quantity}}</p>
-        <ion-icon name="remove-outline" class="panier_qtty_icon"></ion-icon>
+        <ion-icon name="trash-outline" class="panier_qtty_icon panier_delet_prod " (click)="deletFrombasket(item.id)"></ion-icon>
+
+        <!--ion-icon name="remove-outline" class="panier_qtty_icon"></ion-icon-->
       </ion-col>
     </ion-row>
   </ion-card>

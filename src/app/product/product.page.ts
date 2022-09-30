@@ -164,7 +164,11 @@ async presentAlert() {
         console.log(res);
         this.setStorageValue('contextCloneOrsomethng',res);
         if(res.success ){
-          this.presentToast('middle')
+          this.presentToast('middle');
+          setTimeout(function(){
+            this.router.navigate(['/panier']);
+           
+          }, 500);
          }
         });
       }else{
@@ -172,6 +176,13 @@ async presentAlert() {
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',token,0,0).subscribe(async (res) =>{
         
           this.setStorageValue('contextCloneOrsomethng',res);
+          if(res.success ){
+            this.presentToast('middle')
+            setTimeout(function(){
+              this.router.navigate(['/panier']);
+             
+            }, 500);
+           }
         });
       }
     }
