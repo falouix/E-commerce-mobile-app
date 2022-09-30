@@ -53,6 +53,7 @@ export class ProductmarquePage implements OnInit {
     });
     await loading.present();
     this.MarquesServicesPage.getProductsMarque(this.marque_id,this.customerId).subscribe((res)=>{
+      console.log(res);
       loading.dismiss();
       this.currentProducts= res;
       this.pageNbr = Math.floor(this.currentProducts.length / 12);
