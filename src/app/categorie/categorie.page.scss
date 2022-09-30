@@ -122,7 +122,31 @@
 .sub_category_img_small{
   border: 0;
   float: left;
-  width: 62px;
-  margin: 5px;
-  margin-left: 10px;
+  padding: 0;
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  display: block;
+  border-radius: 18px;
+}
+.sub_cat_card_header{
+  padding: 0;
+  margin: 0;
+}
+.sub_cat_card_header_label{
+  font-size: 8px;
+    font-weight: 500;
+    color: #04226a;
+}
+.product_list_cat{
+  margin-top: -10px;
+}
+.slides_sub_cat{
+  padding-bottom: 35px;
+}
+.sub_cat_img{
+  padding: 2px;
+  border-radius: 18px;
+  box-shadow: 0px 0px 7px #00000026;
+    
 }

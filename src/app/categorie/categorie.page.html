@@ -10,18 +10,23 @@
       (click) = 'clicktest(currentCategoryId,1)'
     ></ion-img>
   </ion-col>
-  <div >
-        <ion-card *ngFor="let item of subCategory" (click)="renderSubCategory(item.id,item.imgSrc,currenrCategroryTitle,category_id)">
+  <ion-slides pager="true" >
+    <ion-slide  *ngFor="let item1 of subCategoryTorender" class="slides_sub_cat">
+      <div *ngFor="let item of item1">
+        <ion-card class="sub_cat_img"  (click)="renderSubCategory(item.id,item.imgSrc,currenrCategroryTitle,category_id)">
           <img src={{item.imgSrc}} class="sub_category_img_small" (error)="doSomething(item.imgSrc)" (click)="doSomething()"/>
-          <ion-label  slot="start" class="subCategory_labels">
-            {{item.name}}
-          </ion-label>
+        
+          <ion-card-header class="sub_cat_card_header">
+            <ion-label class="sub_cat_card_header_label"> {{item.name}} </ion-label>
+          </ion-card-header>
         </ion-card>
-  </div>
+      </div>
+      </ion-slide>
+  </ion-slides>
   <div  class="currentSubCategoryContainer" *ngIf = "currenrSubCategroryTitle;">
     <ion-label class="currentSubCategoryLabel">{{currenrSubCategroryTitle}}</ion-label>
   </div>
-  <ion-list>
+  <ion-list class="product_list_cat">
     <ion-row>
       <ion-col size="6" size-sm *ngFor="let item of categoryProducts">
         <ion-card (click)="renderProduct(item.id)" class="card_cat_product">

@@ -7,7 +7,11 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./information.page.scss'],
 })
 export class InformationPage implements OnInit {
-   customerData;
+    customerData;
+    login_customer;
+    firstname;
+    lastname;
+    email;
   constructor(
     public storage: Storage
     ) { }
@@ -23,8 +27,15 @@ export class InformationPage implements OnInit {
     }).catch(e => {
       console.log('error: '+ e);
     }); 
+  }
+ 
+  setLocalInformation(result){
     
-    console.log('this.customerData',this.customerData)
+    this.login_customer =result.login_customer;
+    this.firstname      =result.firstname;
+    this.lastname       =result.lastname;
+    this.email          =result.email;
+    this.customerData=result ;
   }
   async setStorageValue(key: string, value: any): Promise<any> {
     try {
@@ -33,10 +44,6 @@ export class InformationPage implements OnInit {
     } catch (reason) {
     return false;
     }
-  }
-  setLocalInformation(result){
-    
-    this.customerData=result ;
   }
   async getStorageValue(key: string): Promise<any> {
     try {
