@@ -14,15 +14,7 @@ import {Observable} from 'rxjs';
 export class ProductsServicesPage {
   constructor(private toastController: ToastController,private http:HttpClient){
   }
-    async presentToast(position: 'top' | 'middle' | 'bottom') {
-      const toast = await this.toastController.create({
-        message: 'Produit ajouté au panier',
-        duration: 1500,
-        position: position
-      });
-  
-      await toast.present();
-    }
+   
 
    
   getAllProducts(): Observable<any> {

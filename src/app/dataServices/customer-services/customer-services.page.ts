@@ -23,8 +23,9 @@ export class CustomerServicesPage {
     newsletter,
     ): Observable<any> {
     //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
-     return( this.http.get(`https://stebouhaha.com/connexion?create_account=1&login_customer=${login_customer}&id_gender=${id_gender}&firstname=${firstname}&lastname=${lastname}&email=${email}&password=${password}&birthday=${birthday}&optin=1&customer_privacy=1&newsletter=${newsletter}&psgdpr=1&submitCreate=1`));
+     return( this.http.get(`https://stebouhaha.com/connexion?create_account=1&login_customer=${login_customer}&id_gender=${id_gender}&firstname=${firstname}&lastname=${lastname}&email=${email}&password=${password}&birthday=${birthday}&optin=1&customer_privacy=1&newsletter=${newsletter}&psgdpr=1&submitCreate=1&source=app&reason=inscrit`));
   }
+
   loginAccount(
     login_customer,
     password,
@@ -47,5 +48,9 @@ export class CustomerServicesPage {
   getOrderStates(): Observable<any> {
     //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
      return( this.http.get(`https://stebouhaha.com/api/order_states/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&display=full`));
+  }
+  getAddresses(customer_id): Observable<any> {
+    //console.log(`https://stebouhaha.com/api/manufacturers/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&output_format=JSON`);
+     return( this.http.get(`https://stebouhaha.com/api/addresses/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${customer_id}&display=full`));
   }
 }
