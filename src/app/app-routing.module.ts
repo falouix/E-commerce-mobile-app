@@ -118,6 +118,10 @@ const routes: Routes = [
   {
     path: 'ordershistory',
     loadChildren: () => import('./ordershistory/ordershistory.module').then( m => m.OrdershistoryPageModule)
+  },
+  {
+    path: 'order',
+    loadChildren: () => import('./order/order.module').then( m => m.OrderPageModule)
   }
 ];
 

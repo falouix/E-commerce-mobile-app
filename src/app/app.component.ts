@@ -11,6 +11,7 @@ export class AppComponent {
   public currentActive;
   public appPages = [
     { title: 'login', url: '/login', icon: 'person-circle' },
+    { title: 'inscription', url: '/inscrit', icon: 'person-circle' },
   ];
   public appPages1 = [
     { title: 'Profile', url: '/profile', icon: 'person-circle' },

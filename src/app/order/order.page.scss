@@ -1,0 +1,116 @@
+.panierProductTitle{
+    font-size: 10px;
+    font-weight: bold;
+    margin: 15px;
+    //max-height: 34px;
+    overflow: hidden;
+}
+.panierProductPrice{
+    text-align: right;
+    padding-right: 50px;
+    color: #f7bf00;
+    font-size: 15px;
+}
+.panierProductDetailsContainer{
+    padding: 15px 0px ;
+}
+.padding_15{
+    padding : 15px;
+}
+.bg_white{
+    background: white;
+}
+.color_031b52{
+    color: #031b52;
+}
+.cartBtnCheckout{
+    margin: 0px 17px;
+    background: #f7bf00 !important;
+    clear: both;
+}
+.total_title_cart{
+    float: right;
+    margin: 8px 19px 15px 0;
+}
+.total_prductnbr_cart{
+    color: #031b52;
+    float: left;
+    margin: 13px 0 0 20px;
+}
+.total_panier_holder{
+    position: fixed;
+    width: 100%;
+    margin: 0px;
+    bottom: 12px;
+    padding: 6px;
+    box-shadow: 0px 2px 5px #00000012;
+    border-bottom: 1px solid #0000001c;
+    border-radius: 0;
+    /*border-top: 1px solid #00000012;*/
+}
+.products_panier_holder{
+    //border-top: 1px solid #0000001c;
+    
+    box-shadow: 0px 2px 5px #00000012;
+}
+.panier_big_icon{
+    font-size: 47px;
+    color: #f7bf00;
+}
+.panier_big_title{
+    font-size: 22px !important;
+    margin: 0;
+    color: #1a3676;
+}
+.qtty_holder{
+    display: grid;
+    justify-content: end; 
+}
+.panier_qtty_span{
+    font-size: 20px;
+    text-align: end;
+    margin: 0;
+    text-align: center;
+    color: #f7bf00;
+}
+.panier_qtty_icon{
+    font-size: 25px;
+    /* background: #f7bf00; */
+    border-radius: 50%;
+    color: #1a3676;
+    box-shadow: 0px 0px 2px #0000003b;
+}
+
+.single_adress_item{
+    width:100%;
+}
+.name_holder{
+    
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.panier_product_img{
+    max-width: 86px;
+    padding: 0; 
+}
+.price_holder{
+    text-align: end;
+    font-size: 16px;
+}
+.panier_bigTitle{
+    text-align: center;
+    margin: 0;
+    color: #1a3676;
+    font-size: 23px;
+}
+.panier_products_container{
+    max-height: 53%;
+    overflow: scroll;
+}
+@media(min-height:896px){
+    .panier_products_container{
+        max-height: 53%;
+        overflow: scroll;
+    }
+ }

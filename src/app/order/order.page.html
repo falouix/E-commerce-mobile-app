@@ -1,0 +1,123 @@
+
+<ion-header [translucent]="true" >
+  <ion-toolbar >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="currentSubCategoryContainer bg_white">
+    <ion-icon name="bag-handle-outline" class="panier_big_icon"></ion-icon>
+    
+  </div>
+  <h3 class="panier_bigTitle">Commander</h3>
+  <ion-content >
+  <ion-content class="panier_products_container">
+    <ion-card class="products_panier_holder " id="user_info" >
+      <ion-row>
+       
+          <div class="padding_15">
+            1 INFORMATIONS PERSONNELLES
+          </div>
+       
+      
+        <div class=" padding_15" >
+        
+          Connecté comme {{firstname}} {{lastname}}.<br/>
+
+          Pas toi?  <ion-router-link color="success" href="/logout">Log out</ion-router-link><br/>
+          
+          Si vous vous déconnectez maintenant, votre panier sera vidé.
+          <!--ion-icon name="remove-outline" class="panier_qtty_icon"></ion-icon-->
+        </div>
+      </ion-row>
+    </ion-card>
+    <ion-card class="products_panier_holder " id="user_addresses" >
+     
+      <div class="padding_15">
+        2 ADRESSES
+      </div>
+      <ion-row  >
+        <ion-list >
+          <ion-radio-group value="biff" [(ngModel)]="addresse">
+          <ion-card  id="adress{{itemadress.id}}" class="products_panier_holder" *ngFor="let itemadress of adresseslist" >
+            <ion-item>
+              
+              <ion-radio slot="start" color="success" value="{{itemadress.id}}"></ion-radio><br/>
+              <ion-text class="single_adress_item">
+                <span>{{itemadress.alias}}</span>
+                <span>{{itemadress.address1}}</span><br/>
+                <span>{{itemadress.firstname}} {{itemadress.lastname}}</span><br/>
+                <span>{{itemadress.company}}</span><br/>
+                <span>{{itemadress.phone}}</span>
+              </ion-text>
+         
+            </ion-item>
+          </ion-card>
+        </ion-radio-group>
+        </ion-list>
+      
+      </ion-row>
+      
+      <ion-row>
+       
+       
+        <form (ngSubmit)="addadress()">
+          <ion-item>
+            <ion-label>Alias</ion-label>
+            <ion-input type="text" [(ngModel)]="single_adress.title" name="title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Prénom</ion-label>
+            <ion-textarea [(ngModel)]="single_adress.firstname" name="firstname" disabled  value="{{firstname}}"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nom</ion-label>
+            <ion-textarea [(ngModel)]="single_adress.lastname" name="lastname" disabled   value="{{lastname}}"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Adresse</ion-label>
+            <ion-textarea [(ngModel)]="single_adress.address1" name="address1"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Code postal</ion-label>
+            <ion-textarea [(ngModel)]="single_adress.postcode" name="postcode"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label>Ville</ion-label>
+            <ion-textarea [(ngModel)]="single_adress.city" name="city"></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Pays</ion-label>
+          <ion-list value="biff" [(ngModel)]="single_adress.country" [ngModelOptions]="{standalone: true}"   >
+            <ion-item>
+              <ion-select placeholder="Veuillez choisir ">
+                <ion-select-option value="208">Tunisie</ion-select-option>
+          
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-item>
+        <ion-item>
+          <ion-label>Téléphone</ion-label>
+          <ion-textarea [(ngModel)]="single_adress.phone" name="phone"></ion-textarea>
+        </ion-item>
+          <ion-button  expand="full" class="cartBtnCheckout" type="submit" block>Add adresse</ion-button>
+        </form>   
+      
+          <!--ion-button expand="full" class="cartBtnCheckout" (click)="addadress()">Add adresse</ion-button-->
+      </ion-row>
+    </ion-card>
+
+
+
+</ion-content>
+    <ion-card class="total_panier_holder">
+      <ion-card-header>
+        <ion-card-subtitle class="color_031b52 total_prductnbr_cart">Nombre des produits : {{productCount}}</ion-card-subtitle>
+        <ion-card-title class="ion-text-center total_title_cart">{{totalCart}}</ion-card-title>
+        <ion-button expand="full" class="cartBtnCheckout" (click)="checkout()">Commander</ion-button>
+ 
+      </ion-card-header>
+    </ion-card>
+   </ion-content>
+</ion-content>
