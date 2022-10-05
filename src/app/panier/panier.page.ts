@@ -83,7 +83,21 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
     
   }
   checkout(){
-    console.log('checkout function')
+    console.log('checkout function');
+
+    this.getStorageValue('customeContext').then(result => {
+    //  console.log(result);
+      if (result == null){
+        this.router.navigateByUrl(`/login`);
+      }else{
+        this.router.navigateByUrl(`/order`);
+      }
+
+    }).catch(e => {
+          console.log('error: '+ e);
+        }); 
+ 
+    
   }
   //function just to set images for products 
   getProductImg(id){

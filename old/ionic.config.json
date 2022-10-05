@@ -1,0 +1,8 @@
+{
+  "name": "stebouhaha1.0",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -96,5 +96,25 @@ if (qtyTosend != 0  ){
 
 
   }
+  getadressesCart(id_user): Observable<any> {
   
+
+     
+    return( this.http.get(`https://stebouhaha.com/api/addresses/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${id_user}&display=full`));
+
+
+  }
+ addadresseCart(id_user,urldata): Observable<any> {
+  var headers = new HttpHeaders();
+  headers.append('Access-Control-Allow-Origin' , '*');
+  headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+  headers.append('Accept','application/text');
+  headers.append('content-type','application/json');
+   let options = { headers:headers}; 
+
+     
+    return( this.http.get(`https://stebouhaha.com/commande?id_address=0&${urldata}`,options));
+
+
+  }
 }
