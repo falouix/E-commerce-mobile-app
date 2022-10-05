@@ -65,13 +65,7 @@ export class AppComponent {
     this.menuactive[5] = false;
     this.menuactive[i] = true;
     
-    if(i == 5){
-      setTimeout(function(){
-        console.log("waited for: " + i + " seconds");
-        window.location.reload();
-      }, 500);
-      
-    }
+    
   }
   btnBack(){
     console.log('clicked');

@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
    slideOpts =  {
     loop : true,
     autoplay : true,
-    speed: 1000
+    speed: 500
   };
    productHomePage = new Array();
   constructor(private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }

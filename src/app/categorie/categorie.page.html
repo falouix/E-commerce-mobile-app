@@ -23,9 +23,8 @@
       </div>
       </ion-slide>
   </ion-slides>
-  <div  class="currentSubCategoryContainer" *ngIf = "currenrSubCategroryTitle;">
-    <ion-label class="currentSubCategoryLabel">{{currenrSubCategroryTitle}}</ion-label>
-  </div>
+    <h3 *ngIf= "currenrSubCategroryTitle" class="currentSubCategoryLabel">{{currenrSubCategroryTitle}}</h3>
+ 
   <ion-list class="product_list_cat">
     <ion-row>
       <ion-col size="6" size-sm *ngFor="let item of categoryProducts">
