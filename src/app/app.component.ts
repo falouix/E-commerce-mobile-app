@@ -11,7 +11,7 @@ export class AppComponent {
   public currentActive;
   public appPages = [
     { title: 'login', url: '/login', icon: 'person-circle' },
-    { title: 'inscription', url: '/inscrit', icon: 'person-circle' },
+    { title: 'Inscription', url: '/inscrit', icon: 'person-circle' },
   ];
   public appPages1 = [
     { title: 'Profile', url: '/profile', icon: 'person-circle' },
@@ -65,13 +65,7 @@ export class AppComponent {
     this.menuactive[5] = false;
     this.menuactive[i] = true;
     
-    if(i == 5){
-      setTimeout(function(){
-        console.log("waited for: " + i + " seconds");
-        window.location.reload();
-      }, 500);
-      
-    }
+    
   }
   btnBack(){
     console.log('clicked');

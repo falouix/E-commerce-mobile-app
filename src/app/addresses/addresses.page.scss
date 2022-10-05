@@ -1,0 +1,42 @@
+.adrs_h1{
+    text-align: center;
+    box-shadow: rgb(0 0 0 / 8%) 0px 3px 0px -2px, rgb(0 0 0 / 0%) 0px 2px 2px 0px, rgb(0 0 0 / 0%) 0px 1px 0px 0px;
+    padding-bottom: 11px;
+    color: #031c54;
+}
+.ads_ion_item{
+    --border-style : none;
+}
+.label_name{
+  margin: 0;
+  padding: 0px 8px 8px 8px;
+}
+.label_value{
+    margin: 0;
+}
+.ads_ion_item2{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+.label_name1{
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+}
+.label_value1{
+    padding: 15px;
+    padding-top: 6px;
+    font-size: 20px;
+    margin: 0;
+}
+.bold_black{
+    color: black;
+    font-weight: 500;
+}
+.adrs_card{
+    margin: 5px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 3px 0px -2px, rgb(0 0 0 / 0%) 0px 2px 2px 0px, rgb(0 0 0 / 0%) 0px 1px 0px 0px;
+}

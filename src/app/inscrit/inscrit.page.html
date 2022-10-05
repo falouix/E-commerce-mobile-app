@@ -13,7 +13,8 @@
       <ion-label position="floating" >Login</ion-label>
       <ion-input [(ngModel)]="login"></ion-input>
     </ion-item>
-
+    <ion-label class="inscritAlert" *ngIf="testlogin">c'est obligatoire</ion-label>
+    <ion-label class="inscritAlert" *ngIf="login_customer">{{login_customerError}}</ion-label>
     <ion-list class="titre_list_container">
       <ion-radio-group value="biff" [(ngModel)]="titre">
         <ion-label>Titre</ion-label>
@@ -28,28 +29,47 @@
           </ion-item>
       </ion-radio-group>
     </ion-list>
+    <ion-label class="inscritAlert" *ngIf="testtitre">c'est obligatoire</ion-label>
     <ion-item class="inscrit_input">
       <ion-label position="floating">Prénom</ion-label>
       <ion-input [(ngModel)]="prenom"></ion-input>
     </ion-item>
+    <ion-label class="inscritAlert" *ngIf="testprenom">c'est obligatoire</ion-label>
+    <ion-label class="inscritAlert" *ngIf="firstname">{{firstnameError}}</ion-label>
     <ion-item class="inscrit_input">
       <ion-label position="floating">Nom</ion-label>
       <ion-input [(ngModel)]="nom"></ion-input>
     </ion-item>
+    <ion-label class="inscritAlert" *ngIf="testnom">c'est obligatoire</ion-label>
+    <ion-label class="inscritAlert" *ngIf="lastname">{{lastnameError}}</ion-label>
     <ion-item class="inscrit_input">
       <ion-label position="floating">E-mail</ion-label>
       <ion-input [(ngModel)]="mail"></ion-input>
     </ion-item>
+    <ion-label class="inscritAlert" *ngIf="testmail">c'est obligatoire</ion-label>
+    <ion-label class="inscritAlert" *ngIf="email">{{emailError}}</ion-label>
     <ion-item class="inscrit_input">
       <ion-label position="floating">Mot de passe</ion-label>
       <ion-input [(ngModel)]="password"></ion-input>
     </ion-item>
+    <ion-label class="inscritAlert" *ngIf="testpassword">c'est obligatoire</ion-label>
+    <ion-label class="inscritAlert" *ngIf="password1" >{{passwordError}}</ion-label>
+      <ion-checkbox 
+        class="inscritCheckBox"  
+        slot="start" 
+        color="tertiary" 
+        value="1"
+        [(ngModel)]="psgdr">
+      </ion-checkbox >
+      <ion-label>
+        J'accepte les conditions générales et la politique de confidentialité
+      </ion-label>
+      <ion-label class="inscritAlert" *ngIf="testpsgdr">c'est obligatoire</ion-label>
 <ion-item (click)="showPicker = !showPicker" id="open-modal" class="inscrit_calender_picker">
   <ion-label>Date de naissance</ion-label>
   <ion-icon name="calendar-number-outline"></ion-icon>
   <span >{{formatedString}}</span>
 </ion-item>
-    
   </div> 
   <div class="inscritBtnContainer">
     <ion-button expand="full" class="cartBtnCheckout" (click)="createAccount()">

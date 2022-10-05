@@ -20,21 +20,6 @@ export class PanierPage implements OnInit {
   
   constructor(  private router : Router,  private toastController: ToastController,public storage: Storage,private ProductsServicesPage : ProductsServicesPage,private http:HttpClient) { }
 
-  /*async ngOnInit() {
-    console.log('this function just loaded')
-    await this.storage.create();
-    this.loadCurentPanier();
-  }
-  OnDestroy(){
-    console.log('this function just ended')
-    this.loadCurentPanier();
-  }
-  ionViewWillEnter() {
-    this.loadCurentPanier();
-  }
-  ionViewDidLeave() {
-    this.loadCurentPanier();
-  }*/
 
   
 async presentToast(position: 'top' | 'middle' | 'bottom') {
@@ -47,7 +32,6 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
   await toast.present();
 }
   async ngOnInit() {
-    console.log('this function just loaded')
     await this.storage.create();
     this.loadCurentPanier();
   }
@@ -61,10 +45,6 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
   }
 
   ionViewWillLeave (){
-    this.loadCurentPanier();
-  }
-
-  ionViewDidLeave() {
     this.loadCurentPanier();
   }
 
@@ -153,41 +133,24 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
 
 
  async  deletFrombasket(id){
-
 let cart_products =this.contextclonevar.cart.products;
 let catID = this.contextclonevar.contextCart.id ;
-
 var del_index = '';
   cart_products.forEach( (element, index) => {
-  
     if (element.id == id){
-     console.log(element);
-
      del_index = index;
     }
    });
-  
-
    this.ProductsServicesPage.deletProductCart(id,this.contextclonevar.contextCart.id).subscribe(async (res) =>{
-  
     this.setStorageValue('contextCloneOrsomethng',res);
     if(res.success ){
       this.presentToast('middle');
-      setTimeout(function(){
-      //  window.location.reload();
-       
-      }, 500);
      }
     });
-  
      delete this.contextclonevar.cart.products[del_index];
-    // var element = document.getElementById("prod_"+id);
-   //  element.classList.remove("hydrated");
       document.getElementById("prod_"+id).innerHTML = "";
       document.getElementById("prod_"+id).outerHTML = "";
       document.getElementById("prod_"+id).remove();
-  //   this.element.nativeElement.remove();
-    /// window.location.reload();
  }
 
 }
