@@ -176,7 +176,7 @@ return result;
 
     addadress() {
       console.log(this.single_adress);
-     let  data ='back=&token=""&alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&saveAddress=delivery&submitAddress=1&confirm-addresses=1';
+     let  data ='alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&saveAddress=delivery&submitAddress=1&confirm-addresses=1';
 let id_user = 23;
       this.ProductsServicesPage.addadresseCart(id_user,data).subscribe(async (res) =>{
   
