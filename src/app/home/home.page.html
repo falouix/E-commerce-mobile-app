@@ -2,6 +2,10 @@
   <ion-toolbar >
   </ion-toolbar>
 </ion-header>
+
+<div *ngIf="offlineStatus">
+  <p class="offlineAlert">tu est hors connexion</p>
+</div>
 <ion-content>
   <div class="itos-container">
     <ion-img

@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  notHome = false;
   public counter_panier = 0;
   public currentActive;
   public appPages = [
@@ -58,14 +59,17 @@ export class AppComponent {
   }
   btnmenu(i){
     console.log('btnMenu4',i);
+    if(i != 1){
+      this.notHome = true;
+    }else{
+      this.notHome = false;
+    }
     this.menuactive[1] = false;
     this.menuactive[2] = false;
     this.menuactive[3] = false;
     this.menuactive[4] = false;
     this.menuactive[5] = false;
     this.menuactive[i] = true;
-    
-    
   }
   btnBack(){
     console.log('clicked');
