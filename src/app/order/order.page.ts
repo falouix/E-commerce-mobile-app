@@ -6,6 +6,7 @@ import {ProductsServicesPage} from 'src/app/dataServices/products-services/produ
 import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
 
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
@@ -175,21 +176,43 @@ return result;
 
 
     addadress() {
-      console.log(this.single_adress);
-     let  data ='alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&saveAddress=delivery&submitAddress=1&confirm-addresses=1';
+
+    
+     let  data ='back=&token=5aa0980905de7fd1ff75aa90261d9800&alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&submitAddress=1';
+
 let id_user = 23;
       this.ProductsServicesPage.addadresseCart(id_user,data).subscribe(async (res) =>{
-  
-      //  this.setStorageValue('contextCloneOrsomethng',res);
+ 
+ 
         if(res.success ){
-          this.presentToast('middle');
-          setTimeout(function(){
-          //  window.location.reload();
-           
-          }, 500);
+
+
+          this.ProductsServicesPage.getadressesCart(this.currentUserinfo.id).subscribe(res =>{
+            this.adresseslist = res.addresses;
+          
+          });
+         
+    
          }
         });
   }
 
+  deletAddress(id){
+   
+    let id_user = 23;
+    this.ProductsServicesPage.deletadresse(id,id_user).subscribe(res =>{
+  
+   if(res.success ){
 
+
+    this.ProductsServicesPage.getadressesCart(this.currentUserinfo.id).subscribe(res =>{
+      this.adresseslist = res.addresses;
+     
+    });
+   
+
+   }
+    });
+
+  }
 }

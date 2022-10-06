@@ -37,8 +37,9 @@
       </div>
       <ion-row  >
         <ion-list >
-          <ion-radio-group value="biff" [(ngModel)]="addresse">
+      
           <ion-card  id="adress{{itemadress.id}}" class="products_panier_holder" *ngFor="let itemadress of adresseslist" >
+            <ion-radio-group value="biff" [(ngModel)]="addresse">
             <ion-item>
               
               <ion-radio slot="start" color="success" value="{{itemadress.id}}"></ion-radio><br/>
@@ -51,8 +52,11 @@
               </ion-text>
          
             </ion-item>
+          </ion-radio-group>
+          <ion-icon name="trash-outline" class="panier_qtty_icon panier_delet_prod " (click)="deletAddress(itemadress.id)"></ion-icon>
+
           </ion-card>
-        </ion-radio-group>
+  
         </ion-list>
       
       </ion-row>
@@ -63,7 +67,7 @@
         <form (ngSubmit)="addadress()">
           <ion-item>
             <ion-label>Alias</ion-label>
-            <ion-input type="text" [(ngModel)]="single_adress.title" name="title"></ion-input>
+            <ion-input type="text" [(ngModel)]="single_adress.alias" name="alias"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Prénom</ion-label>

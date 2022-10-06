@@ -113,8 +113,27 @@ if (qtyTosend != 0  ){
    let options = { headers:headers}; 
 
      
-    return( this.http.get(`https://stebouhaha.com/adresse?source=app&${urldata}&id_customer=${id_user}`,options));
+
+    return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=0&${urldata}&id_customer=${id_user}`,options));
+
 
 
   }
+
+  deletadresse(id,id_user): Observable<any> {
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/text');
+    headers.append('content-type','application/json');
+     let options = { headers:headers}; 
+  
+     
+     return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=5aa0980905de7fd1ff75aa90261d9800`,options));
+  
+  
+    }
+  
+
+
 }
