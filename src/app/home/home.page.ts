@@ -15,11 +15,16 @@ export class HomePage implements OnInit {
     autoplay : true,
     speed: 500
   };
+  offlineStatus = false;
    productHomePage = new Array();
   constructor(private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }
 
   ngOnInit() {
     this.loadHomeProducts();
+    console.log('Initially ' + (window.navigator.onLine ? 'on' : 'off') + 'line');
+    if(!window.navigator.onLine){
+      this.offlineStatus = true;
+    }
   }
   clicktest(id,pageNbr){
  

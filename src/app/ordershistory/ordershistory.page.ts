@@ -14,6 +14,9 @@ export class OrdershistoryPage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
+    
+  }
+  ionViewDidEnter() {
     this.loadCustomerData();
   }
   loadCustomerData(){

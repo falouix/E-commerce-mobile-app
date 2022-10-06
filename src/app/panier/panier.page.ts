@@ -36,10 +36,7 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
     this.loadCurentPanier();
   }
 
-  ionViewWillEnter() {
-    this.loadCurentPanier();
-  }
-
+  
   ionViewDidEnter() {
     this.loadCurentPanier();
   }
