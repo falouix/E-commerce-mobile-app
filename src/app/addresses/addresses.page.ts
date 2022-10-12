@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
 import { CustomerServicesPage } from '../dataServices/customer-services/customer-services.page';
+import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
+
 @Component({
   selector: 'app-addresses',
   templateUrl: './addresses.page.html',
@@ -10,11 +12,29 @@ import { CustomerServicesPage } from '../dataServices/customer-services/customer
 export class AddressesPage implements OnInit {
   addressesData : any = [];
   customeContext;
-  constructor(public CustomerServicesPage : CustomerServicesPage,public storage : Storage ) { }
+  
+currentUserinfo ;
+firstname ;
+lastname ;
+adresseslist;
+  constructor(public CustomerServicesPage : CustomerServicesPage,
+    public storage : Storage,
+     private ProductsServicesPage : ProductsServicesPage,
+      ) { }
 
   async ngOnInit() {
     await this.storage.create();
     this.loadAddresses()
+    this.currentUserinfo = await   this.getStorageValue('customeContext').then(result => {
+      // console.log('customeContext' , result);
+ return result;
+ 
+ }).catch(e => {
+       console.log('error: '+ e);
+     }); 
+ 
+     this.firstname = this.currentUserinfo.firstname;
+     this.lastname = this.currentUserinfo.lastname;
   } 
   async loadAddresses(){
     this.customeContext = await this.getStorageValue('customeContext').then(res=>{
@@ -22,7 +42,7 @@ export class AddressesPage implements OnInit {
     }).catch(e=>{
       console.log('error: ', e);
     });
-    this.CustomerServicesPage.getAddresses(this.customeContext.id).subscribe(res=>{
+    this.ProductsServicesPage.getadressesCart(this.customeContext.id).subscribe(res=>{
       console.log('res addresses',res.addresses);
       this.addressesData = res.addresses;
       console.log(this.addressesData)
@@ -45,5 +65,24 @@ export class AddressesPage implements OnInit {
     } catch (reason) {
     return false;
     }
+  }
+
+  deletAddress(id){
+   
+    let id_user = this.currentUserinfo.id;
+    this.ProductsServicesPage.deletadresse(id,id_user).subscribe(res =>{
+  
+   if(res.success ){
+
+
+    this.ProductsServicesPage.getadressesCart(this.currentUserinfo.id).subscribe(res =>{
+      this.adresseslist = res.addresses;
+     
+    });
+   
+
+   }
+    });
+
   }
 }
