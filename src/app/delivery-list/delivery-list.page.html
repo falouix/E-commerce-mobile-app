@@ -3,7 +3,32 @@
     <ion-title>deliveryList</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<div class="currentSubCategoryContainer bg_white">
+  <ion-icon name="bag-handle-outline" class="panier_big_icon"></ion-icon>
+  
+</div>
+<h3 class="panier_bigTitle">Méthode d'envoi</h3>
 <ion-content>
-
+<ion-list>
+  <ion-radio-group [(ngModel)]="selectedDelivery">
+    <ion-card class="delivery_card"  *ngFor="let item of deliveryList">
+      <div>
+        <ion-radio value={{item.id}} class="delivery_radio"> </ion-radio>
+          <ion-item class="delivery_item">
+            <ion-label class="delivery_name">
+              {{item.name}}
+            </ion-label>
+        </ion-item>
+      </div>
+      
+      <ion-label class="delivery_delay">
+        {{item.delay}}
+      </ion-label>
+      <ion-label class="delivery_price">
+        {{item.price}}
+      </ion-label>
+    </ion-card>
+  </ion-radio-group>
+</ion-list>
+<ion-button class="delivery_btn" (click)="checkout()">continuer</ion-button>
 </ion-content>

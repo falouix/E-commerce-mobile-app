@@ -126,7 +126,11 @@ const routes: Routes = [
   {
     path: 'delivery-list/:id_delivery',
     loadChildren: () => import('./delivery-list/delivery-list.module').then( m => m.DeliveryListPageModule)
+  },  {
+    path: 'payment',
+    loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)
   }
+
 
 ];
 
