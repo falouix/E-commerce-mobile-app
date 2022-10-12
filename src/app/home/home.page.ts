@@ -12,8 +12,9 @@ import {ProductsServicesPage} from 'src/app/dataServices/products-services/produ
 export class HomePage implements OnInit {
    slideOpts =  {
     loop : true,
+    initialSlide: 1,
     autoplay : true,
-    speed: 500
+    speed: 500,
   };
   offlineStatus = false;
    productHomePage = new Array();

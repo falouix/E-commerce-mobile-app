@@ -31,4 +31,7 @@ export class SearchPage implements OnInit {
       });
     })
   }
+  renderProduct(id){
+    this.router.navigateByUrl(`/product/${id}`);
+  }
 }
