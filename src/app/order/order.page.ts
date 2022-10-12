@@ -180,7 +180,7 @@ return result;
     
      let  data ='back=&token=5aa0980905de7fd1ff75aa90261d9800&alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&submitAddress=1';
 
-let id_user = 23;
+let id_user = this.currentUserinfo.id;
       this.ProductsServicesPage.addadresseCart(id_user,data).subscribe(async (res) =>{
  
  
@@ -199,7 +199,7 @@ let id_user = 23;
 
   deletAddress(id){
    
-    let id_user = 23;
+    let id_user = this.currentUserinfo.id;
     this.ProductsServicesPage.deletadresse(id,id_user).subscribe(res =>{
   
    if(res.success ){

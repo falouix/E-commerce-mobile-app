@@ -8,6 +8,8 @@
   <h1 class="adrs_h1">List D'adresses</h1>
 <ion-list>
   <ion-card *ngFor="let item of addressesData; let index=index;" class="adrs_card">
+    <ion-icon name="trash-outline" class="panier_qtty_icon panier_delet_prod " (click)="deletAddress(item.id)"></ion-icon>
+
     <div class="ads_ion_item">
       <p class="label_name1">Address#{{index+1}}</p>
       <p class="label_value1">{{item.address1}}</p>
@@ -18,6 +20,7 @@
     </div >
     <div class="ads_ion_item">
     </div >
+
   </ion-card>
 </ion-list>
 </ion-content>
