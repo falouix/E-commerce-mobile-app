@@ -172,7 +172,7 @@ return result;
     }
   }
 
-  single_adress = {}
+single_adress:any = {}
 
 
     addadress() {
