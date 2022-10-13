@@ -1,0 +1,60 @@
+.delivery_card{
+    display: grid;
+    /* flex-direction: row; */
+    /* flex-wrap: nowrap; */
+    /* justify-content: space-between; */
+    margin: 7px;
+    padding: 9px;
+    border-radius: 0;
+    box-shadow: 0px 0px 3px #00000017;
+}
+.delivery_name{
+    color: #031c54;
+    color: #031c54;
+    font-size: 16px;
+    /* font-weight: 700; */
+    margin: 0;
+    margin: 0;
+}
+.delivery_delay{
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+
+}
+.delivery_price{
+    text-align: right;
+    color: #f7bf00;
+}
+.adrs_h1{
+    text-align: center;
+    margin: 0;
+    color: #1a3676;
+    font-size: 23px;
+}
+.delivery_radio{
+    position: absolute;
+    margin-top: 13px;
+}
+.delivery_item{
+    padding-left: 15px;
+    --border-style : none;
+}
+.delivery_btn{
+    float: right;
+    margin-right: 8px;
+}
+.panier_big_icon{
+    font-size: 47px;
+    color: #f7bf00;
+}
+.currentSubCategoryContainer.bg_white{
+    background: white;
+}
+.panier_bigTitle{
+    text-align: center;
+    margin: 0;
+    color: #1a3676;
+    font-size: 23px;
+}
