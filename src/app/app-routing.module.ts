@@ -128,8 +128,13 @@ const routes: Routes = [
     loadChildren: () => import('./delivery-list/delivery-list.module').then( m => m.DeliveryListPageModule)
   },
   {
+
+    path: 'singleaddress/:id',
+    loadChildren: () => import('./singleaddress/singleaddress.module').then( m => m.SingleaddressPageModule)
+
     path: 'payment/:id',
     loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)
+
   }
 
 

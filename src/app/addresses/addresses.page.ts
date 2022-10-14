@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router,ActivatedRoute} from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { CustomerServicesPage } from '../dataServices/customer-services/customer-services.page';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
@@ -19,6 +19,7 @@ lastname ;
 adresseslist;
   constructor(public CustomerServicesPage : CustomerServicesPage,
     public storage : Storage,
+    private router : Router, 
      private ProductsServicesPage : ProductsServicesPage,
       ) { }
 
@@ -68,21 +69,20 @@ adresseslist;
   }
 
   deletAddress(id){
-   
     let id_user = this.currentUserinfo.id;
     this.ProductsServicesPage.deletadresse(id,id_user).subscribe(res =>{
-  
    if(res.success ){
-
-
     this.ProductsServicesPage.getadressesCart(this.currentUserinfo.id).subscribe(res =>{
-      this.adresseslist = res.addresses;
-     
-    });
-   
-
+      this.adresseslist = res.addresses;  
+    });   
    }
     });
+  }
+  editAddress(id){
+
+    this.router.navigateByUrl(`/singleaddress/${id}`);
 
   }
+
+
 }

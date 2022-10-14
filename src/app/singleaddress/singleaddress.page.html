@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>singleaddress</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+<ion-list>
+<ion-card>
+  <form (ngSubmit)="editAddress()">
+    <ion-item>
+      <ion-label>Alias</ion-label>
+      <ion-input type="text" [(ngModel)]="single_adress.alias" value="{{alias}}" name="alias"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Prénom</ion-label>
+      <ion-input [(ngModel)]="single_adress.firstname" name="firstname" disabled  value="{{firstname}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nom</ion-label>
+      <ion-input [(ngModel)]="single_adress.lastname" name="lastname" disabled   value="{{lastname}}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Adresse</ion-label>
+      <ion-input [(ngModel)]="single_adress.address1" value="{{address1}}" name="address1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Code postal</ion-label> 
+      <ion-input [(ngModel)]="single_adress.postcode" value="{{postcode}}" name="postcode"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ville</ion-label>
+      <ion-input [(ngModel)]="single_adress.city" value="{{city}}" name="city"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Pays</ion-label>
+    <ion-list value="sss" [(ngModel)]="single_adress.country" name="country" ngDefaultControl   [ngModelOptions]="{standalone: true}"   >
+      <ion-item>
+        <ion-select value="208" selected-text = "Tunisie" >
+          <ion-select-option selected value="208">Tunisie</ion-select-option>
+    
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <ion-item>
+    <ion-label>Téléphone</ion-label>
+    <ion-input [(ngModel)]="single_adress.phone" value="{{phone}}" name="phone"></ion-input>
+  </ion-item>
+    <ion-button  expand="full" class="cartBtnCheckout" type="submit" block>Valider</ion-button>
+  </form>   
+</ion-card>
+</ion-list>
+</ion-content>

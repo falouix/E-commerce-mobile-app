@@ -97,12 +97,13 @@ if (qtyTosend != 0  ){
 
   }
   getadressesCart(id_user): Observable<any> {
-  
-
-     
+       
     return( this.http.get(`https://stebouhaha.com/api/addresses/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${id_user}&filter[deleted]=0&display=full`));
 
-
+  }
+  getsingleadresse(id_user,id): Observable<any> {
+       
+    return( this.http.get(`https://stebouhaha.com/api/addresses/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${id_user}&filter[deleted]=0&display=full`));
 
   }
  addadresseCart(id_user,urldata): Observable<any> {
@@ -126,6 +127,20 @@ if (qtyTosend != 0  ){
      return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=5aa0980905de7fd1ff75aa90261d9800`,options));
     }
   
+
+    updateadresse(id,id_user,urldata): Observable<any> {
+      var headers = new HttpHeaders();
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+      headers.append('Accept','application/text');
+      headers.append('content-type','application/json');
+       let options = { headers:headers}; 
+       //return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=5aa0980905de7fd1ff75aa90261d9800`,options));
+       return( this.http.get(`https://stebouhaha.com/adresse?appaction=updateaddress&id_address=${id}&${urldata}&id_customer=${id_user}`,options));
+
+     
+      }
+
     getDeliveryAdrs(id_address_delivery,id_user): Observable<any> {
       var headers = new HttpHeaders();
       headers.append('Access-Control-Allow-Origin' , '*');
