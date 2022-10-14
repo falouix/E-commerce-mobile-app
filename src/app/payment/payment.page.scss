@@ -10,8 +10,10 @@
 }
 .delivery_name{
     color: #031c54;
-    font-size: 21px;
-    font-weight: 700;
+    color: #031c54;
+    font-size: 16px;
+    /* font-weight: 700; */
+    margin: 0;
     margin: 0;
 }
 .delivery_delay{
@@ -37,6 +39,7 @@
 }
 .delivery_item{
     padding-left: 15px;
+    --border-style : none;
 }
 .delivery_btn{
     float: right;

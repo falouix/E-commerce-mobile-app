@@ -1,32 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>deliveryList</ion-title>
+    <ion-title>payment</ion-title>
   </ion-toolbar>
 </ion-header>
 <div class="currentSubCategoryContainer bg_white">
   <ion-icon name="bag-handle-outline" class="panier_big_icon"></ion-icon>
   
 </div>
-<h3 class="panier_bigTitle">Méthode d'envoi</h3>
+<h3 class="panier_bigTitle">Méthode de payement</h3>
 <ion-content>
 <ion-list>
-  <ion-radio-group [(ngModel)]="selectedDelivery">
-    <ion-card class="delivery_card"  *ngFor="let item of deliveryList">
+  <ion-radio-group [(ngModel)]="selectedOption">
+    <ion-card class="delivery_card"  *ngFor="let item of paymentList">
       <div>
         <ion-radio value={{item.id}} class="delivery_radio"> </ion-radio>
           <ion-item class="delivery_item">
-            <ion-label class="delivery_name">
-              {{item.name}}
+            <ion-label class="delivery_name" *ngIf="item.call_to_action_text">
+              {{item.call_to_action_text}}
+            </ion-label>
+            <ion-label class="delivery_name" *ngIf="!item.call_to_action_text">
+              {{item.module_name}}
             </ion-label>
         </ion-item>
       </div>
-      
-      <ion-label class="delivery_delay">
-        {{item.delay}}
-      </ion-label>
-      <ion-label class="delivery_price">
-        {{item.price}}
-      </ion-label>
     </ion-card>
   </ion-radio-group>
 </ion-list>

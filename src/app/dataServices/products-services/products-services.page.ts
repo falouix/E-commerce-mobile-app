@@ -148,7 +148,16 @@ if (qtyTosend != 0  ){
       headers.append('Accept','application/text');
       headers.append('content-type','application/json');
        let options = { headers:headers}; 
-        return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_user}&confirm-addresses=1`,options));
+        return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=39&id_customer=23&confirm-addresses=1&login_customer=itosslah&password=123456&continue=1`,options));
       }
+      getPaymentOptions(id_address_delivery,id_user): Observable<any> {
+        var headers = new HttpHeaders();
+        headers.append('Access-Control-Allow-Origin' , '*');
+        headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+        headers.append('Accept','application/text');
+        headers.append('content-type','application/json');
+         let options = { headers:headers}; 
+          return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=39&id_customer=23&confirm-addresses=1&login_customer=itosslah&password=123456&continue=1&delivery_option[41]=8,&confirmDeliveryOption=1`,options));
+        }
 
 }
