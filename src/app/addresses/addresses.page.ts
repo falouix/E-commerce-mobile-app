@@ -8,11 +8,13 @@ import {ProductsServicesPage} from 'src/app/dataServices/products-services/produ
   selector: 'app-addresses',
   templateUrl: './addresses.page.html',
   styleUrls: ['./addresses.page.scss'],
+ 
 })
 export class AddressesPage implements OnInit {
+
   addressesData : any = [];
   customeContext;
-  
+  token;
 currentUserinfo ;
 firstname ;
 lastname ;
@@ -36,6 +38,11 @@ adresseslist;
  
      this.firstname = this.currentUserinfo.firstname;
      this.lastname = this.currentUserinfo.lastname;
+     this.ProductsServicesPage.getadressesCart(this.currentUserinfo.id).subscribe(res =>{
+      this.adresseslist = res.addresses;
+      console.log('this.adresseslist', this.adresseslist);
+   
+    });
   } 
   async loadAddresses(){
     this.customeContext = await this.getStorageValue('customeContext').then(res=>{
@@ -67,15 +74,34 @@ adresseslist;
     return false;
     }
   }
+  single_adress:any = {}
+  addadress() {
 
+
+   /* this.ProductsServicesPage.checkApptoken().subscribe(async (res) =>{
+      console.log('token',res);
+      if(res.success ){
+      this.token = res;
+       }
+      });*/
+
+    
+    let  data ='back=&token=d190c019b146c18fad7e95fd2b0a6dcd&alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&submitAddress=1';
+
+let id_user = this.customeContext.id;
+     this.ProductsServicesPage.addadresseCart(id_user,data).subscribe(async (res) =>{
+       if(res.success ){
+        this.loadAddresses()
+        }
+       });
+ }
+ 
   deletAddress(id){
-    let id_user = this.currentUserinfo.id;
+    let id_user = this.customeContext.id;
     this.ProductsServicesPage.deletadresse(id,id_user).subscribe(res =>{
    if(res.success ){
-    this.ProductsServicesPage.getadressesCart(this.currentUserinfo.id).subscribe(res =>{
-      this.adresseslist = res.addresses;  
-    });   
-   }
+    this.loadAddresses()
+   }  
     });
   }
   editAddress(id){
