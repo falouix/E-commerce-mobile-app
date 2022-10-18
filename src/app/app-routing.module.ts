@@ -132,9 +132,8 @@ const routes: Routes = [
     path: 'singleaddress/:id',
     loadChildren: () => import('./singleaddress/singleaddress.module').then( m => m.SingleaddressPageModule)
   },
-
-   {
-     path: 'payment/:id',
+  {
+    path: 'payment/:id',
     loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)
 
   }
