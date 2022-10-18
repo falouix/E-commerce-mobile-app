@@ -4,12 +4,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
+ 
   <h1 class="adrs_h1">List d'adresses</h1>
 <ion-list>
   <ion-card *ngFor="let item of addressesData; let index=index;" class="adrs_card">
-    <ion-icon name="trash-outline" class="panier_qtty_icon panier_delet_prod " (click)="deletAddress(item.id)"></ion-icon>
-    <ion-icon name="construct-outline" class="panier_qtty_icon panier_delet_prod " (click)="editAddress(item.id)"></ion-icon>
+    <ion-icon name="trash-outline" class="panier_qtty_icon address_delet " (click)="deletAddress(item.id)"></ion-icon>
+    <ion-icon name="construct-outline" class="panier_qtty_icon address_update" (click)="editAddress(item.id)"></ion-icon>
 
     <div class="ads_ion_item">
       <p class="label_name1">Address#{{index+1}} {{item.alias}}</p>
@@ -23,5 +24,60 @@
     </div >
 
   </ion-card>
+  <ion-card>
+    <ion-row>
+           
+               
+      <form (ngSubmit)="addadress()">
+        <ion-item>
+          <ion-label>Alias</ion-label>
+          <ion-input type="text" [(ngModel)]="single_adress.alias" ngDefaultControl  name="alias"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Prénom</ion-label>
+          <ion-input [(ngModel)]="single_adress.firstname" ngDefaultControl  name="firstname" disabled  value="{{firstname}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nom</ion-label>
+          <ion-input [(ngModel)]="single_adress.lastname" ngDefaultControl  name="lastname" disabled   value="{{lastname}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Adresse</ion-label>
+          <ion-input [(ngModel)]="single_adress.address1" ngDefaultControl  name="address1"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Code postal</ion-label>
+          <ion-input [(ngModel)]="single_adress.postcode" ngDefaultControl  name="postcode"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Ville</ion-label>
+          <ion-input [(ngModel)]="single_adress.city" ngDefaultControl  name="city"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Pays</ion-label>
+        <ion-list value="biff" [(ngModel)]="single_adress.country"  ngDefaultControl  [ngModelOptions]="{standalone: true}"   >
+          <ion-item>
+            <ion-select placeholder="Veuillez choisir ">
+              <ion-select-option value="208">Tunisie</ion-select-option>
+        
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+      <ion-item>
+        <ion-label>Téléphone</ion-label>
+        <ion-input [(ngModel)]="single_adress.phone" ngDefaultControl  name="phone"></ion-input>
+      </ion-item>
+        <ion-button  expand="full" class="cartBtnCheckout" type="submit" block>Add adresse</ion-button>
+      </form>   
+    
+        <!--ion-button expand="full" class="cartBtnCheckout" (click)="addadress()">Add adresse</ion-button-->
+    </ion-row>
+    </ion-card>
 </ion-list>
+
+
+
+
 </ion-content>
