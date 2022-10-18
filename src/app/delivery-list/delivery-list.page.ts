@@ -8,7 +8,11 @@ import { ProductsServicesPage } from '../dataServices/products-services/products
   styleUrls: ['./delivery-list.page.scss'],
 })
 export class DeliveryListPage implements OnInit {
-  selectedDelivery;
+  selectedDelivery; 
+   id_customer;
+   login_customer;
+   password;
+   contextclonevar;
   id_address_delivery = this.route.snapshot.paramMap.get('id');
   constructor(
     private router : Router,
@@ -22,35 +26,43 @@ export class DeliveryListPage implements OnInit {
     await this.storage.create();
     this.loadDeliveryList();
   }
-  loadDeliveryList(){
-    let id_customer;
-    let login_customer;
-    let password;
+  async loadDeliveryList(){
+    this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
+      console.log('result',result)
+      return (result);
+      }).catch(e => {
+        console.log('error: '+ e);
+      });
     this.getStorageValue('customeContext').then(result => {
-      console.log(result);
-      id_customer  = result.id;
-      login_customer = result.login_customer
-      password = '123456';
+      
+      this.id_customer  = result.id;
+      this.login_customer = result.login_customer
+      this.password = result.realPassword;
+
+
+
+      this.ProductsServicesPage.getDeliveryAdrs(
+        this.route.snapshot.paramMap.get('id_delivery'),
+        this.id_customer,
+        this.login_customer,
+        this.password,
+        this.contextclonevar.contextCart.id,
+      ).subscribe(res=>{
+        console.log('res',res)
+        let fakeItem: any = [];
+    
+        Object.entries(res).forEach(item => {
+          console.log('list',item);
+          fakeItem = item;
+          this.deliveryList.push(fakeItem[1])
+        });
+         
+        console.log(this.deliveryList);
+       })
       }).catch(e => {
         console.log('error: '+ e);
       }); 
-   this.ProductsServicesPage.getDeliveryAdrs(
-    this.id_address_delivery,
-    id_customer,
-    login_customer,
-    password
-  ).subscribe(res=>{
-    console.log('res',res)
-    let fakeItem: any = [];
-
-    Object.entries(res).forEach(item => {
-      console.log('list',item);
-      fakeItem = item;
-      this.deliveryList.push(fakeItem[1])
-    });
-     
-    console.log(this.deliveryList);
-   })
+ 
   }
   checkout(id){
     this.router.navigateByUrl(`/payment/${this.selectedDelivery}`);

@@ -140,7 +140,7 @@ if (qtyTosend != 0  ){
 
       }
 
-    getDeliveryAdrs(id_address_delivery,id_customer,login_customer,password): Observable<any> {
+    getDeliveryAdrs(id_address_delivery,id_customer,login_customer,password,id_cart): Observable<any> {
       var headers = new HttpHeaders();
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
@@ -148,7 +148,7 @@ if (qtyTosend != 0  ){
       headers.append('content-type','application/json');
        let options = { headers:headers}; 
 
-        return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1`,options));
+        return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&id_appcart=${id_cart}`,options));
       }
 
       getPaymentOptions(id_address_delivery,id_customer,login_customer,password,delivery_option): Observable<any> {
