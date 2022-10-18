@@ -82,6 +82,8 @@ export class LoginPage implements OnInit {
       this.CustomerServicesPage.loginAccount(this.login,this.password ).subscribe(res =>{
         
          if(res.success == 1){
+          res.data.realPassword = this.password;
+          this.setStorageValue('customeContext',res.data);
           this.setStorageValue('customeContext',res.data);
           this.setStorageValue('isLoged',true);
           window.location.reload();
