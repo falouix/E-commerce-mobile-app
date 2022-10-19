@@ -25,6 +25,7 @@ export class DeliveryListPage implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     this.loadDeliveryList();
+    this.setStorageValue('id_address_delivery',this.route.snapshot.paramMap.get('id_delivery'));
   }
   async loadDeliveryList(){
     this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {

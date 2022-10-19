@@ -11,9 +11,13 @@ import { ProductsServicesPage } from '../dataServices/products-services/products
 
 export class PaymentPage implements OnInit {
 
+  id_customer;
+  login_customer;
+  password;
   paymentList : any=[];
   selectedOption;
   id_address_delivery;
+  contextclonevar;
   delivery_option = this.route.snapshot.paramMap.get('id');
   customerContext ;
   constructor(
@@ -27,46 +31,55 @@ export class PaymentPage implements OnInit {
     await this.storage.create();
   } 
   
-  loadPaymentList(){
-    let id_customer;
-    let login_customer;
-    let password;
+  async loadPaymentList(){
+    this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
+      console.log('result',result)
+      return (result);
+      }).catch(e => {
+        console.log('error: '+ e);
+      });
     this.getStorageValue('customeContext').then(result => {
       console.log(result);
-      id_customer  = result.id;
-      login_customer = result.login_customer
-      password = '123456';
+      this.id_customer  = result.id;
+      this.login_customer = result.login_customer
+      this.password = result.realPassword;
+
+      this.getStorageValue('id_address_delivery').then(result => {
+        console.log('id_address_delivery',result);
+        this.id_address_delivery = result;
+
+        this.ProductsServicesPage.getPaymentOptions(
+          this.id_address_delivery,
+          this.id_customer,
+          this.login_customer,
+          this.password,
+          this.delivery_option,
+          this.contextclonevar.contextCart.id,
+        ).subscribe(res=>{
+         console.log('res',res)
+         let fakeRes=res.arrayPaymentOptions
+         let fakePaymentModule=res.PaymentModule;
+         console.log('fakeRes',typeof fakeRes);
+         Object.entries(fakeRes).forEach((value,key)=>{
+          Object.entries(fakePaymentModule).forEach((value1,key)=>{
+            let fakeItem :any = value1[1];
+          if(fakeItem.name == value[1][0].module_name){
+            value[1][0].id_module =fakeItem.id_module;
+          }
+           })
+           console.log(value[1][0]);
+          this.paymentList.push(value[1][0])
+         })
+        })
+
+        }).catch(e => {
+          console.log('error: '+ e);
+        });
+  
+
       }).catch(e => {
         console.log('error: '+ e);
-      }); 
-    this.getStorageValue('id_address_delivery').then(result => {
-      console.log(result);
-      this.id_address_delivery = result;
-      }).catch(e => {
-        console.log('error: '+ e);
-      }); 
-    this.ProductsServicesPage.getPaymentOptions(
-      this.id_address_delivery,
-      id_customer,
-      login_customer,
-      password,
-      this.delivery_option
-    ).subscribe(res=>{
-     console.log('res',res)
-     let fakeRes=res.arrayPaymentOptions
-     let fakePaymentModule=res.PaymentModule;
-     console.log('fakeRes',typeof fakeRes);
-     Object.entries(fakeRes).forEach((value,key)=>{
-      Object.entries(fakePaymentModule).forEach((value1,key)=>{
-        let fakeItem :any = value1[1];
-      if(fakeItem.name == value[1][0].module_name){
-        value[1][0].id_module =fakeItem.id_module;
-      }
-       })
-       console.log(value[1][0]);
-      this.paymentList.push(value[1][0])
-     })
-    })
+      });  
    }
    async checkout(){
     console.log(this.selectedOption);
@@ -99,7 +112,8 @@ export class PaymentPage implements OnInit {
   }
   async getStorageValue(key: string): Promise<any> {
     try {
-    const result = await this.storage.get(key);
+    const result = await this.storage.get(key)
+;
     return result;
     } catch (reason) {
     return false;
