@@ -13,7 +13,7 @@
   <ion-radio-group [(ngModel)]="selectedOption">
     <ion-card class="delivery_card"  *ngFor="let item of paymentList">
       <div>
-        <ion-radio value={{item.id_module}} class="delivery_radio"> </ion-radio>
+        <ion-radio value={{item.action}} class="delivery_radio"> </ion-radio>
           <ion-item class="delivery_item">
             <ion-label class="delivery_name" *ngIf="item.call_to_action_text">
               {{item.call_to_action_text}}

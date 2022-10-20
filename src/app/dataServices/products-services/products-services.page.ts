@@ -67,7 +67,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=18&cartid=${catID}&qtytosend=${qtyTosend}`,options));
+    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=42&cartid=${catID}&qtytosend=${qtyTosend}`,options));
   
 
 }else{
@@ -78,7 +78,7 @@ if (qtyTosend != 0  ){
   headers.append('Accept','application/text');
   headers.append('content-type','application/json');
    let options = { headers:headers};
-  return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=18&cartid=${catID}`,options));
+  return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=42&cartid=${catID}`,options));
 
 }
  
@@ -151,23 +151,23 @@ if (qtyTosend != 0  ){
         return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&id_appcart=${id_cart}`,options));
       }
 
-      getPaymentOptions(id_address_delivery,id_customer,login_customer,password,delivery_option): Observable<any> {
+      getPaymentOptions(id_address_delivery,id_customer,login_customer,password,delivery_option,id_cart): Observable<any> {
         var headers = new HttpHeaders();
         headers.append('Access-Control-Allow-Origin' , '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         headers.append('Accept','application/text');
         headers.append('content-type','application/json');
          let options = { headers:headers}; 
-          return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&delivery_option[41]=${delivery_option}&confirmDeliveryOption=1`,options));
+          return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&delivery_option[41]=${delivery_option},&id_appcart=${id_cart}&confirmDeliveryOption=1`,options));
         }
-        checkoutPayment(id_cart,id_module,key,id_customer): Observable<any> {
+        checkoutPayment(id_module,id_cart,key,id_customer): Observable<any> {
           var headers = new HttpHeaders();
           headers.append('Access-Control-Allow-Origin' , '*');
           headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
           headers.append('Accept','application/text');
           headers.append('content-type','application/json');
            let options = { headers:headers}; 
-            return( this.http.get(`https://stebouhaha.com/confirmation-commande?source=app&id_cart=${id_cart}&id_module=${id_module}&key=${key}&id_customer=${id_customer}`,options));
+            return( this.http.get(`${id_module}?source=app&id_appcart=${id_cart}&key=${key}&id_customer=${id_customer}`,options));
           }
 
 }
