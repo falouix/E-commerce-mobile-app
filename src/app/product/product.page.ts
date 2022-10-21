@@ -69,6 +69,7 @@ async presentAlert() {
   qtty : string;
   public productData;
   public productData1;
+  profileData;
   productName;
   productReference;
   productDescription_short;
@@ -78,6 +79,16 @@ async presentAlert() {
   contextclonevar;
   async ngOnInit() {
     await this.storage.create();
+    this.profileData = await this.getStorageValue('customeContext').then(result => {
+      if(result == null){
+       console.log('you should connect to your account for better experience')
+      }else{
+       return result;
+      }
+     }).catch(e => {
+       console.log('error: '+ e);
+     });
+     console.log('profileData',this.profileData);
     this.loadProductItems();
   }
   async loadProductItems(){
@@ -93,8 +104,7 @@ async presentAlert() {
       loading.dismiss();
       this.productData = res;
       this.productData.product.price = parseFloat(this.productData.product.price).toFixed(2);
-      console.log('this.productData.product.associations.images[0].length',this.productData.product)
-      if(this.productData.product.associations.images){
+   if(this.productData.product.associations.images){
           this.productImgSrc = 'https://stebouhaha.com/api/images/products/'+
           this.productData.product.id+
           '/'+
@@ -108,7 +118,6 @@ async presentAlert() {
       this.productReference = this.productData1.reference;
       this.productDescription_short = this.productData1.description_short.replace(/<[^>]+>/gm, '');//this._sanitizer.bypassSecurityTrustHtml(this.productData1.description_short);
       this.productPrice = this.productData1.price;
-      console.log('this.productData',this.productData1);
     }, (err) => {
       console.log('lose ' + JSON.stringify(err));});
   }
@@ -141,47 +150,41 @@ async presentAlert() {
     });
   }
   async addTobasket(id){
+    console.log('user clicked add');
     let token = '';
-    console.log('token : ',token)
     if(! this.qtty || this.qtty == '0'){
       this.presentAlert();
       return;
     }else{
+      console.log('everything okay and we want t get contextCloneOrsomethng');
     this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
       return (result);
       }).catch(e => {
         console.log('error: '+ e);
       });
       if(this.contextclonevar !== null){
-        console.log('first one');
            //get current context cart 
+           console.log('contextCloneOrsomethng is not null:' ,this.contextclonevar);
         this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
          return (result);
          }).catch(e => {
            console.log('error: '+ e);
          });
-        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',token,this.contextclonevar.contextCart.id,this.contextclonevar.cart.products).subscribe(async (res) =>{
-        console.log(res);
+        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',this.contextclonevar.contextCart.id,this.contextclonevar.cart.products,this.profileData.id).subscribe(async (res) =>{
         this.setStorageValue('contextCloneOrsomethng',res);
         if(res.success ){
           this.presentToast('middle');
-          setTimeout(function(){
-            this.router.navigate(['/panier']);
-           
-          }, 500);
+          this.router.navigateByUrl(`panier`);
          }
         });
       }else{
-        console.log('second one');
-        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',token,0,0).subscribe(async (res) =>{
         
+        console.log('contextCloneOrsomethng is null');
+        this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',0,0,this.profileData.id).subscribe(async (res) =>{
           this.setStorageValue('contextCloneOrsomethng',res);
           if(res.success ){
             this.presentToast('middle')
-            setTimeout(function(){
-              this.router.navigate(['/panier']);
-             
-            }, 500);
+            this.router.navigateByUrl(`panier`);
            }
         });
       }

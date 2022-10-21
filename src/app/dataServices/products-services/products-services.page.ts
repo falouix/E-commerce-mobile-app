@@ -47,7 +47,7 @@ export class ProductsServicesPage {
     return( this.http.get(`https://stebouhaha.com/panier?source=app`,options));
 
   }
-  addProductToCart(id,qty,flag,token,catID,cart_products): Observable<any> {
+  addProductToCart(id,qty,flag,catID,cart_products,id_customer): Observable<any> {
 let  qtyTosend = 0 ; 
 if (cart_products){
     cart_products.forEach( (element) => {
@@ -67,7 +67,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=42&cartid=${catID}&qtytosend=${qtyTosend}`,options));
+    return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&qtytosend=${qtyTosend}&id_customer=${id_customer}`,options));
   
 
 }else{
@@ -78,7 +78,7 @@ if (qtyTosend != 0  ){
   headers.append('Accept','application/text');
   headers.append('content-type','application/json');
    let options = { headers:headers};
-  return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=42&cartid=${catID}`,options));
+  return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
 
 }
  
