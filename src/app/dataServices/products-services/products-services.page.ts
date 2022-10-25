@@ -81,10 +81,6 @@ if (qtyTosend != 0  ){
   return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
 
 }
- 
-  
-    
-  
   }
   deletProductCart(id,catID): Observable<any> {
     var headers = new HttpHeaders();
@@ -125,8 +121,6 @@ if (qtyTosend != 0  ){
      let options = { headers:headers}; 
      return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=d190c019b146c18fad7e95fd2b0a6dcd`,options));
     }
-  
-
     updateadresse(id,id_user,urldata): Observable<any> {
       var headers = new HttpHeaders();
       headers.append('Access-Control-Allow-Origin' , '*');
@@ -168,6 +162,30 @@ if (qtyTosend != 0  ){
           headers.append('content-type','application/json');
            let options = { headers:headers}; 
             return( this.http.get(`${id_module}?source=app&id_appcart=${id_cart}&key=${key}&id_customer=${id_customer}`,options));
+        }
+
+        paymentPaymee(payment_token,url_ok,url_ko) {
+            //var headers = new HttpHeaders();
+          //headers.append('Content-Type','application/json');
+          let getToken = 'Token 10067ead116cd7c96ce137200622ff1f09f0cba4';
+          const headers = { 
+            'Authorization': `${getToken}`,
+            'Content-Type':'application/json' 
+          };
+          //headers.append('Authorization','10067ead116cd7c96ce137200622ff1f09f0cba4');
+          console.log('headers',headers)
+          const requestOptions = { headers:headers}; 
+          let postData = {
+            "vendor": 16145,
+            "amount": 120.5,
+            "note" : "note text"
           }
+        this.http.post("https://app.paymee.tn/api/OPRequest/", postData, requestOptions)
+        .subscribe(data => {
+          console.log(data['_body']);
+         }, error => {
+          console.log(error);
+        });
+      }
 
 }
