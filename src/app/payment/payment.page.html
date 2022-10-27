@@ -13,7 +13,7 @@
   <ion-radio-group [(ngModel)]="selectedOption">
     <ion-card class="delivery_card"  *ngFor="let item of paymentList">
       <div>
-        <ion-radio value={{item.id_module}} class="delivery_radio"> </ion-radio>
+        <ion-radio value={{item.action}} class="delivery_radio"> </ion-radio>
           <ion-item class="delivery_item">
             <ion-label class="delivery_name" *ngIf="item.call_to_action_text">
               {{item.call_to_action_text}}
@@ -24,6 +24,12 @@
         </ion-item>
       </div>
     </ion-card>
+    
+    <div  class="something" id="top-container"> </div>
+    <div id="container">
+      <strong>{{ name }}</strong>
+      <iframe class='webPage' [(src)]="paymeeUrl" style="width:100%; height:100%;"></iframe>
+    </div>
   </ion-radio-group>
 </ion-list> 
 <ion-button class="delivery_btn" (click)="checkout()">continuer</ion-button>

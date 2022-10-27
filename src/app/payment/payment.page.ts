@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {Router,ActivatedRoute} from '@angular/router';
 import { ProductsServicesPage } from '../dataServices/products-services/products-services.page';
-
+import { DomSanitizer,SafeResourceUrl} from '@angular/platform-browser';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.page.html',
@@ -10,8 +10,9 @@ import { ProductsServicesPage } from '../dataServices/products-services/products
 })
 
 export class PaymentPage implements OnInit {
-
+  paymeeUrl :any ;
   id_customer;
+  paymee_form;
   login_customer;
   password;
   paymentList : any=[];
@@ -23,10 +24,13 @@ export class PaymentPage implements OnInit {
   constructor(
     private route : ActivatedRoute,
     public ProductsServicesPage : ProductsServicesPage,
-    public storage: Storage
+    public storage: Storage,
+    public sanitizer: DomSanitizer
   ) { }
 
   async ngOnInit() {
+    this.paymeeUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://app.paymee.tn/panoramix/integration");
+    console.log('paymeeUrl',this.paymeeUrl);
     this.loadPaymentList();
     await this.storage.create();
   } 
@@ -39,13 +43,13 @@ export class PaymentPage implements OnInit {
         console.log('error: '+ e);
       });
     this.getStorageValue('customeContext').then(result => {
-      console.log(result);
+      
       this.id_customer  = result.id;
       this.login_customer = result.login_customer
       this.password = result.realPassword;
 
       this.getStorageValue('id_address_delivery').then(result => {
-        console.log('id_address_delivery',result);
+        
         this.id_address_delivery = result;
 
         this.ProductsServicesPage.getPaymentOptions(
@@ -56,18 +60,24 @@ export class PaymentPage implements OnInit {
           this.delivery_option,
           this.contextclonevar.contextCart.id,
         ).subscribe(res=>{
-         console.log('res',res)
+         
          let fakeRes=res.arrayPaymentOptions
          let fakePaymentModule=res.PaymentModule;
-         console.log('fakeRes',typeof fakeRes);
          Object.entries(fakeRes).forEach((value,key)=>{
           Object.entries(fakePaymentModule).forEach((value1,key)=>{
             let fakeItem :any = value1[1];
+          
           if(fakeItem.name == value[1][0].module_name){
             value[1][0].id_module =fakeItem.id_module;
           }
            })
-           console.log(value[1][0]);
+           if(value[1][0].module_name == 'paymee'){
+            const el = document.createElement('div');
+            el.innerHTML = value[1][0].form;
+          el.setAttribute('title', 'my-title')
+            let test = document.getElementById(`top-container`);
+            test?.appendChild(el);
+           }
           this.paymentList.push(value[1][0])
          })
         })
@@ -83,22 +93,38 @@ export class PaymentPage implements OnInit {
    }
    async checkout(){
     console.log(this.selectedOption);
-    this.customerContext=await this.getStorageValue('customeContext').then(result => {
-      console.log('contextCloneOrsomethng vresult', result);
-      return (result);
-      }).catch(e => {
-        console.log('error: '+ e);
-      });
-    
-      this.customerContext=await this.getStorageValue('contextCloneOrsomethng').then(result => {
-        console.log('contextCloneOrsomethng vresult', result.contextCart);
-     this.ProductsServicesPage.checkoutPayment(result.contextCart.id,this.selectedOption,this.customerContext.secure_key,this.customerContext.id).subscribe(res=>{
-      console.log('res payment : ',res);
-    })
+    if(!this.selectedOption){
+        let payment_token = document.querySelector<HTMLInputElement>('input[name="payment_token"]').value;
+        let url_ok = document.querySelector<HTMLInputElement>('input[name="url_ok"]').value;
+        let url_ko = document.querySelector<HTMLInputElement>('input[name="url_ko"]').value;
+          this.ProductsServicesPage.paymentPaymee(payment_token,url_ok,url_ko).subscribe(data => {
+            console.log("data['_body']",data)
+            this.paymeeUrl =data;
+            this.paymeeUrl =this.sanitizer.bypassSecurityTrustResourceUrl('https://app.paymee.tn/gateway/'+this.paymeeUrl.token) ;
+            return(data['_body']);
+           }, error => {
+            console.log(error);
+          });
+        console.log(this.paymeeUrl);
+
+    }else{
+      this.customerContext=await this.getStorageValue('customeContext').then(result => {
+     
         return (result);
         }).catch(e => {
           console.log('error: '+ e);
         });
+        this.customerContext=await this.getStorageValue('contextCloneOrsomethng').then(result => {
+        console.log('contextCloneOrsomethng vresult', result.contextCart);
+        console.log(this.selectedOption,result.id,this.customerContext.secure_key,this.customerContext.id);
+        this.ProductsServicesPage.checkoutPayment(this.selectedOption,result.contextCart.id,this.customerContext.secure_key,this.customerContext.id).subscribe(res=>{
+        
+      })
+        return (result);
+      }).catch(e => {
+        console.log('error: '+ e);
+      });
+    }
    }
 
    //storage section

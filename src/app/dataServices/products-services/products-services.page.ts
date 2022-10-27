@@ -47,7 +47,7 @@ export class ProductsServicesPage {
     return( this.http.get(`https://stebouhaha.com/panier?source=app`,options));
 
   }
-  addProductToCart(id,qty,flag,token,catID,cart_products): Observable<any> {
+  addProductToCart(id,qty,flag,catID,cart_products,id_customer): Observable<any> {
 let  qtyTosend = 0 ; 
 if (cart_products){
     cart_products.forEach( (element) => {
@@ -67,7 +67,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-    return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=18&cartid=${catID}&qtytosend=${qtyTosend}`,options));
+    return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&qtytosend=${qtyTosend}&id_customer=${id_customer}`,options));
   
 
 }else{
@@ -78,13 +78,9 @@ if (qtyTosend != 0  ){
   headers.append('Accept','application/text');
   headers.append('content-type','application/json');
    let options = { headers:headers};
-  return( this.http.post(`https://stebouhaha.com/panier?id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&id_customer=18&cartid=${catID}`,options));
+  return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
 
 }
- 
-  
-    
-  
   }
   deletProductCart(id,catID): Observable<any> {
     var headers = new HttpHeaders();
@@ -125,8 +121,6 @@ if (qtyTosend != 0  ){
      let options = { headers:headers}; 
      return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=d190c019b146c18fad7e95fd2b0a6dcd`,options));
     }
-  
-
     updateadresse(id,id_user,urldata): Observable<any> {
       var headers = new HttpHeaders();
       headers.append('Access-Control-Allow-Origin' , '*');
@@ -160,14 +154,34 @@ if (qtyTosend != 0  ){
          let options = { headers:headers}; 
           return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&delivery_option[41]=${delivery_option},&id_appcart=${id_cart}&confirmDeliveryOption=1`,options));
         }
-        checkoutPayment(id_cart,id_module,key,id_customer): Observable<any> {
+        checkoutPayment(id_module,id_cart,key,id_customer): Observable<any> {
           var headers = new HttpHeaders();
           headers.append('Access-Control-Allow-Origin' , '*');
           headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
           headers.append('Accept','application/text');
           headers.append('content-type','application/json');
            let options = { headers:headers}; 
-            return( this.http.get(`https://stebouhaha.com/confirmation-commande?source=app&id_cart=${id_cart}&id_module=${id_module}&key=${key}&id_customer=${id_customer}`,options));
+            return( this.http.get(`${id_module}?source=app&id_appcart=${id_cart}&key=${key}&id_customer=${id_customer}`,options));
+        }
+
+        paymentPaymee(payment_token,url_ok,url_ko) {
+          let tokenpayment;
+            //var headers = new HttpHeaders();
+          //headers.append('Content-Type','application/json');
+          let getToken = 'Token 10067ead116cd7c96ce137200622ff1f09f0cba4';
+          const headers = { 
+            'Authorization': `${getToken}`,
+            'Content-Type':'application/json' 
+          };
+          //headers.append('Authorization','10067ead116cd7c96ce137200622ff1f09f0cba4');
+          const requestOptions = { headers:headers}; 
+          let postData = {
+            "vendor": 16145,
+            "amount": 120.5,
+            "note" : "note text"
           }
+          return this.http.post("https://app.paymee.tn/api/OPRequest/", postData, requestOptions)
+        
+      }
 
 }
