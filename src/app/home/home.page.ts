@@ -1,28 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
+import { IonSlides } from '@ionic/angular';
 import { PreloadAllModules, RouterModule, Router } from '@angular/router';
+import { SwiperComponent } from "swiper/angular";
 import { Storage } from '@ionic/storage';
+import * as $ from 'jquery';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
-
+import SwiperCore, { SwiperOptions } from 'swiper'
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-
 export class HomePage implements OnInit {
+  @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
+  slideOpts1 = {
+    initialSlide: 1,
+    speed: 400,
+    loop: true,
+  };
    slideOpts =  {
     loop : true,
-    initialSlide: 1,
+    initialSlide: 0,
     autoplay : true,
-    speed: 500,
+    speed: 2000,
   };
   offlineStatus = false;
    productHomePage = new Array();
   constructor(private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }
-
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter')
+  }
   ngOnInit() {
+    let x = 123;
+    $(document).ready(function() {
+      console.log($('.promo_slider'));
+    });
     this.loadHomeProducts();
-    console.log('Initially ' + (window.navigator.onLine ? 'on' : 'off') + 'line');
+    //console.log('Initially ' + (window.navigator.onLine ? 'on' : 'off') + 'line');
     if(!window.navigator.onLine){
       this.offlineStatus = true;
     }
@@ -34,7 +48,7 @@ export class HomePage implements OnInit {
   }
   loadHomeProducts(){
     this.ProductsServicesPage.getAllProducts().subscribe(result  => {
-      console.log('result promo : ',result)
+      //console.log('result promo : ',result)
       var i_item = 0;
       var sous_tab = new Array();
       Object.entries(result).forEach( (item) =>{
@@ -52,13 +66,13 @@ export class HomePage implements OnInit {
         fake_item.imgSrc = src.replace("-", "/");
         fake_item.imgSrc = "https://stebouhaha.com/api/images/products/"+fake_item.imgSrc+"?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9"
         
-        console.log(src.replace("-", "/"))
+        //console.log(src.replace("-", "/"))
         if(i_item % 2 == 0){
-          console.log('i_item/2=0  : ',i_item);
+          //console.log('i_item/2=0  : ',i_item);
           sous_tab = new Array();
           sous_tab.push(fake_item);
         }else{
-          console.log('i_item/2!=0  : ',i_item);
+          //console.log('i_item/2!=0  : ',i_item);
           sous_tab.push(fake_item);
           this.productHomePage.push(sous_tab);
         }
@@ -73,7 +87,7 @@ export class HomePage implements OnInit {
       }
 
       })
-      console.log('typeof : ',this.productHomePage)
+      //console.log('typeof : ',this.productHomePage)
   }
   
   async setStorageValue(key: string, value: any): Promise<any> {
@@ -89,7 +103,7 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl(`/product/${id}`);
   }
   SearchFunction(e){
-    console.log(e)
+    //console.log(e)
     this.router.navigateByUrl(`/search/${e}`);
   }
 }

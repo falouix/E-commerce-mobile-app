@@ -165,6 +165,7 @@ if (qtyTosend != 0  ){
         }
 
         paymentPaymee(payment_token,url_ok,url_ko) {
+          let tokenpayment;
             //var headers = new HttpHeaders();
           //headers.append('Content-Type','application/json');
           let getToken = 'Token 10067ead116cd7c96ce137200622ff1f09f0cba4';
@@ -173,19 +174,14 @@ if (qtyTosend != 0  ){
             'Content-Type':'application/json' 
           };
           //headers.append('Authorization','10067ead116cd7c96ce137200622ff1f09f0cba4');
-          console.log('headers',headers)
           const requestOptions = { headers:headers}; 
           let postData = {
             "vendor": 16145,
             "amount": 120.5,
             "note" : "note text"
           }
-        this.http.post("https://app.paymee.tn/api/OPRequest/", postData, requestOptions)
-        .subscribe(data => {
-          console.log(data['_body']);
-         }, error => {
-          console.log(error);
-        });
+          return this.http.post("https://app.paymee.tn/api/OPRequest/", postData, requestOptions)
+        
       }
 
 }

@@ -78,8 +78,9 @@
       </ion-slides>
       
     </div>
+
     <div class="home_first_section">
-      <ion-slides class="promo_slider" [options]="slideOpts">
+      <ion-slides class="promo_slider" [options]="slideOpts" >
         <ion-slide *ngFor="let item of productHomePage;">
           <ion-col size="6" size-sm *ngFor="let item1 of item;">
             <ion-card (click)="renderProduct(item1.id_product)" class="card_cat_product_homePage">

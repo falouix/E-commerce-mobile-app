@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {Router,ActivatedRoute} from '@angular/router';
 import { ProductsServicesPage } from '../dataServices/products-services/products-services.page';
-
+import { DomSanitizer,SafeResourceUrl} from '@angular/platform-browser';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.page.html',
@@ -10,7 +10,7 @@ import { ProductsServicesPage } from '../dataServices/products-services/products
 })
 
 export class PaymentPage implements OnInit {
-
+  paymeeUrl :any ;
   id_customer;
   paymee_form;
   login_customer;
@@ -24,10 +24,13 @@ export class PaymentPage implements OnInit {
   constructor(
     private route : ActivatedRoute,
     public ProductsServicesPage : ProductsServicesPage,
-    public storage: Storage
+    public storage: Storage,
+    public sanitizer: DomSanitizer
   ) { }
 
   async ngOnInit() {
+    this.paymeeUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://app.paymee.tn/panoramix/integration");
+    console.log('paymeeUrl',this.paymeeUrl);
     this.loadPaymentList();
     await this.storage.create();
   } 
@@ -94,8 +97,16 @@ export class PaymentPage implements OnInit {
         let payment_token = document.querySelector<HTMLInputElement>('input[name="payment_token"]').value;
         let url_ok = document.querySelector<HTMLInputElement>('input[name="url_ok"]').value;
         let url_ko = document.querySelector<HTMLInputElement>('input[name="url_ko"]').value;
-         this.ProductsServicesPage.paymentPaymee(payment_token,url_ok,url_ko);
-        console.log(payment_token);
+          this.ProductsServicesPage.paymentPaymee(payment_token,url_ok,url_ko).subscribe(data => {
+            console.log("data['_body']",data)
+            this.paymeeUrl =data;
+            this.paymeeUrl =this.sanitizer.bypassSecurityTrustResourceUrl('https://app.paymee.tn/gateway/'+this.paymeeUrl.token) ;
+            return(data['_body']);
+           }, error => {
+            console.log(error);
+          });
+        console.log(this.paymeeUrl);
+
     }else{
       this.customerContext=await this.getStorageValue('customeContext').then(result => {
      

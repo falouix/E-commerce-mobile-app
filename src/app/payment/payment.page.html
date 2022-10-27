@@ -26,6 +26,10 @@
     </ion-card>
     
     <div  class="something" id="top-container"> </div>
+    <div id="container">
+      <strong>{{ name }}</strong>
+      <iframe class='webPage' [(src)]="paymeeUrl" style="width:100%; height:100%;"></iframe>
+    </div>
   </ion-radio-group>
 </ion-list> 
 <ion-button class="delivery_btn" (click)="checkout()">continuer</ion-button>
