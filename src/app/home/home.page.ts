@@ -1,18 +1,30 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { AfterContentChecked, Component, ViewChild,OnInit,ViewEncapsulation } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { PreloadAllModules, RouterModule, Router } from '@angular/router';
 import { SwiperComponent } from "swiper/angular";
+
 import { Storage } from '@ionic/storage';
-import * as $ from 'jquery';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
-import SwiperCore, { SwiperOptions } from 'swiper'
+import SwiperCore, { SwiperOptions,Pagination, Swiper,EffectFade,Autoplay,Navigation } from 'swiper';
+
+SwiperCore.use([Autoplay, Pagination, Navigation]);
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  encapsulation : ViewEncapsulation.None
 })
-export class HomePage implements OnInit {
-  @ViewChild('slideWithNav', { static: false }) slideWithNav: IonSlides;
+export class HomePage implements AfterContentChecked {
+  @ViewChild('swiper') SwiperCore: SwiperComponent;
+  config : SwiperOptions = {
+    slidesPerView : 1,
+    pagination : true,
+    autoplay:{
+      delay: 300
+    },
+    spaceBetween : 50,
+    
+  }
   slideOpts1 = {
     initialSlide: 1,
     speed: 400,
@@ -25,18 +37,17 @@ export class HomePage implements OnInit {
     speed: 2000,
   };
   offlineStatus = false;
-   productHomePage = new Array();
+   productHomePage :any =[];
   constructor(private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }
+  ngAfterContentChecked() {
+    
+  }
   ionViewDidEnter() {
     console.log('ionViewDidEnter')
   }
   ngOnInit() {
-    let x = 123;
-    $(document).ready(function() {
-      console.log($('.promo_slider'));
-    });
     this.loadHomeProducts();
-    //console.log('Initially ' + (window.navigator.onLine ? 'on' : 'off') + 'line');
+    console.log('productHomePage : ',this.productHomePage)
     if(!window.navigator.onLine){
       this.offlineStatus = true;
     }
@@ -48,9 +59,6 @@ export class HomePage implements OnInit {
   }
   loadHomeProducts(){
     this.ProductsServicesPage.getAllProducts().subscribe(result  => {
-      //console.log('result promo : ',result)
-      var i_item = 0;
-      var sous_tab = new Array();
       Object.entries(result).forEach( (item) =>{
         let fake_item = JSON.parse(JSON.stringify(item[1]));
         if(fake_item.specific_prices.reduction_type == "amount"){
@@ -61,33 +69,14 @@ export class HomePage implements OnInit {
           fake_item.reduction = fake_item.reduction.toString() + "%";
         } //const result1 = num1.toFixed(2)
         let src = fake_item.id_image;
-        src.replace("-", "/");
-        
         fake_item.imgSrc = src.replace("-", "/");
         fake_item.imgSrc = "https://stebouhaha.com/api/images/products/"+fake_item.imgSrc+"?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9"
-        
-        //console.log(src.replace("-", "/"))
-        if(i_item % 2 == 0){
-          //console.log('i_item/2=0  : ',i_item);
-          sous_tab = new Array();
-          sous_tab.push(fake_item);
-        }else{
-          //console.log('i_item/2!=0  : ',i_item);
-          sous_tab.push(fake_item);
-          this.productHomePage.push(sous_tab);
-        }
-        //this.productHomePage.push(fake_item);
-
-        i_item = i_item + 1;
+        console.log(fake_item)
+          this.productHomePage.push(fake_item);
       });
 
-      
-      if(i_item % 2 != 0){
-        this.productHomePage.push(sous_tab);
-      }
-
       })
-      //console.log('typeof : ',this.productHomePage)
+      console.log(this.productHomePage)
   }
   
   async setStorageValue(key: string, value: any): Promise<any> {
