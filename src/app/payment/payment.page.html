@@ -9,7 +9,7 @@
 </div>
 <h3 class="panier_bigTitle">Méthode de payement</h3>
 <ion-content>
-<ion-list>
+<ion-list *ngIf="!showpayme">
   <ion-radio-group [(ngModel)]="selectedOption">
     <ion-card class="delivery_card"  *ngFor="let item of paymentList">
       <div>
@@ -24,13 +24,22 @@
         </ion-item>
       </div>
     </ion-card>
-    
-    <div  class="something" id="top-container"> </div>
-    <div id="container">
-      <strong>{{ name }}</strong>
-      <iframe class='webPage' [(src)]="paymeeUrl" style="width:100%; height:100%;"></iframe>
-    </div>
   </ion-radio-group>
 </ion-list> 
+<div  class="something" id="top-container"> </div>
+<div id="iframe_container" *ngIf="showpayme" style="height: 100%;">
+  <strong>{{ name }}</strong>
+  <iframe 
+    class='webPage' 
+    [src]="paymeeUrl" 
+    style="width:100%; 
+    height:100%;"
+    (load)="onLoadFunc(myIframe)"
+    id="myIframe"
+    #myIframe
+    allowfullscreen
+    >
+  </iframe>
+</div>
 <ion-button class="delivery_btn" (click)="checkout()">continuer</ion-button>
 </ion-content>

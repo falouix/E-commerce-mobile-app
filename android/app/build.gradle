@@ -4,9 +4,6 @@ android {
     signingConfigs {
         debug {
             storeFile file('C:\\Users\\LENOVO\\.android\\debug.keystore')
-            storePassword '1234'
-            keyAlias '1234'
-            keyPassword '1234'
         }
     }
     compileSdkVersion rootProject.ext.compileSdkVersion

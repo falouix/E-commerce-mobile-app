@@ -25,6 +25,7 @@ export class HomePage implements AfterContentChecked {
     spaceBetween : 50,
     
   }
+  slideConfig = {"slidesToShow": 2, "slidesToScroll":1,"autoplay" :true };
   slideOpts1 = {
     initialSlide: 1,
     speed: 400,

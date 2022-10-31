@@ -7,10 +7,10 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderPipe } from './header.pipe';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
   declarations: [AppComponent, HeaderPipe],
-  imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule,HttpClientModule],
+  imports: [SlickCarouselModule,BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule,HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
