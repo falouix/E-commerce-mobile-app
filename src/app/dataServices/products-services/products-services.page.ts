@@ -177,11 +177,20 @@ if (qtyTosend != 0  ){
           const requestOptions = { headers:headers}; 
           let postData = {
             "vendor": 16145,
-            "amount": 120.5,
+            "amount": 0.1,
             "note" : "note text"
           }
           return this.http.post("https://app.paymee.tn/api/OPRequest/", postData, requestOptions)
         
+      }
+      paymeecheckPayment(token){
+        const headers = { 
+          'Authorization': 'Token 10067ead116cd7c96ce137200622ff1f09f0cba4',
+          'Content-Type':'application/json' 
+        };
+        //headers.append('Authorization','10067ead116cd7c96ce137200622ff1f09f0cba4');
+        const requestOptions = { headers:headers}; 
+        return this.http.get(` https://app.paymee.tn/api/v1/payments/${token}/check`, requestOptions)
       }
 
 }

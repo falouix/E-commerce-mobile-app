@@ -38,12 +38,22 @@
       </div>
       <div class="addBtn_holder">
       <ion-button 
+      *ngIf="IsLoged"
         clor="ion-color-flx" 
         size="large" 
         class="btn_add_cart add_to_cart_btn"
         (click)="addTobasket(product_id)"
         >
           Ajouter au panier
+      </ion-button>
+      <ion-button 
+      *ngIf="!IsLoged"
+        clor="ion-color-flx" 
+        size="large" 
+        class="btn_add_cart login_btn"
+        (click)="loginSomehow()"
+        >
+          Login
       </ion-button>
     </div>
       </ion-card-content>

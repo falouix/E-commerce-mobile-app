@@ -27,7 +27,8 @@ export class ProductPage implements OnInit {
     this.qtty = '1';
    }
    handlerMessage = '';
-  roleMessage = '';
+   roleMessage = '';
+
 // alert message when quantity is empty (later to use)
 
 async presentToast(position: 'top' | 'middle' | 'bottom') {
@@ -65,7 +66,7 @@ async presentAlert() {
   const { role } = await alert.onDidDismiss();
   this.roleMessage = `Dismissed with role: ${role}`;
 }
-
+IsLoged;
   qtty : string;
   public productData;
   public productData1;
@@ -78,17 +79,19 @@ async presentAlert() {
   productImgSrc;
   contextclonevar;
   async ngOnInit() {
+    
     await this.storage.create();
     this.profileData = await this.getStorageValue('customeContext').then(result => {
       if(result == null){
+        this.IsLoged = false;
        console.log('you should connect to your account for better experience')
       }else{
+        this.IsLoged = true;
        return result;
       }
      }).catch(e => {
        console.log('error: '+ e);
      });
-     console.log('profileData',this.profileData);
     this.loadProductItems();
   }
   async loadProductItems(){
@@ -120,6 +123,8 @@ async presentAlert() {
       this.productPrice = this.productData1.price;
     }, (err) => {
       console.log('lose ' + JSON.stringify(err));});
+      
+    console.log('IsLoged from product page : ',this.IsLoged)
   }
 
   clicktest(id,pageNbr){
@@ -156,7 +161,6 @@ async presentAlert() {
       this.presentAlert();
       return;
     }else{
-      console.log('everything okay and we want t get contextCloneOrsomethng');
     this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
       return (result);
       }).catch(e => {
@@ -164,7 +168,6 @@ async presentAlert() {
       });
       if(this.contextclonevar !== null){
            //get current context cart 
-           console.log('contextCloneOrsomethng is not null:' ,this.contextclonevar);
         this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
          return (result);
          }).catch(e => {
@@ -189,6 +192,9 @@ async presentAlert() {
         });
       }
     }
+  }
+  loginSomehow(){
+    this.router.navigateByUrl(`login`);
   }
     //all about local storage [set and get for the moment]
     async setStorageValue(key: string, value: any): Promise<any> {

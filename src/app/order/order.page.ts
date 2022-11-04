@@ -13,6 +13,7 @@ import {Router,ActivatedRoute} from '@angular/router';
   styleUrls: ['./order.page.scss'],
 })
 export class OrderPage implements OnInit {
+  showAdrsForm =false;
   contextclonevar;
   panierProducts;
   totalCart;
@@ -45,7 +46,9 @@ export class OrderPage implements OnInit {
   ionViewDidLeave() {
     this.loadCurentPanier();
   }*/
-
+  addNewdAress(){
+    this.showAdrsForm = !this.showAdrsForm;
+  }
   
 async presentToast(position: 'top' | 'middle' | 'bottom') {
   const toast = await this.toastController.create({

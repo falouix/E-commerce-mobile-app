@@ -13,12 +13,6 @@
   <ion-content class="panier_products_container">
     <ion-card class="products_panier_holder " id="user_info" >
       <ion-row>
-       
-          <div class="padding_15">
-            1 INFORMATIONS PERSONNELLES
-          </div>
-       
-      
         <div class=" padding_15" >
         
           Connecté comme {{firstname}} {{lastname}}.<br/>
@@ -31,17 +25,14 @@
       </ion-row>
     </ion-card>
     <ion-card class="products_panier_holder " id="user_addresses" >
-     
-      <div class="padding_15">
-        2 ADRESSES
+      <div class="padding_15 adrsslist">
+        ADRESSES
       </div>
       <ion-row  >
-        <ion-list >
-      
+        <ion-list style="width:100%">
           <ion-card  id="adress{{itemadress.id}}" class="products_panier_holder" *ngFor="let itemadress of adresseslist" >
-            <ion-radio-group value="biff" [(ngModel)]="addresse">
+            <ion-radio-group value="" [(ngModel)]="addresse">
             <ion-item>
-              
               <ion-radio slot="start" color="success" value="{{itemadress.id}}"></ion-radio><br/>
               <ion-text class="single_adress_item">
                 <span>{{itemadress.alias}}</span>
@@ -50,19 +41,21 @@
                 <span>{{itemadress.company}}</span><br/>
                 <span>{{itemadress.phone}}</span>
               </ion-text>
-         
             </ion-item>
           </ion-radio-group>
           </ion-card>
-  
         </ion-list>
-      
       </ion-row>
-      
+      <ion-button 
+        *ngIf="!showAdrsForm" 
+        expand="full" 
+        class="cartBtnCheckout" 
+        (click)="addNewdAress()"
+        style="margin-bottom: 15px;">
+        Ajouter nouvelle adresse
+      </ion-button>
       <ion-row>
-       
-       
-        <form (ngSubmit)="addadress()">
+        <form (ngSubmit)="addadress()" *ngIf="showAdrsForm">
           <ion-item>
             <ion-label>Alias</ion-label>
             <ion-input type="text" [(ngModel)]="single_adress.alias" ngDefaultControl name="alias"></ion-input>
