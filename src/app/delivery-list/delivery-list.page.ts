@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {Router,ActivatedRoute} from '@angular/router';
+import { LoadingController,AlertController  } from '@ionic/angular';
 import { ProductsServicesPage } from '../dataServices/products-services/products-services.page';
 @Component({ 
   selector: 'app-delivery-list',
@@ -14,14 +15,43 @@ export class DeliveryListPage implements OnInit {
    password;
    contextclonevar;
   id_address_delivery = this.route.snapshot.paramMap.get('id');
+  handlerMessage = '';
+  roleMessage = '';
   constructor(
     private router : Router,
     private route : ActivatedRoute,
     public ProductsServicesPage : ProductsServicesPage,
-    public storage: Storage
+    public storage: Storage,
+    private alertController: AlertController,
   ) { }
   category_id = this.route.snapshot.paramMap.get('id_delivery');
   deliveryList : any = [];
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: "Choir une méthode d'nvoie !",
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.handlerMessage = 'Alert canceled';
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.handlerMessage = 'Alert confirmed';
+          },
+        },
+      ],
+    });
+  
+    await alert.present();
+  
+    const { role } = await alert.onDidDismiss();
+    this.roleMessage = `Dismissed with role: ${role}`;
+  }
   async ngOnInit() {
     await this.storage.create();
     this.setStorageValue('id_address_delivery',this.route.snapshot.paramMap.get('id_delivery'));
@@ -67,7 +97,13 @@ export class DeliveryListPage implements OnInit {
  
   }
   checkout(id){
-    this.router.navigateByUrl(`/payment/${this.selectedDelivery}`);
+    console.log('something to test with : ',this.selectedDelivery)
+    if(this.selectedDelivery == undefined){
+      this.presentAlert();
+      return;
+    }else{
+      this.router.navigateByUrl(`/payment/${this.selectedDelivery}`);
+    }
   }
 
   //storage section

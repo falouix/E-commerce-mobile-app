@@ -47,12 +47,12 @@
       </li>
       <li 
         *ngIf="item[1].clickable && item[1].type == 'page' " 
-        (click)="clicktest(6,item[1].page)">
+        (click)="clicktest(category_id,item[1].page)">
           {{item[1].page}}
       </li> 
       <li 
         *ngIf="item[1].type == 'next' " 
-        (click)="clicktest(6,item[1].page)"
+        (click)="clicktest(category_id,item[1].page)"
         class="li_arrow"
         >
 
@@ -61,7 +61,7 @@
       </li>
       <li 
         *ngIf="item[1].type == 'previous' " 
-        (click)="clicktest(6,item[1].page)"
+        (click)="clicktest(category_id,item[1].page)"
         class="li_arrow"
         >
 
@@ -70,7 +70,7 @@
       </li>
       <li 
         *ngIf="item[1].type == 'spacer' " 
-        (click)="clicktest(6,item[1].page)"
+        (click)="clicktest(category_id,item[1].page)"
         class="li_arrow"
         >
 

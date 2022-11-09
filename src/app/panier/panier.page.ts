@@ -1,10 +1,10 @@
-import { Component, OnInit,OnDestroy, ViewChild, ElementRef, Renderer2   } from '@angular/core';
+import { AfterContentChecked,Component, OnInit,OnDestroy, ViewChild, ElementRef, Renderer2   } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
-
+import { LoadingController,AlertController  } from '@ionic/angular';
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.page.html',
@@ -14,12 +14,44 @@ export class PanierPage implements OnInit {
   contextclonevar;
   panierProducts;
   totalCart;
-  
+  handlerMessage = '';
+  roleMessage = '';
   productCount;
 
-  
-  constructor(  private router : Router,  private toastController: ToastController,public storage: Storage,private ProductsServicesPage : ProductsServicesPage,private http:HttpClient) { }
-
+  constructor(  
+    private router : Router,  
+    private toastController: ToastController,
+    public storage: Storage,
+    private ProductsServicesPage : ProductsServicesPage,
+    private http:HttpClient,
+    private alertController: AlertController,
+    ) { }
+    async presentAlert() {
+      const alert = await this.alertController.create({
+        header: 'Le panier est vide!',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              this.handlerMessage = 'Alert canceled';
+            },
+          },
+          {
+            text: 'OK',
+            role: 'confirm',
+            handler: () => {
+              this.handlerMessage = 'Alert confirmed';
+            },
+          },
+        ],
+      });
+    
+      await alert.present();
+    
+      const { role } = await alert.onDidDismiss();
+      this.roleMessage = `Dismissed with role: ${role}`;
+    }
 
   
 async presentToast(position: 'top' | 'middle' | 'bottom') {
@@ -33,7 +65,6 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
 }
   async ngOnInit() {
     await this.storage.create();
-    this.loadCurentPanier();
   }
 
   
@@ -87,12 +118,19 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
       if (result == null){
         this.router.navigateByUrl(`/login`);
       }else{
-        this.router.navigateByUrl(`/order`);
+        this.getStorageValue('contextCloneOrsomethng').then(result => {
+          if (result == null){
+            this.presentAlert();
+            return;
+          }else{
+            this.router.navigateByUrl(`/order`);
+          }
+        })
       }
 
     }).catch(e => {
           console.log('error: '+ e);
-        }); 
+    }); 
  
     
   }
@@ -111,43 +149,75 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
       }
     });
   }
-  async setStorageValue(key: string, value: any): Promise<any> {
-    try {
-    const result = await this.storage.set(key, value);
-    return true;
-    } catch (reason) {
-    return false;
-    }
-  }
-  async getStorageValue(key: string): Promise<any> {
-    try {
-    const result = await this.storage.get(key);
-    return result;
-    } catch (reason) {
-    return false;
-    }
-  }
-
-
+  
  async  deletFrombasket(id){
-let cart_products =this.contextclonevar.cart.products;
-let catID = this.contextclonevar.contextCart.id ;
-var del_index = '';
+  let cart_products =this.contextclonevar.cart.products;
+  let catID = this.contextclonevar.contextCart.id ;
+  var del_index = '';
   cart_products.forEach( (element, index) => {
     if (element.id == id){
      del_index = index;
     }
    });
-   this.ProductsServicesPage.deletProductCart(id,this.contextclonevar.contextCart.id).subscribe(async (res) =>{
-    this.setStorageValue('contextCloneOrsomethng',res);
-    if(res.success ){
-      this.presentToast('middle');
-     }
-    });
-     delete this.contextclonevar.cart.products[del_index];
-      document.getElementById("prod_"+id).innerHTML = "";
-      document.getElementById("prod_"+id).outerHTML = "";
-      document.getElementById("prod_"+id).remove();
- }
+   this.getStorageValue('customeContext').then(result => {
+    //  console.log(result);
+      if (result == null){
+        this.router.navigateByUrl(`/login`);
+      }else{
+        this.getStorageValue('customeContext').then(result => {
+          if (result == null){
+            console.log('if you want to do something')
+          }else{
+            console.log('customeContext',result)
+            this.ProductsServicesPage.deletProductCart(id,this.contextclonevar.contextCart.id,result.id).subscribe(async (res) =>{
+            
+             if(res.success ){
+              console.log('contextCloneOrsomethng got deleted ',res)
+              if(!res.quantity){
+                this.removeStorageValue('contextCloneOrsomethng').then(res=>{
+                  console.log('contextCloneOrsomethng got deleted ')
+                })
+              }else{
+                this.setStorageValue('contextCloneOrsomethng',res);
+              }
+               this.presentToast('middle');
+              }
+             });
+              delete this.contextclonevar.cart.products[del_index];
+               document.getElementById("prod_"+id).innerHTML = "";
+               document.getElementById("prod_"+id).outerHTML = "";
+               document.getElementById("prod_"+id).remove();
+                   }
+             })
+      }
 
+    }).catch(e => {
+          console.log('error: '+ e);
+    });
+ }
+ async setStorageValue(key: string, value: any): Promise<any> {
+  try {
+  const result = await this.storage.set(key, value);
+  return true;
+  } catch (reason) {
+  return false;
+  }
+}
+// it's all about storage
+async getStorageValue(key: string): Promise<any> {
+  try {
+  const result = await this.storage.get(key);
+  return result;
+  } catch (reason) {
+  return false;
+  }
+}
+async removeStorageValue(key: string): Promise<any> {
+  try {
+    await this.storage.remove(key);
+    return true;
+  } catch (reason) {
+  return false;
+  }
+}
 }

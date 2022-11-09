@@ -9,7 +9,10 @@
 </div>
 <h3 class="panier_bigTitle" style="background: white;">Méthode de payement</h3>
 <ion-content>
-<ion-list *ngIf="!showpayme">
+  <div  class="payment_alert" *ngIf="paymentstatus">
+    le paiement n'est pas complet!
+  </div>
+<ion-list >
   <ion-radio-group [(ngModel)]="selectedOption">
     <ion-card class="delivery_card"  *ngFor="let item of paymentList">
       <div>
@@ -24,7 +27,7 @@
         </ion-item>
       </div>
     </ion-card>
-  </ion-radio-group>
+  </ion-radio-group> 
 </ion-list> 
 <div  class="something" id="top-container"> </div>
 <ion-button class="delivery_btn" (click)="checkout()">continuer</ion-button>

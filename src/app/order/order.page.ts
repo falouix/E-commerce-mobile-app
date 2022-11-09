@@ -5,7 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
-
+import { LoadingController,AlertController  } from '@ionic/angular';
 
 @Component({
   selector: 'app-order',
@@ -29,8 +29,11 @@ export class OrderPage implements OnInit {
      private toastController: ToastController,
      public storage: Storage,
      private ProductsServicesPage : ProductsServicesPage,
-     private http:HttpClient) { }
-
+     private http:HttpClient,
+     private alertController: AlertController,
+     ) { }
+     handlerMessage = '';
+     roleMessage = '';
   /*async ngOnInit() {
     console.log('this function just loaded')
     await this.storage.create();
@@ -48,6 +51,32 @@ export class OrderPage implements OnInit {
   }*/
   addNewdAress(){
     this.showAdrsForm = !this.showAdrsForm;
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Choir une adresse!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.handlerMessage = 'Alert canceled';
+          },
+        },
+        {
+          text: 'OK',
+          role: 'confirm',
+          handler: () => {
+            this.handlerMessage = 'Alert confirmed';
+          },
+        },
+      ],
+    });
+  
+    await alert.present();
+  
+    const { role } = await alert.onDidDismiss();
+    this.roleMessage = `Dismissed with role: ${role}`;
   }
   
 async presentToast(position: 'top' | 'middle' | 'bottom') {
@@ -137,11 +166,13 @@ return result;
   }
   checkout(){
     console.log('111',this.addresse);
-    this.router.navigateByUrl(`delivery-list/${this.addresse}`);
- 
-    
-    
-    
+    if(this.addresse == undefined){
+      this.presentAlert();
+      return;
+    }else{
+      this.router.navigateByUrl(`delivery-list/${this.addresse}`);
+
+    }
   }
   //function just to set images for products 
   getProductImg(id){

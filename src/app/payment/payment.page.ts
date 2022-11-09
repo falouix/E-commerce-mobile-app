@@ -12,6 +12,7 @@ import { DomSanitizer,SafeResourceUrl} from '@angular/platform-browser';
 
 export class PaymentPage implements OnInit {
   paymeeUrl :any ;
+  paymentstatus = false;
   showpayme = false;
   id_customer;
   paymee_form;
@@ -95,18 +96,32 @@ export class PaymentPage implements OnInit {
         let payment_token = document.querySelector<HTMLInputElement>('input[name="payment_token"]').value;
         let url_ok = document.querySelector<HTMLInputElement>('input[name="url_ok"]').value;
         let url_ko = document.querySelector<HTMLInputElement>('input[name="url_ko"]').value;
-          this.ProductsServicesPage.paymentPaymee(payment_token,url_ok,url_ko).subscribe(data => {
+          this.ProductsServicesPage.paymentPaymee(this.contextclonevar.cart.totals.total.amount).subscribe(data => {
             this.paymeeUrl =data;
             let dumpToke = this.paymeeUrl.token;
             this.paymeeUrl =this.sanitizer.bypassSecurityTrustResourceUrl('https://app.paymee.tn/gateway/'+this.paymeeUrl.token) ;
-            console.log('sanitizer : ',this.paymeeUrl.changingThisBreaksApplicationSecurity)
+            //console.log('sanitizer : ',this.paymeeUrl.changingThisBreaksApplicationSecurity)
             let browser = this.iab.create(this.paymeeUrl.changingThisBreaksApplicationSecurity, '_blank', 'location=yes')
             browser.on('loadstop').subscribe(event => {
               console.log(event.url)
               if(event.url.includes('/loader')){
                 browser.close()
-                this.ProductsServicesPage.paymeecheckPayment(dumpToke).subscribe(res=>{
-                  console.log('result from checking if the payment done',JSON.stringify(res))
+                this.ProductsServicesPage.paymeecheckPayment(dumpToke).subscribe(async res=>{
+                  console.log('result from checking if the payment done',JSON.stringify(res));
+                  let result : any = {};
+                  result =JSON.stringify(res);
+                  if(result.status == 'true'){
+                    if(result.data.payment_status == 'true'){
+                      console.log('it should be done here');
+                      this.customerContext=await this.getStorageValue('contextCloneOrsomethng').then(result => {
+                        this.ProductsServicesPage.paymentClone(result.contextCart.id,this.customerContext.secure_key,this.customerContext.id).subscribe(res=>{ 
+                          this.router.navigateByUrl(`ordershistory`);
+                        })
+                    })
+                    }else{
+                      this.paymentstatus = true;
+                    }
+                  }
                 })
               }
            });
@@ -121,8 +136,8 @@ export class PaymentPage implements OnInit {
           console.log('error: '+ e);
         });
         this.customerContext=await this.getStorageValue('contextCloneOrsomethng').then(result => {
-        this.ProductsServicesPage.checkoutPayment(this.selectedOption,result.contextCart.id,this.customerContext.secure_key,this.customerContext.id).subscribe(res=>{
-      })
+          this.ProductsServicesPage.checkoutPayment(this.selectedOption,result.contextCart.id,this.customerContext.secure_key,this.customerContext.id).subscribe(res=>{ 
+        })
       this.removeStorageValue('contextCloneOrsomethng').then(res=>{
         if(res){
           this.router.navigateByUrl(`ordershistory`);

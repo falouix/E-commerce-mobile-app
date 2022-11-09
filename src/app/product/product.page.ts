@@ -162,6 +162,7 @@ IsLoged;
       return;
     }else{
     this.contextclonevar = await this.getStorageValue('contextCloneOrsomethng').then(result => {
+      console.log ('contextCloneOrsomethng',result);
       return (result);
       }).catch(e => {
         console.log('error: '+ e);
