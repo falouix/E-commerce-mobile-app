@@ -89,7 +89,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers}; 
-    return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&flagdel=delete&action=update&delete=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
+    return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&flagdel=delete&action=update&delete=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
   }
   getadressesCart(id_user): Observable<any> {
        
@@ -121,6 +121,9 @@ if (qtyTosend != 0  ){
      let options = { headers:headers}; 
      return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=d190c019b146c18fad7e95fd2b0a6dcd`,options));
     }
+
+
+
     updateadresse(id,id_user,urldata): Observable<any> {
       var headers = new HttpHeaders();
       headers.append('Access-Control-Allow-Origin' , '*');
