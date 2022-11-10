@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import {Router} from '@angular/router';
 import { Storage } from '@ionic/storage';
 @Component({
@@ -47,7 +47,6 @@ export class AppComponent {
       if(result == null){
         this.counter_panier =  0
       }else{
-        console.log('fucking result : ',result.cart.products_count)
         this.counter_panier = result.cart.products_count;
       }
      }).catch(e => {
@@ -75,7 +74,6 @@ export class AppComponent {
     console.log('clicked');
     history.back();
   }
-  
   
   async setStorageValue(key: string, value: any): Promise<any> {
     try {

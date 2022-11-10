@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true" >
   <ion-toolbar >
   </ion-toolbar>
@@ -7,7 +8,7 @@
   <p class="offlineAlert">tu est hors connexion</p>
 </div>
 <ion-content>
-  <div class="itos-container">
+  <div class="itos-container-home">
     <ion-img
       src="../../assets/imgs/main_logo.png"
       class="itos-home-main-logo"
@@ -78,24 +79,21 @@
       </ion-slides>
       
     </div>
-
-    <div class="home_first_section">
-      <ion-slides class="promo_slider" [options]="slideOpts" >
-        <ion-slide *ngFor="let item of productHomePage;">
-          <ion-col size="6" size-sm *ngFor="let item1 of item;">
-            <ion-card (click)="renderProduct(item1.id_product)" class="card_cat_product_homePage">
-               <ion-card-header class="promo_holder_container">
-                <span class="promo_holder">- {{item1.reduction}}</span>
-              </ion-card-header>
-              <ion-img src={{item1.imgSrc}} class="product_home_img"></ion-img>
-            </ion-card>
-            <ion-card-header (click)="renderProduct(item1.id_product)" class="center_text_padding_zero">
-              <ion-card-subtitle class="home_products_title">{{item1.name}}</ion-card-subtitle>
-              <ion-label class="home_product_label">{{item1.price}} TND</ion-label>
-            </ion-card-header>
-          </ion-col>
-        </ion-slide>
-      </ion-slides>
-    </div>
+        <ngx-slick-carousel class="carousel" 
+          #slickModal="slick-carousel" 
+          [config]="slideConfig" >
+        <div ngxSlickItem *ngFor="let item of productHomePage" class="slide" style="margin-top: 5px;">
+          <ion-card (click)="renderProduct(item.id_product)" class="card_cat_product_homePage">
+            <ion-card-header class="promo_holder_container">
+             <span class="promo_holder">- {{item.reduction}}</span>
+           </ion-card-header>
+           <img src={{item.imgSrc}} class="product_home_img"/>
+         </ion-card>
+         <ion-card-header (click)="renderProduct(item.id_product)" class="center_text_padding_zero">
+           <ion-card-subtitle class="home_products_title">{{item.name}}</ion-card-subtitle>
+           <ion-label class="home_product_label">{{item.price}} TND</ion-label>
+         </ion-card-header>
+        </div>
+        </ngx-slick-carousel>
   </div>
 </ion-content>

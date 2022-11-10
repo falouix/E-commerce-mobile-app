@@ -7,9 +7,12 @@
   <ion-icon name="bag-handle-outline" class="panier_big_icon"></ion-icon>
   
 </div>
-<h3 class="panier_bigTitle">Méthode de payement</h3>
+<h3 class="panier_bigTitle" style="background: white;">Méthode de payement</h3>
 <ion-content>
-<ion-list>
+  <div  class="payment_alert" *ngIf="paymentstatus">
+    le paiement n'est pas complet!
+  </div>
+<ion-list >
   <ion-radio-group [(ngModel)]="selectedOption">
     <ion-card class="delivery_card"  *ngFor="let item of paymentList">
       <div>
@@ -24,13 +27,8 @@
         </ion-item>
       </div>
     </ion-card>
-    
-    <div  class="something" id="top-container"> </div>
-    <div id="container">
-      <strong>{{ name }}</strong>
-      <iframe class='webPage' [(src)]="paymeeUrl" style="width:100%; height:100%;"></iframe>
-    </div>
-  </ion-radio-group>
+  </ion-radio-group> 
 </ion-list> 
+<div  class="something" id="top-container"> </div>
 <ion-button class="delivery_btn" (click)="checkout()">continuer</ion-button>
 </ion-content>

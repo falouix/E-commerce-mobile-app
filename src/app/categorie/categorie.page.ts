@@ -87,8 +87,7 @@ export class CategoriePage implements OnInit {
           customerId = null;
         }
           this.customerData = result;
-      console.log('customeContext',this.customerData)
-      this.CategoriesServices.getCategory(this.category_id,this.currentPage,customerId).subscribe(res =>{
+      this.CategoriesServices.getCategory(this.route.snapshot.paramMap.get('id'),this.currentPage,customerId).subscribe(res =>{
           
         console.log("******* res at first *******");
         console.log( res );
@@ -96,7 +95,6 @@ export class CategoriePage implements OnInit {
         if(this.subCategory){
           this.subCategory.forEach( (value) =>{
                 value.imgSrc = "https://stebouhaha.com/c/"+value.id+"-small_default/"+value.name+".jpg";
-                
                   var request = new XMLHttpRequest();
                   request.open("GET", value.imgSrc, true);
                   request.send();
