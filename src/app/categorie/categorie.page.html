@@ -3,12 +3,10 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-col class="cat_img_container">
-    <ion-img
+  <ion-col class="cat_img_container" style="border-radius:15px ;" >
+    <img
       [src]="currentCategoryLogo? currentCategoryLogo : currentSubCategoryLogo"
-      class="cat_img_header"
-      (click) = 'clicktest(currentCategoryId,1)'
-    ></ion-img>
+      class="cat_img_header" />
   </ion-col>
   <ion-slides pager="true" >
     <ion-slide  *ngFor="let item1 of subCategoryTorender" class="slides_sub_cat">

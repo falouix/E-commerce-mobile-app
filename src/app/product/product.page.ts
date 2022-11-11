@@ -44,7 +44,7 @@ async presentAlert() {
   const alert = await this.alertController.create({
     header: 'Quantité est vide!',
     buttons: [
-      {
+      { 
         text: 'Cancel',
         role: 'cancel',
         handler: () => {
@@ -154,7 +154,13 @@ IsLoged;
       return(res);
     });
   }
+  
   async addTobasket(id){
+    const loading = await this.loadingCtrl.create({
+      message : 'loading..',
+      spinner : 'lines-sharp'
+    });
+    await loading.present();
     console.log('user clicked add');
     let token = '';
     if(! this.qtty || this.qtty == '0'){
@@ -177,6 +183,7 @@ IsLoged;
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',this.contextclonevar.contextCart.id,this.contextclonevar.cart.products,this.profileData.id).subscribe(async (res) =>{
         this.setStorageValue('contextCloneOrsomethng',res);
         if(res.success ){
+          loading.dismiss()
           this.presentToast('middle');
           this.router.navigateByUrl(`panier`);
          }
@@ -185,9 +192,10 @@ IsLoged;
         
         console.log('contextCloneOrsomethng is null');
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',0,0,this.profileData.id).subscribe(async (res) =>{
+          loading.dismiss()
           this.setStorageValue('contextCloneOrsomethng',res);
           if(res.success ){
-            this.presentToast('middle')
+            this.presentToast('middle');
             this.router.navigateByUrl(`panier`);
            }
         });

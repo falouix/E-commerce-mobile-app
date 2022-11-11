@@ -41,7 +41,7 @@
     position: fixed;
     width: 100%;
     margin: 0px;
-    bottom: 12px;
+    bottom: -1px;
     padding: 6px;
     box-shadow: 0px 2px 5px #00000012;
     border-bottom: 1px solid #0000001c;
@@ -101,12 +101,24 @@
     font-size: 23px;
 }
 .panier_products_container{
-    max-height: 53%;
+    /*top: 89px;*/
+    height: calc(100% - 200px);
     overflow: scroll;
+    padding-bottom: 86px !important;
+    margin-bottom: 105px !important;
 }
 @media(min-height:896px){
     .panier_products_container{
         max-height: 53%;
         overflow: scroll;
     }
+ }
+ .panier_delet_prod{
+    box-shadow: none !important;
+ }
+ .toppanierlogo{
+    position: fixed;
+    z-index: 99;
+    height: 86px;
+    width: 100%;
  }

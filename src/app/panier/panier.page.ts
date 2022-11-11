@@ -64,6 +64,7 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
   await toast.present();
 }
   async ngOnInit() {
+    
     await this.storage.create();
   }
 
@@ -173,8 +174,9 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
             
              if(res.success ){
               console.log('contextCloneOrsomethng got deleted ',res)
-              if(!res.quantity){
+              if(!res.productsInCart.length){
                 this.removeStorageValue('contextCloneOrsomethng').then(res=>{
+                  window.location.reload();
                   console.log('contextCloneOrsomethng got deleted ')
                 })
               }else{
@@ -187,7 +189,9 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
                document.getElementById("prod_"+id).innerHTML = "";
                document.getElementById("prod_"+id).outerHTML = "";
                document.getElementById("prod_"+id).remove();
+               window.location.reload();
                    }
+                  
              })
       }
 

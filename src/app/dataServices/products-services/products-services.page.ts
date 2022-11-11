@@ -37,15 +37,13 @@ export class ProductsServicesPage {
      return( this.http.get(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`));
   }
   checkApptoken(): Observable<any> {
-    console.log(`https://stebouhaha.com/panier?&source=app`)
     var headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin' , '*');
     headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-    return( this.http.get(`https://stebouhaha.com/panier?source=app`,options));
-
+    return( this.http.get(`https://stebouhaha.com/adresses?source=app&reason=gettoken`,options));
   }
   addProductToCart(id,qty,flag,catID,cart_products,id_customer): Observable<any> {
 let  qtyTosend = 0 ; 
@@ -101,14 +99,14 @@ if (qtyTosend != 0  ){
     return( this.http.get(`https://stebouhaha.com/api/addresses/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${id_user}&filter[deleted]=0&display=full`));
 
   }
- addadresseCart(id_user,urldata): Observable<any> {
-  var headers = new HttpHeaders();
-  headers.append('Access-Control-Allow-Origin' , '*');
-  headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-  headers.append('Accept','application/text');
-  headers.append('content-type','application/json');
-   let options = { headers:headers}; 
-    return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=0&${urldata}&id_customer=${id_user}`,options));
+ addadresseCart(id_user,urldata,token): Observable<any> {
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/text');
+    headers.append('content-type','application/json');
+    let options = { headers:headers};
+    return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=0&${urldata}&id_customer=${id_user}&token=${token}`,options));
 
   }
 
