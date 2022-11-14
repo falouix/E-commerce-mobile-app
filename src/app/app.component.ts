@@ -29,7 +29,7 @@ export class AppComponent {
     this.menuactive[5] = false;
     
   } 
-  
+   
   public IsLoged = this.getIsLoged();
   async getIsLoged(){
     let IsLoged;
@@ -52,7 +52,6 @@ export class AppComponent {
      }).catch(e => {
        console.log('error: '+ e);
      });
-     console.log('IsLoged',IsLoged)
      this.IsLoged = IsLoged;
      return IsLoged;
   }
@@ -94,5 +93,16 @@ export class AppComponent {
   SearchFunction(e){
     console.log(e)
     this.router.navigateByUrl(`/search/${e}`);
+  }
+  async updateCounter(){
+    await this.getStorageValue('contextCloneOrsomethng').then(result => {
+      if(result == null){
+        this.counter_panier =  0
+      }else{
+        this.counter_panier = result.cart.products_count;
+      }
+     }).catch(e => {
+       console.log('error: '+ e);
+     });
   }
 }

@@ -3,6 +3,8 @@ import { Storage } from '@ionic/storage';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 import { ToastController } from '@ionic/angular';
+
+import { AppComponent } from '../app.component';
 import {Router,ActivatedRoute} from '@angular/router';
 import { LoadingController,AlertController  } from '@ionic/angular';
 @Component({
@@ -25,6 +27,7 @@ export class PanierPage implements OnInit {
     private ProductsServicesPage : ProductsServicesPage,
     private http:HttpClient,
     private alertController: AlertController,
+    public AppComponent : AppComponent
     ) { }
     async presentAlert() {
       const alert = await this.alertController.create({
@@ -64,7 +67,7 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
   await toast.present();
 }
   async ngOnInit() {
-    
+    this.AppComponent.updateCounter();
     await this.storage.create();
   }
 
@@ -134,6 +137,9 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
     }); 
  
     
+  }
+  renderProduct(id){
+    this.router.navigateByUrl(`/product/${id}`);
   }
   //function just to set images for products 
   getProductImg(id){

@@ -55,7 +55,7 @@
         Ajouter nouvelle adresse
       </ion-button>
       <ion-row>
-        <form (ngSubmit)="addadress()" *ngIf="showAdrsForm">
+        <form (ngSubmit)="addadress()" *ngIf="showAdrsForm" style="width: 100%;">
           <ion-item>
             <ion-label>Alias</ion-label>
             <ion-input type="text" [(ngModel)]="single_adress.alias" ngDefaultControl name="alias"></ion-input>
@@ -96,7 +96,7 @@
           <ion-label>Téléphone</ion-label>
           <ion-textarea [(ngModel)]="single_adress.phone" ngDefaultControl name="phone"></ion-textarea>
         </ion-item>
-          <ion-button  expand="full" class="cartBtnCheckout" type="submit" block>Add adresse</ion-button>
+          <ion-button  expand="full" class="cartBtnCheckout" type="submit" block style="margin-top: 7px; margin-bottom : 9px;">Ajouter adresse</ion-button>
         </form>   
       
           <!--ion-button expand="full" class="cartBtnCheckout" (click)="addadress()">Add adresse</ion-button-->

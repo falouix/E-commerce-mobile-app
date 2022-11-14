@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer }  from '@angular/platform-browser';
 import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
-
+import { AppComponent } from '../app.component';
 import { LoadingController,AlertController  } from '@ionic/angular';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 
@@ -22,13 +22,14 @@ export class ProductPage implements OnInit {
     private router : Router, 
     private route : ActivatedRoute,
     private ProductsServicesPage : ProductsServicesPage,
-    public storage: Storage
+    public storage: Storage,
+    public AppComponent : AppComponent
     ) {
     this.qtty = '1';
    }
    handlerMessage = '';
    roleMessage = '';
-
+//try to updatte cart counter
 // alert message when quantity is empty (later to use)
 
 async presentToast(position: 'top' | 'middle' | 'bottom') {
@@ -80,6 +81,7 @@ IsLoged;
   contextclonevar;
   async ngOnInit() {
     
+  this.AppComponent.updateCounter();
     await this.storage.create();
     this.profileData = await this.getStorageValue('customeContext').then(result => {
       if(result == null){
