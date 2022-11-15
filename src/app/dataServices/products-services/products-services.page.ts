@@ -1,6 +1,8 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
+
+import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import { Storage } from '@ionic/storage';
 @Component({
@@ -19,22 +21,22 @@ export class ProductsServicesPage {
 
    
   getAllProducts(): Observable<any> {
-    //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
-    console.log(this.http.get(`https://stebouhaha.com/promotions?source=app`)); 
-    return( this.http.get(`https://stebouhaha.com/promotions?source=app`));
+    //console.log(`${environment.apiUrl}api/products/${id}?ws_key=${environment.ApiKey}&output_format=JSON`);
+    console.log(this.http.get(`${environment.apiUrl}promotions?source=app`)); 
+    return( this.http.get(`${environment.apiUrl}promotions?source=app`));
   }
 
   getProductSpecific_prices(id): Observable<any> {
-    //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
-    //console.log(this.http.get(`https://stebouhaha.com/promotions?source=app`)); 
-    return( this.http.get(`https://stebouhaha.com/api/specific_prices/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_product]=${id}&display=full`));
+    //console.log(`${environment.apiUrl}api/products/${id}?ws_key=${environment.ApiKey}&output_format=JSON`);
+    //console.log(this.http.get(`${environment.apiUrl}promotions?source=app`)); 
+    return( this.http.get(`${environment.apiUrl}api/specific_prices/?ws_key=${environment.ApiKey}&output_format=JSON&filter[id_product]=${id}&display=full`));
   }
 
 
 
   getProduct(id): Observable<any> {
-    //console.log(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`);
-     return( this.http.get(`https://stebouhaha.com/api/products/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON`));
+    //console.log(`${environment.apiUrl}api/products/${id}?ws_key=${environment.ApiKey}&output_format=JSON`);
+     return( this.http.get(`${environment.apiUrl}api/products/${id}?ws_key=${environment.ApiKey}&output_format=JSON`));
   }
   checkApptoken(): Observable<any> {
     var headers = new HttpHeaders();
@@ -43,7 +45,7 @@ export class ProductsServicesPage {
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-    return( this.http.get(`https://stebouhaha.com/adresses?source=app&reason=gettoken`,options));
+    return( this.http.get(`${environment.apiUrl}adresses?source=app&reason=gettoken`,options));
   }
   addProductToCart(id,qty,flag,catID,cart_products,id_customer): Observable<any> {
 let  qtyTosend = 0 ; 
@@ -65,7 +67,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers};
-    return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&qtytosend=${qtyTosend}&id_customer=${id_customer}`,options));
+    return( this.http.post(`${environment.apiUrl}panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&qtytosend=${qtyTosend}&id_customer=${id_customer}`,options));
   
 
 }else{
@@ -76,7 +78,7 @@ if (qtyTosend != 0  ){
   headers.append('Accept','application/text');
   headers.append('content-type','application/json');
    let options = { headers:headers};
-  return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
+  return( this.http.post(`${environment.apiUrl}panier?source=app&id_product=${id}&token=""&qty=${qty}&flag=${flag}&id_customization=0&action=update&add=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
 
 }
   }
@@ -87,16 +89,16 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers}; 
-    return( this.http.post(`https://stebouhaha.com/panier?source=app&id_product=${id}&flagdel=delete&action=update&delete=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
+    return( this.http.post(`${environment.apiUrl}panier?source=app&id_product=${id}&flagdel=delete&action=update&delete=1&reason=appCart&cartid=${catID}&id_customer=${id_customer}`,options));
   }
   getadressesCart(id_user): Observable<any> {
        
-    return( this.http.get(`https://stebouhaha.com/api/addresses/?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${id_user}&filter[deleted]=0&display=full`));
+    return( this.http.get(`${environment.apiUrl}api/addresses/?ws_key=${environment.ApiKey}&output_format=JSON&filter[id_customer]=${id_user}&filter[deleted]=0&display=full`));
 
   }
   getsingleadresse(id_user,id): Observable<any> {
        
-    return( this.http.get(`https://stebouhaha.com/api/addresses/${id}?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON&filter[id_customer]=${id_user}&filter[deleted]=0&display=full`));
+    return( this.http.get(`${environment.apiUrl}api/addresses/${id}?ws_key=${environment.ApiKey}&output_format=JSON&filter[id_customer]=${id_user}&filter[deleted]=0&display=full`));
 
   }
  addadresseCart(id_user,urldata,token): Observable<any> {
@@ -106,7 +108,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
     let options = { headers:headers};
-    return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=0&${urldata}&id_customer=${id_user}&token=${token}`,options));
+    return( this.http.get(`${environment.apiUrl}adresse?source=app&id_address=0&${urldata}&id_customer=${id_user}&token=${token}`,options));
 
   }
 
@@ -117,7 +119,7 @@ if (qtyTosend != 0  ){
     headers.append('Accept','application/text');
     headers.append('content-type','application/json');
      let options = { headers:headers}; 
-     return( this.http.get(`https://stebouhaha.com/adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=d190c019b146c18fad7e95fd2b0a6dcd`,options));
+     return( this.http.get(`${environment.apiUrl}adresse?source=app&id_address=${id}&delete=1&id_customer=${id_user}&token=d190c019b146c18fad7e95fd2b0a6dcd`,options));
     }
 
 
@@ -129,7 +131,7 @@ if (qtyTosend != 0  ){
       headers.append('Accept','application/text');
       headers.append('content-type','application/json');
        let options = { headers:headers}; 
-       return( this.http.get(`https://stebouhaha.com/adresse?source=app&appaction=updateaddress&id_address=${id}&${urldata}&id_customer=${id_user}`,options));
+       return( this.http.get(`${environment.apiUrl}adresse?source=app&appaction=updateaddress&id_address=${id}&${urldata}&id_customer=${id_user}`,options));
       }
     getDeliveryAdrs(id_address_delivery,id_customer,login_customer,password,id_cart): Observable<any> {
       var headers = new HttpHeaders();
@@ -138,7 +140,7 @@ if (qtyTosend != 0  ){
       headers.append('Accept','application/text');
       headers.append('content-type','application/json');
        let options = { headers:headers};
-        return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&id_appcart=${id_cart}`,options));
+        return( this.http.get(`${environment.apiUrl}commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&id_appcart=${id_cart}`,options));
       }
       getPaymentOptions(id_address_delivery,id_customer,login_customer,password,delivery_option,id_cart): Observable<any> {
         var headers = new HttpHeaders();
@@ -147,7 +149,7 @@ if (qtyTosend != 0  ){
         headers.append('Accept','application/text');
         headers.append('content-type','application/json');
          let options = { headers:headers}; 
-          return( this.http.get(`https://stebouhaha.com/commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&delivery_option[41]=${delivery_option},&id_appcart=${id_cart}&confirmDeliveryOption=1`,options));
+          return( this.http.get(`${environment.apiUrl}commande?source=app&id_address_delivery=${id_address_delivery}&id_customer=${id_customer}&confirm-addresses=1&login_customer=${login_customer}&password=${password}&continue=1&delivery_option[41]=${delivery_option},&id_appcart=${id_cart}&confirmDeliveryOption=1`,options));
         }
         checkoutPayment(id_module,id_cart,key,id_customer): Observable<any> {
           var headers = new HttpHeaders();
@@ -191,7 +193,7 @@ if (qtyTosend != 0  ){
         headers.append('Accept','application/text');
         headers.append('content-type','application/json');
          let options = { headers:headers}; 
-         return( this.http.get(`https://stebouhaha.com/module/ps_checkpayment/validation?source=app&id_appcart=${id_cart}&key=${key}&id_customer=${id_customer}&paymentflag=paymee`,options))
+         return( this.http.get(`${environment.apiUrl}module/ps_checkpayment/validation?source=app&id_appcart=${id_cart}&key=${key}&id_customer=${id_customer}&paymentflag=paymee`,options))
           //return( this.http.get(`confirmation-commande?id_cart=${id_cart}&id_module=${id_module}&id_order=113&key=c9eea427f24a53337d0b1020750cfd30`,options));
       }
 }

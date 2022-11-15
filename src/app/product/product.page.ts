@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import {environment} from './../../environments/environment';
 import { SafeResourceUrl, DomSanitizer }  from '@angular/platform-browser';
 import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
@@ -110,11 +111,11 @@ IsLoged;
       this.productData = res;
       this.productData.product.price = parseFloat(this.productData.product.price).toFixed(2);
    if(this.productData.product.associations.images){
-          this.productImgSrc = 'https://stebouhaha.com/api/images/products/'+
+          this.productImgSrc = environment.apiUrl+'api/images/products/'+
           this.productData.product.id+
           '/'+
           this.productData.product.associations.images[0].id+
-          '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+          '?ws_key='+environment.ApiKey+'&output_format=JSON';
       }else{
         this.productImgSrc ="../../assets/imgs/main_logo.png";
       }

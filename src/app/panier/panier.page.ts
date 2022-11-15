@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 import { ToastController } from '@ionic/angular';
-
+import {environment} from './../../environments/environment';
 import { AppComponent } from '../app.component';
 import {Router,ActivatedRoute} from '@angular/router';
 import { LoadingController,AlertController  } from '@ionic/angular';
@@ -98,11 +98,11 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
         this.ProductsServicesPage.getProduct(item.id).subscribe(res =>{
           let productData = res;
           if(productData.product.associations.images){
-            item.imgSrc= 'https://stebouhaha.com/api/images/products/'+
+            item.imgSrc= environment.apiUrl+'api/images/products/'+
               productData.product.id+
               '/'+
               productData.product.associations.images[0].id+
-              '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+              '?ws_key='+environment.ApiKey+'&output_format=JSON';
           }else{
             item.imgSrc =  "../../assets/imgs/main_logo.png";
           }
@@ -146,11 +146,11 @@ async presentToast(position: 'top' | 'middle' | 'bottom') {
     this.ProductsServicesPage.getProduct(id).subscribe(res =>{
       let productData = res;
       if(productData.product.associations.images){
-           return 'https://stebouhaha.com/api/images/products/'+
+           return environment.apiUrl+'api/images/products/'+
           productData.product.id+
           '/'+
           productData.product.associations.images[0].id+
-          '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+          '?ws_key='+environment.ApiKey+'&output_format=JSON';
       }else{
         return "../../assets/imgs/main_logo.png";
       }
