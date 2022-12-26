@@ -181,13 +181,17 @@ ion-item.selected {
   --border-width: 0 !important;
   background: #fff;
 }
-
+.cat_sidebar{
+  font-size: 12px;
+    font-weight: 300;
+    padding: 0;
+}
 
 
 .sidebar_img{
-  
   width: 200px;
-  margin: 53px;
+    /* margin: 6px; */
+    margin-top: 10px
 }
 .menu_sidebar{
   //background: #152b5e;

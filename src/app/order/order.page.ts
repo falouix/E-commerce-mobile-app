@@ -6,7 +6,7 @@ import {ProductsServicesPage} from 'src/app/dataServices/products-services/produ
 import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
 import { LoadingController,AlertController  } from '@ionic/angular';
-
+import {environment} from './../../environments/environment';
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
@@ -148,11 +148,11 @@ return result;
         this.ProductsServicesPage.getProduct(item.id).subscribe(res =>{
           let productData = res;
           if(productData.product.associations.images){
-            item.imgSrc= 'https://stebouhaha.com/api/images/products/'+
+            item.imgSrc= environment.apiUrl+'api/images/products/'+
               productData.product.id+
               '/'+
               productData.product.associations.images[0].id+
-              '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+              '?ws_key='+environment.ApiKey+'&output_format=JSON';
           }else{
             item.imgSrc =  "../../assets/imgs/main_logo.png";
           }
@@ -179,11 +179,11 @@ return result;
     this.ProductsServicesPage.getProduct(id).subscribe(res =>{
       let productData = res;
       if(productData.product.associations.images){
-           return 'https://stebouhaha.com/api/images/products/'+
+           return environment.apiUrl+'api/images/products/'+
           productData.product.id+
           '/'+
           productData.product.associations.images[0].id+
-          '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+          '?ws_key='+environment.ApiKey+'&output_format=JSON';
       }else{
         return "../../assets/imgs/main_logo.png";
       }
@@ -207,14 +207,15 @@ return result;
   }
 
 single_adress:any = {}
-
-
     addadress() {
-    
-     let  data ='back=&token=d190c019b146c18fad7e95fd2b0a6dcd&alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&submitAddress=1';
-
-let id_user = this.currentUserinfo.id;
-      this.ProductsServicesPage.addadresseCart(id_user,data).subscribe(async (res) =>{
+      let  data ='back=&token=d190c019b146c18fad7e95fd2b0a6dcd&alias='+this.single_adress['alias']+'&firstname='+this.firstname+'&lastname='+this.firstname+'&company=&vat_number=&address1='+this.single_adress['address1']+'&address2=&postcode='+this.single_adress['postcode']+'&city='+this.single_adress['city']+'&id_country=208&phone='+this.single_adress['phone']+'&submitAddress=1';
+      let id_user = this.currentUserinfo.id;
+      let token
+      this.ProductsServicesPage.checkApptoken().subscribe(res=>{
+         console.log();
+          token = JSON.stringify(res.token)
+       });
+      this.ProductsServicesPage.addadresseCart(id_user,data,token).subscribe(async (res) =>{
         if(res.success ){
           this.ProductsServicesPage.getadressesCart(this.currentUserinfo.id).subscribe(res =>{
             this.adresseslist = res.addresses;

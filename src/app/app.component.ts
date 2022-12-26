@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import {Router} from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { CategoriesServicesPage } from './dataServices/categories-services/categories-services.page';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,6 +11,7 @@ export class AppComponent {
   notHome = false;
   public counter_panier = 0;
   public currentActive;
+  public categoriesList;
   public appPages = [
     { title: 'login', url: '/login', icon: 'person-circle' },
     { title: 'Inscription', url: '/inscrit', icon: 'person-circle' },
@@ -20,16 +22,20 @@ export class AppComponent {
   ];
   menuactive = [];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(private router : Router,public storage: Storage,) {
+  constructor(private router : Router,public storage: Storage,private CategoriesServicesPage :CategoriesServicesPage) {
     console.log('this.router.url', this.router.url);
     this.menuactive[1] = true;
     this.menuactive[2] = false;
     this.menuactive[3] = false;
     this.menuactive[4] = false;
     this.menuactive[5] = false;
+    this.CategoriesServicesPage.getAllCategories().subscribe(res=>{
+      console.log(res);
+      this.categoriesList = res.categories;
+    })
     
   } 
-  
+   
   public IsLoged = this.getIsLoged();
   async getIsLoged(){
     let IsLoged;
@@ -52,9 +58,11 @@ export class AppComponent {
      }).catch(e => {
        console.log('error: '+ e);
      });
-     console.log('IsLoged',IsLoged)
      this.IsLoged = IsLoged;
      return IsLoged;
+  }
+  turnoff(){
+    this.notHome = true;
   }
   btnmenu(i){
     console.log('btnMenu4',i);
@@ -91,8 +99,23 @@ export class AppComponent {
     return false;
     }
   }
+  clicktest(id,pageNbr){
+    this.setStorageValue('currentCategoryId',id);
+    this.router.navigateByUrl(`/categorie/${id}/${pageNbr}`);
+  }
   SearchFunction(e){
     console.log(e)
     this.router.navigateByUrl(`/search/${e}`);
+  }
+  async updateCounter(){
+    await this.getStorageValue('contextCloneOrsomethng').then(result => {
+      if(result == null){
+        this.counter_panier =  0
+      }else{
+        this.counter_panier = result.cart.products_count;
+      }
+     }).catch(e => {
+       console.log('error: '+ e);
+     });
   }
 }

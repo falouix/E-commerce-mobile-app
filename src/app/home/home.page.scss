@@ -1,16 +1,26 @@
 .itos-container-home {
-  margin: 8px 80px 0px 80px;
+  /*margin: 8px 80px 0px 80px;*/
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-
+.social_media_icon{
+  padding: 0;
+  width: 29px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+.social_ledia_container{
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
 .toolbar-background {
   background: #ffffff00;
 }
 .itos-home-main-logo {
-  /*width: 211px;*/
-  /*height: 170px;*/
+  width: 162px;
+  height: 129px;
 }
 .toolbar-background {
   background: red;
@@ -53,20 +63,27 @@
 }
 .phomepage{
   background: #f7bf00;
-    padding: 9px 43px;
+    padding: 3px 43px;
     text-align: center;
     color: white;
     font-weight: 600;
     font-size: 12px;
+    margin-bottom: -4px;
+}
+.search_container{
+  display: flex;
+    flex-direction: row;
 }
 .home_searchbar{
-    --border-radius: 50px !important;
-    --border: 2px solid;
-    color: #031c54;
-    --icon-color: #031c54;
-    padding: 8px 14px;
-    /* padding-top: 5px; */
-    margin-bottom: 12px;
+  --border-radius: 50px !important;
+  --border: 2px solid;
+  color: #031c54;
+  --icon-color: #031c54;
+  padding: 8px 14px;
+  /* padding-top: 5px; */
+  margin-bottom: 12px;
+  width: 80%;
+  float: left;
 }
 .home_product_label{
   font-size: 19px;

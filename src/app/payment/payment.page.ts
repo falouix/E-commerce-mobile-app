@@ -109,7 +109,9 @@ export class PaymentPage implements OnInit {
                 this.ProductsServicesPage.paymeecheckPayment(dumpToke).subscribe(async res=>{
                   console.log('result from checking if the payment done',JSON.stringify(res));
                   let result : any = {};
-                  result =JSON.stringify(res);
+                  result =JSON.parse(JSON.stringify(res));
+                  console.log('result.status', result.status)
+                  console.log('result.data.payment_status', result.data.payment_status)
                   if(result.status == 'true'){
                     if(result.data.payment_status == 'true'){
                       console.log('it should be done here');

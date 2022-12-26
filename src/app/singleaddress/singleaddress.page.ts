@@ -89,7 +89,7 @@ const loading = await this.loadingCtrl.create({
   
     
       this.adresseslist = res.addresses;  
-     // this.router.navigateByUrl(`addresses`); 
+     this.router.navigateByUrl(`addresses`); 
     
     });   
 

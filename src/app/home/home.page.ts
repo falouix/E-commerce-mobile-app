@@ -2,7 +2,7 @@ import { AfterContentChecked, Component, ViewChild,OnInit,ViewEncapsulation } fr
 import { IonSlides } from '@ionic/angular';
 import { PreloadAllModules, RouterModule, Router } from '@angular/router';
 import { SwiperComponent } from "swiper/angular";
-
+import { CategoriesServicesPage } from '../dataServices/categories-services/categories-services.page';
 import { Storage } from '@ionic/storage';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 import SwiperCore, { SwiperOptions,Pagination, Swiper,EffectFade,Autoplay,Navigation } from 'swiper';
@@ -39,7 +39,9 @@ export class HomePage implements AfterContentChecked {
   };
   offlineStatus = false;
    productHomePage :any =[];
-  constructor(private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }
+   categoriesList;
+   productsCtaegories : any =[];
+  constructor(private CategoriesServicesPage : CategoriesServicesPage,private router : Router, public storage: Storage, private ProductsServicesPage : ProductsServicesPage) { }
   ngAfterContentChecked() {
     
   }
@@ -48,13 +50,25 @@ export class HomePage implements AfterContentChecked {
   }
   ngOnInit() {
     this.loadHomeProducts();
+    this.CategoriesServicesPage.getAllCategories().subscribe(res=>{
+      this.categoriesList = res.categories;
+      Object.entries(this.categoriesList).forEach( (item) =>{
+        let fake_item :any;
+        fake_item = item[1];
+        console.log(fake_item.id)
+        this.CategoriesServicesPage.getCategory(fake_item.id,1,null).subscribe(res=>{
+          console.log(res)
+          this.productsCtaegories[fake_item.id] = res;          
+        })
+      });
+      
+    })
     console.log('productHomePage : ',this.productHomePage)
     if(!window.navigator.onLine){
       this.offlineStatus = true;
     }
   }
   clicktest(id,pageNbr){
- 
     this.setStorageValue('currentCategoryId',id);
     this.router.navigateByUrl(`/categorie/${id}/${pageNbr}`);
   }
@@ -75,7 +89,6 @@ export class HomePage implements AfterContentChecked {
         console.log(fake_item)
           this.productHomePage.push(fake_item);
       });
-
       })
       console.log(this.productHomePage)
   }

@@ -4,17 +4,16 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="currentSubCategoryContainer bg_white">
+  <div class="currentSubCategoryContainer bg_white toppanierlogo">
     <ion-icon name="bag-handle-outline" class="panier_big_icon"></ion-icon>
-    
+    <h3 class="panier_bigTitle">Panier</h3>
   </div>
-  <h3 class="panier_bigTitle">Panier</h3>
-  <ion-content >
   <ion-content class="panier_products_container">
-    <ion-card class="products_panier_holder " id="prod_{{item.id}}" *ngFor="let item of panierProducts">
+  <ion-content >
+    <ion-card (click)="renderProduct(item.id)" class="products_panier_holder " id="prod_{{item.id}}" *ngFor="let item of panierProducts">
     <ion-row>
       <ion-col class="ion-align-self-start" size="4">
-        <div class="padding_15">
+        <div class="">
           <ion-img
               src={{item.imgSrc}}
               class="itos-home-main-logo panier_product_img"
@@ -33,9 +32,8 @@
       </ion-col>
     </ion-row>
   </ion-card>
-  
 </ion-content>
-    <ion-card class="total_panier_holder">
+    <ion-card class="total_panier_holder" style="max-height: 136px;">
       <ion-card-header>
         <ion-card-subtitle class="color_031b52 total_prductnbr_cart">Nombre des produits : {{productCount}}</ion-card-subtitle>
         <ion-card-title class="ion-text-center total_title_cart">{{totalCart}}</ion-card-title>

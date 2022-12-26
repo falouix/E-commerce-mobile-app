@@ -35,18 +35,17 @@
 .total_prductnbr_cart{
     color: #031b52;
     float: left;
-    margin: 13px 0 0 20px;
+    margin: 0px 0 0 20px;
 }
 .total_panier_holder{
     position: fixed;
     width: 100%;
-    margin: 0px;
-    bottom: 12px;
-    padding: 6px;
-    box-shadow: 0px 2px 5px #00000012;
-    border-bottom: 1px solid #0000001c;
+    margin: 0;
+    bottom: 0;
+    /* padding: 10px; */
+    box-shadow: 0px 2px 5px rgb(0 0 0 / 7%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1098039216);
     border-radius: 0;
-    /*border-top: 1px solid #00000012;*/
 }
 .products_panier_holder{
     //border-top: 1px solid #0000001c;
@@ -101,12 +100,25 @@
     font-size: 23px;
 }
 .panier_products_container{
-    max-height: 53%;
+    height: calc(100vh - 346px);
+    /* margin-top: 63px !important; */
+    top: 99px;
     overflow: scroll;
+    /* padding-bottom: 86px !important; */
+    /* margin-bottom: 105px !important;*/
 }
 @media(min-height:896px){
     .panier_products_container{
         max-height: 53%;
         overflow: scroll;
     }
+ }
+ .panier_delet_prod{
+    box-shadow: none !important;
+ }
+ .toppanierlogo{
+    position: fixed;
+    z-index: 99;
+    height: 86px;
+    width: 100%;
  }

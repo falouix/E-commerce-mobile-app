@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import {environment} from './../../environments/environment';
 import { SafeResourceUrl, DomSanitizer }  from '@angular/platform-browser';
 import { ToastController } from '@ionic/angular';
 import {Router,ActivatedRoute} from '@angular/router';
-
+import { AppComponent } from '../app.component';
 import { LoadingController,AlertController  } from '@ionic/angular';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
 
@@ -22,13 +23,14 @@ export class ProductPage implements OnInit {
     private router : Router, 
     private route : ActivatedRoute,
     private ProductsServicesPage : ProductsServicesPage,
-    public storage: Storage
+    public storage: Storage,
+    public AppComponent : AppComponent
     ) {
     this.qtty = '1';
    }
    handlerMessage = '';
    roleMessage = '';
-
+//try to updatte cart counter
 // alert message when quantity is empty (later to use)
 
 async presentToast(position: 'top' | 'middle' | 'bottom') {
@@ -44,7 +46,7 @@ async presentAlert() {
   const alert = await this.alertController.create({
     header: 'Quantité est vide!',
     buttons: [
-      {
+      { 
         text: 'Cancel',
         role: 'cancel',
         handler: () => {
@@ -80,6 +82,7 @@ IsLoged;
   contextclonevar;
   async ngOnInit() {
     
+  this.AppComponent.updateCounter();
     await this.storage.create();
     this.profileData = await this.getStorageValue('customeContext').then(result => {
       if(result == null){
@@ -108,11 +111,12 @@ IsLoged;
       this.productData = res;
       this.productData.product.price = parseFloat(this.productData.product.price).toFixed(2);
    if(this.productData.product.associations.images){
-          this.productImgSrc = 'https://stebouhaha.com/api/images/products/'+
+          this.productImgSrc = environment.apiUrl+'api/images/products/'+
           this.productData.product.id+
           '/'+
           this.productData.product.associations.images[0].id+
-          '?ws_key=4JSQRSQJ5DNCP3A1KY1LK8XC42AR1AD9&output_format=JSON';
+          '?ws_key='+environment.ApiKey+'&output_format=JSON';
+          console.log('it should be something like this : ',this.productImgSrc)
       }else{
         this.productImgSrc ="../../assets/imgs/main_logo.png";
       }
@@ -154,7 +158,13 @@ IsLoged;
       return(res);
     });
   }
+  
   async addTobasket(id){
+    const loading = await this.loadingCtrl.create({
+      message : 'loading..',
+      spinner : 'lines-sharp'
+    });
+    await loading.present();
     console.log('user clicked add');
     let token = '';
     if(! this.qtty || this.qtty == '0'){
@@ -177,6 +187,7 @@ IsLoged;
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'exist',this.contextclonevar.contextCart.id,this.contextclonevar.cart.products,this.profileData.id).subscribe(async (res) =>{
         this.setStorageValue('contextCloneOrsomethng',res);
         if(res.success ){
+          loading.dismiss()
           this.presentToast('middle');
           this.router.navigateByUrl(`panier`);
          }
@@ -185,9 +196,10 @@ IsLoged;
         
         console.log('contextCloneOrsomethng is null');
         this.ProductsServicesPage.addProductToCart(id,parseInt(this.qtty),'notexist',0,0,this.profileData.id).subscribe(async (res) =>{
+          loading.dismiss()
           this.setStorageValue('contextCloneOrsomethng',res);
           if(res.success ){
-            this.presentToast('middle')
+            this.presentToast('middle');
             this.router.navigateByUrl(`panier`);
            }
         });

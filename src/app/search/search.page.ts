@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
+import {environment} from './../../environments/environment';
 import { SearchServicesPage } from 'src/app/dataServices/search-services/search-services.page';
 @Component({
   selector: 'app-search',
@@ -21,9 +22,14 @@ export class SearchPage implements OnInit {
       Object.entries(this.searchResult).forEach( (item) =>{
           let fakeItem :any = {};
           fakeItem = item[1];
-          fakeItem.formatedPrice = parseFloat(fakeItem.price_tax_exc).toFixed(3).toString()+' TND';
-        if(fakeItem.images ){
-          fakeItem.imgSrc = fakeItem.images[0].medium.url;
+          fakeItem.formatedPrice = parseFloat(fakeItem.price_without_reduction).toFixed(3).toString()+' TND';
+        if(fakeItem.id_image ){
+          console.log(fakeItem.id_image)
+          fakeItem.imgSrc = environment.apiUrl+'api/images/products/'+
+          fakeItem.id_product+
+          '/'+
+          fakeItem.id_image.split("-")[1]+
+          '?ws_key='+environment.ApiKey+'&output_format=JSON';
         }else{
           fakeItem.imgSrc = '../../assets/holder.jpg';
         }
