@@ -116,6 +116,7 @@ IsLoged;
           '/'+
           this.productData.product.associations.images[0].id+
           '?ws_key='+environment.ApiKey+'&output_format=JSON';
+          console.log('it should be something like this : ',this.productImgSrc)
       }else{
         this.productImgSrc ="../../assets/imgs/main_logo.png";
       }

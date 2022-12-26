@@ -3,7 +3,7 @@ import {Router,ActivatedRoute} from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {CategoriesServicesPage} from 'src/app/dataServices/categories-services/categories-services.page';
 import {ProductsServicesPage} from 'src/app/dataServices/products-services/products-services.page';
-
+import { AppComponent } from '../app.component';
 import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-categorie',
@@ -20,7 +20,8 @@ export class CategoriePage implements OnInit {
     private router : Router, 
     private route : ActivatedRoute,
     private CategoriesServices : CategoriesServicesPage,
-    public storage: Storage
+    public storage: Storage,
+    public AppComponent :AppComponent
     ) { }
     customerData;
      currentCategoryLogo : string;
@@ -36,9 +37,16 @@ export class CategoriePage implements OnInit {
      categoryPagination=[];
      categoryPages=[];
      categoryProducts=[];
-     categoryProductsSort=[];   
+     categoryProductsSort=[];
+     
+     
+     ionViewDidEnter() {
+      this.AppComponent.turnoff()
+    }
+  
     async ngOnInit() {
       await this.storage.create();
+      this.AppComponent.turnoff()
       this.loadCategoryItems();
       if(this.currentSubCategoryLogo == undefined){
         //get current category logo
@@ -151,7 +159,10 @@ export class CategoriePage implements OnInit {
     renderProduct(id){
       this.router.navigateByUrl(`/product/${id}`);
     }
-
+    SearchFunction(e){
+      console.log(e)
+      this.router.navigateByUrl(`/search/${e}`);
+    }
     //Render sub category products and set some vars
     renderSubCategory(id,currentCategoryLogo,currenrCategroryTitle,currentCategoryId){
       this.setStorageValue('currentSubCategoryLogo',currentCategoryLogo);

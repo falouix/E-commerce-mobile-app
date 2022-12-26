@@ -3,15 +3,60 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="itos-container">
+  <div class="itos-container-bouhaha">
     <ion-img
       src="../../assets/imgs/main_logo.png"
-      class="itos-home-main-logo"
+      class="itos-home-main-logo-bouhaha"
     ></ion-img>
   </div>
   <div class="itos-container-main">
     <p class="about_p">
       Bouhaha est une entreprise crée en 2010 spécialisée dans la vente et la distribution des produits de quincaillerie et de construction
     </p>
+
+    
+
+    <!-- Icontact form -->
+    <div class="contact_form_container">
+      <h3 class="contactez_nous_h3">Contactez nous</h3>
+      <ion-input placeholder="Sujet" [(ngModel)]="sujet" ></ion-input>
+      <ion-input placeholder="E-mail" [(ngModel)]="email"></ion-input>
+
+      <!-- Textarea that clears the value on edit -->
+      <ion-textarea  [(ngModel)]="message" rows="4" placeholder="Message" clearOnEdit="true"></ion-textarea>
+      <ion-button 
+      clor="ion-color-flx" 
+      size="large" 
+      class="contact_form_button"
+      (click)="sendMail()"
+      >
+        Envoyer
+    </ion-button>
+    <p class="contact_p">
+      <ion-icon name="location" class="contact_icons"></ion-icon>
+      <span class="contact_form_span">
+        Bouhaha Tunisie
+      </span>
+    </p>
+    <p class="contact_p">
+      <ion-icon name="mail" class="contact_icons"></ion-icon>
+      <span class="contact_form_span">
+        support@stebouhaha.com
+      </span>
+    </p>
+    <div class="social_ledia_container">
+      
+      <ion-img
+        src="../../assets/imgs/contact-icons/facebook.png"
+        class="social_media_icon"
+      ></ion-img>
+      <ion-img
+        src="../../assets/imgs/contact-icons/instagram.png"
+        class="social_media_icon"
+      ></ion-img>
+
+    </div> 
   </div>
+  </div>
+
 </ion-content>

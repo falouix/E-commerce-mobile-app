@@ -13,6 +13,24 @@ import {environment} from '../../../environments/environment';
 })
 export class CategoriesServicesPage {
   constructor(private http:HttpClient){ }
+  getAllCategories(): Observable<any> {
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('content-type','application/json');
+     let options = { headers:headers};
+     return( this.http.get(`${environment.apiUrl}api/categories?ws_key=${environment.ApiKey}&output_format=JSON&filter[active]=1&filter[level_depth]=2&display=full`, options));
+  }
+  getProductsCategory(id): Observable<any> {
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('content-type','application/json');
+     let options = { headers:headers};
+     return( this.http.get(`${environment.apiUrl}api/products?ws_key=${environment.ApiKey}&output_format=JSON&filter[active]=1&filter[id_category_default]=${id}&display=full`, options));
+  }
   getCategory(id,pageNbr,customerId): Observable<any> {
     console.log(customerId)
     var headers = new HttpHeaders();

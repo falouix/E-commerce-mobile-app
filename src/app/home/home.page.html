@@ -14,8 +14,23 @@
       class="itos-home-main-logo"
     ></ion-img>
   </div>
+  <div class="search_container">
+    
   <ion-searchbar  class="home_searchbar" (search)="SearchFunction($event.target.value)" ></ion-searchbar>
-  <div>
+ 
+    <div class="social_ledia_container">
+      
+      <ion-img
+        src="../../assets/imgs/contact-icons/facebook.png"
+        class="social_media_icon"
+      ></ion-img>
+      <ion-img
+        src="../../assets/imgs/contact-icons/instagram.png"
+        class="social_media_icon"
+      ></ion-img>
+  
+    </div> 
+  </div> <div style="background: #f7bf00;    margin-bottom: 7px;">
     <p class="phomepage">
       Bouhaha est une entreprise crée en 2010 spécialisée dans la vente et la distribution des produits de quincaillerie et de construction
     </p>
@@ -95,5 +110,13 @@
          </ion-card-header>
         </div>
         </ngx-slick-carousel>
+
+        <div class="categories_highlight">
+            <ion-list>
+              <ion-item *ngFor="let cat of categoriesList">
+                  {{cat.name}}
+              </ion-item>
+            </ion-list>
+        </div>
   </div>
 </ion-content>
